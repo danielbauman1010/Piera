@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */; };
-		951422CE1E53EB4C003FCDC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CD1E53EB4C003FCDC0 /* ViewController.swift */; };
+		951422CE1E53EB4C003FCDC0 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CD1E53EB4C003FCDC0 /* IntroController.swift */; };
 		951422D11E53EB4C003FCDC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422CF1E53EB4C003FCDC0 /* Main.storyboard */; };
 		951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951422D21E53EB4C003FCDC0 /* Assets.xcassets */; };
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
+		DBB20A631E66FBA5003B76B3 /* StudentLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		951422C81E53EB4C003FCDC0 /* PIera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		951422CD1E53EB4C003FCDC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		951422CD1E53EB4C003FCDC0 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroController.swift; sourceTree = "<group>"; };
 		951422D01E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		951422D21E53EB4C003FCDC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		951422D51E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		951422D71E53EB4C003FCDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +57,12 @@
 			isa = PBXGroup;
 			children = (
 				951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */,
-				951422CD1E53EB4C003FCDC0 /* ViewController.swift */,
+				951422CD1E53EB4C003FCDC0 /* IntroController.swift */,
 				951422CF1E53EB4C003FCDC0 /* Main.storyboard */,
 				951422D21E53EB4C003FCDC0 /* Assets.xcassets */,
 				951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */,
 				951422D71E53EB4C003FCDC0 /* Info.plist */,
+				DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */,
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -136,7 +139,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				951422CE1E53EB4C003FCDC0 /* ViewController.swift in Sources */,
+				951422CE1E53EB4C003FCDC0 /* IntroController.swift in Sources */,
+				DBB20A631E66FBA5003B76B3 /* StudentLoginController.swift in Sources */,
 				951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +263,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PIera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.learningswift.PIera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -271,6 +276,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PIera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.learningswift.PIera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -297,6 +303,7 @@
 				951422DC1E53EB4C003FCDC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
