@@ -12,6 +12,7 @@
 		951422D11E53EB4C003FCDC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422CF1E53EB4C003FCDC0 /* Main.storyboard */; };
 		951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951422D21E53EB4C003FCDC0 /* Assets.xcassets */; };
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
+		95B913A21E6DD05100E8F7C4 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B913A11E6DD05100E8F7C4 /* Server.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		951422D21E53EB4C003FCDC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		951422D51E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		951422D71E53EB4C003FCDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95B913A11E6DD05100E8F7C4 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				951422D21E53EB4C003FCDC0 /* Assets.xcassets */,
 				951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */,
 				951422D71E53EB4C003FCDC0 /* Info.plist */,
+				95B913A11E6DD05100E8F7C4 /* Server.swift */,
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				951422CE1E53EB4C003FCDC0 /* ViewController.swift in Sources */,
+				95B913A21E6DD05100E8F7C4 /* Server.swift in Sources */,
 				951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +301,7 @@
 				951422DC1E53EB4C003FCDC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
