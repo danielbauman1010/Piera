@@ -8,20 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */; };
-		951422CE1E53EB4C003FCDC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CD1E53EB4C003FCDC0 /* ViewController.swift */; };
+		951422CE1E53EB4C003FCDC0 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CD1E53EB4C003FCDC0 /* IntroController.swift */; };
 		951422D11E53EB4C003FCDC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422CF1E53EB4C003FCDC0 /* Main.storyboard */; };
 		951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951422D21E53EB4C003FCDC0 /* Assets.xcassets */; };
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
+		DBB20A631E66FBA5003B76B3 /* StudentLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */; };
+		DBB20A651E6743F7003B76B3 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A641E6743F7003B76B3 /* Student.swift */; };
+		DBB20A671E67443E003B76B3 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A661E67443E003B76B3 /* Teacher.swift */; };
+		DBB20A691E67446A003B76B3 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A681E67446A003B76B3 /* Experiment.swift */; };
+		DBB20A6B1E67474F003B76B3 /* ExperimentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A6A1E67474F003B76B3 /* ExperimentStore.swift */; };
+		DBB20A6D1E674801003B76B3 /* ExperimentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A6C1E674801003B76B3 /* ExperimentCell.swift */; };
+		DBB20A6F1E67496E003B76B3 /* ExperimentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A6E1E67496E003B76B3 /* ExperimentsViewController.swift */; };
+		DBB20A711E674BB0003B76B3 /* ExperimentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A701E674BB0003B76B3 /* ExperimentDetailViewController.swift */; };
+		DBB20A731E6D9C20003B76B3 /* PieraNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A721E6D9C20003B76B3 /* PieraNavigationController.swift */; };
+		DBB20A751E6DCB95003B76B3 /* ExperimentCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A741E6DCB95003B76B3 /* ExperimentCreationController.swift */; };
+		DBB20A771E6FA8BD003B76B3 /* StudentCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A761E6FA8BD003B76B3 /* StudentCreationController.swift */; };
+		DBB20A791E6FA8CD003B76B3 /* TeacherCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A781E6FA8CD003B76B3 /* TeacherCreationController.swift */; };
+		DBB20A7B1E70317F003B76B3 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A7A1E70317F003B76B3 /* Person.swift */; };
+		DBB20A7D1E703555003B76B3 /* TeacherLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A7C1E703555003B76B3 /* TeacherLoginController.swift */; };
+		DBB20A7F1E703D49003B76B3 /* StudentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */; };
+		DBB20A811E703D5F003B76B3 /* TeacherMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		951422C81E53EB4C003FCDC0 /* PIera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		951422CD1E53EB4C003FCDC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		951422CD1E53EB4C003FCDC0 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroController.swift; sourceTree = "<group>"; };
 		951422D01E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		951422D21E53EB4C003FCDC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		951422D51E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		951422D71E53EB4C003FCDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLoginController.swift; sourceTree = "<group>"; };
+		DBB20A641E6743F7003B76B3 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		DBB20A661E67443E003B76B3 /* Teacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		DBB20A681E67446A003B76B3 /* Experiment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experiment.swift; sourceTree = "<group>"; };
+		DBB20A6A1E67474F003B76B3 /* ExperimentStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentStore.swift; sourceTree = "<group>"; };
+		DBB20A6C1E674801003B76B3 /* ExperimentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentCell.swift; sourceTree = "<group>"; };
+		DBB20A6E1E67496E003B76B3 /* ExperimentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentsViewController.swift; sourceTree = "<group>"; };
+		DBB20A701E674BB0003B76B3 /* ExperimentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentDetailViewController.swift; sourceTree = "<group>"; };
+		DBB20A721E6D9C20003B76B3 /* PieraNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieraNavigationController.swift; sourceTree = "<group>"; };
+		DBB20A741E6DCB95003B76B3 /* ExperimentCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentCreationController.swift; sourceTree = "<group>"; };
+		DBB20A761E6FA8BD003B76B3 /* StudentCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCreationController.swift; sourceTree = "<group>"; };
+		DBB20A781E6FA8CD003B76B3 /* TeacherCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCreationController.swift; sourceTree = "<group>"; };
+		DBB20A7A1E70317F003B76B3 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		DBB20A7C1E703555003B76B3 /* TeacherLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLoginController.swift; sourceTree = "<group>"; };
+		DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentMainController.swift; sourceTree = "<group>"; };
+		DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherMainController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +87,27 @@
 			isa = PBXGroup;
 			children = (
 				951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */,
-				951422CD1E53EB4C003FCDC0 /* ViewController.swift */,
+				951422CD1E53EB4C003FCDC0 /* IntroController.swift */,
 				951422CF1E53EB4C003FCDC0 /* Main.storyboard */,
 				951422D21E53EB4C003FCDC0 /* Assets.xcassets */,
 				951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */,
 				951422D71E53EB4C003FCDC0 /* Info.plist */,
+				DBB20A7A1E70317F003B76B3 /* Person.swift */,
+				DBB20A641E6743F7003B76B3 /* Student.swift */,
+				DBB20A661E67443E003B76B3 /* Teacher.swift */,
+				DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */,
+				DBB20A7C1E703555003B76B3 /* TeacherLoginController.swift */,
+				DBB20A761E6FA8BD003B76B3 /* StudentCreationController.swift */,
+				DBB20A781E6FA8CD003B76B3 /* TeacherCreationController.swift */,
+				DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */,
+				DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */,
+				DBB20A681E67446A003B76B3 /* Experiment.swift */,
+				DBB20A6A1E67474F003B76B3 /* ExperimentStore.swift */,
+				DBB20A6C1E674801003B76B3 /* ExperimentCell.swift */,
+				DBB20A6E1E67496E003B76B3 /* ExperimentsViewController.swift */,
+				DBB20A701E674BB0003B76B3 /* ExperimentDetailViewController.swift */,
+				DBB20A721E6D9C20003B76B3 /* PieraNavigationController.swift */,
+				DBB20A741E6DCB95003B76B3 /* ExperimentCreationController.swift */,
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -136,8 +184,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				951422CE1E53EB4C003FCDC0 /* ViewController.swift in Sources */,
+				DBB20A7D1E703555003B76B3 /* TeacherLoginController.swift in Sources */,
+				DBB20A7B1E70317F003B76B3 /* Person.swift in Sources */,
+				DBB20A6D1E674801003B76B3 /* ExperimentCell.swift in Sources */,
+				DBB20A691E67446A003B76B3 /* Experiment.swift in Sources */,
+				DBB20A771E6FA8BD003B76B3 /* StudentCreationController.swift in Sources */,
+				DBB20A6B1E67474F003B76B3 /* ExperimentStore.swift in Sources */,
+				DBB20A7F1E703D49003B76B3 /* StudentMainController.swift in Sources */,
+				951422CE1E53EB4C003FCDC0 /* IntroController.swift in Sources */,
+				DBB20A671E67443E003B76B3 /* Teacher.swift in Sources */,
+				DBB20A6F1E67496E003B76B3 /* ExperimentsViewController.swift in Sources */,
+				DBB20A711E674BB0003B76B3 /* ExperimentDetailViewController.swift in Sources */,
+				DBB20A751E6DCB95003B76B3 /* ExperimentCreationController.swift in Sources */,
+				DBB20A731E6D9C20003B76B3 /* PieraNavigationController.swift in Sources */,
+				DBB20A631E66FBA5003B76B3 /* StudentLoginController.swift in Sources */,
 				951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */,
+				DBB20A811E703D5F003B76B3 /* TeacherMainController.swift in Sources */,
+				DBB20A651E6743F7003B76B3 /* Student.swift in Sources */,
+				DBB20A791E6FA8CD003B76B3 /* TeacherCreationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PIera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.learningswift.PIera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -271,6 +336,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PIera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.learningswift.PIera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -297,6 +363,7 @@
 				951422DC1E53EB4C003FCDC0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
