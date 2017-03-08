@@ -3,6 +3,7 @@ import UIKit
 class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var descript: UITextView!
@@ -23,6 +24,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         super.viewWillAppear(animated)
         
         nameLabel.text = experiment.name
+        authorLabel.text = experiment.author
         timeLabel.text = "Time: \(experiment.time!)"
         locationLabel.text = "Location: \(experiment.location!)"
         descript.text = "Description:\n\(experiment.descript!)"

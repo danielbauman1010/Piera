@@ -32,10 +32,10 @@ class Experiment: NSObject {
             let randomName = "\(randomAdjective) \(randomNoun)"
             
             
-            self.init(name: randomName, time: randomName, location: randomName, descript: randomName, objective: randomName)
+            self.init(name: randomName, time: randomName, location: randomName, descript: randomName, objective: randomName, author: randomName)
         }
         else{
-            self.init(name: "Experiment Sample", time: "3/5/17", location: "Room 3024", descript: "Have students do something", objective: "Learn something")
+            self.init(name: "Experiment Sample", time: "3/5/17", location: "Room 3024", descript: "Have students do something", objective: "Learn something", author: "Bill")
         }
     }
 }

@@ -3,6 +3,7 @@ import UIKit
 class ExperimentsViewController: UITableViewController{
     
     var experimentStore: ExperimentStore!
+    var relevantExperiments = [Experiment]()
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return experimentStore.allExperiments.count
@@ -82,8 +83,7 @@ class ExperimentsViewController: UITableViewController{
     }
     
     func update(){
-        let navigator = parent as! PieraNavigationController
-        for experiment in navigator.experiments{
+        for experiment in relevantExperiments{
             experimentStore.allExperiments.append(experiment)
             
             if let index = experimentStore.allExperiments.index(of: experiment){

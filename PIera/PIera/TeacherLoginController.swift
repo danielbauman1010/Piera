@@ -1,6 +1,6 @@
 import UIKit
 
-class StudentLoginController: UIViewController{
+class TeacherLoginController: UIViewController{
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
     
@@ -11,10 +11,10 @@ class StudentLoginController: UIViewController{
     
     @IBAction func attemptLogin(){
         let navigator = parent as! PieraNavigationController
-        for student in navigator.students{
-            if (student.email == emailField.text!) && (student.password == passwordField.text!){
-                navigator.currentPerson = student
-                performSegue(withIdentifier: "StudentLoginComplete", sender: nil)
+        for teacher in navigator.teachers{
+            if (teacher.email == emailField.text!) && (teacher.password == passwordField.text!){
+                navigator.currentPerson = teacher
+                performSegue(withIdentifier: "TeacherLoginComplete", sender: nil)
             }
         }
     }

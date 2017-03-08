@@ -15,8 +15,8 @@ class ExperimentCreationController: UIViewController{
     }
     
     @IBAction func finishedCreation(){
-        let newExperiment = Experiment(name: nameField.text!, time: timeField.text!, location: locationField.text!, descript: descript.text!, objective: objective.text!)
         let navigator = parent as! PieraNavigationController
+        let newExperiment = Experiment(name: nameField.text!, time: timeField.text!, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: (navigator.currentPerson?.name)!)
         navigator.experiments.append(newExperiment)
     }
 }
