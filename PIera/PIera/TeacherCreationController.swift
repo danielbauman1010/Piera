@@ -15,9 +15,12 @@ class TeacherCreationController: UIViewController{
     }
     
     @IBAction func finishedCreation(){
-        let newTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, bio: bio.text!)
+        let classes = classesField.text!
+        let classesArray = classes.components(separatedBy: " ")
+        let newTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesArray, bio: bio.text!)
         let navigator = parent as! PieraNavigationController
         navigator.teachers.append(newTeacher)
         navigator.currentPerson = newTeacher
+        navigator.server.createUser(username: nameField.text!, email: emailField.text!, password: passwordField.text!, classes: classesArray, bio: bio.text!, type: .Teacher)
     }
 }
