@@ -1,12 +1,11 @@
 import UIKit
 
-class StudentCreationController: UIViewController{
+class StudentCreationController: UIViewController{        
     
     @IBOutlet var nameField: UITextField!
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var confirmPasswordField: UITextField!
     @IBOutlet var emailField: UITextField!
-    @IBOutlet var interestsField: UITextField!
     @IBOutlet var classesField: UITextField!
     @IBOutlet var bio: UITextView!
     
@@ -16,9 +15,14 @@ class StudentCreationController: UIViewController{
     }
     
     @IBAction func finishedCreation(){
-        let newStudent = Student(name: nameField.text!, password: passwordField.text!, email: emailField.text!, interests: interestsField.text!, classes: classesField.text!, bio: bio.text!)
+        let classesArray = classesField.text!.components(separatedBy: " ")
+        let newStudent = Student(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesArray, bio: bio.text!)
         let navigator = parent as! PieraNavigationController
         navigator.students.append(newStudent)
         navigator.currentPerson = newStudent
+        let response = navigator.server.createUser(username: nameField.text!, email: emailField.text!, password: passwordField.text!, classes: classesArray, bio: bio.text!, type: .Student)
+        if let res=response {
+            res.forEach({print("\($0): \($1)")})
+        }
     }
 }
