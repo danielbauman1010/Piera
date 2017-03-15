@@ -20,6 +20,9 @@ class StudentCreationController: UIViewController{
         let navigator = parent as! PieraNavigationController
         navigator.students.append(newStudent)
         navigator.currentPerson = newStudent
-        navigator.server.createUser(username: nameField.text!, email: emailField.text!, password: passwordField.text!, classes: classesArray, bio: bio.text!, type: .Student)
+        let response = navigator.server.createUser(username: nameField.text!, email: emailField.text!, password: passwordField.text!, classes: classesArray, bio: bio.text!, type: .Student)
+        if let res=response {
+            res.forEach({print("\($0): \($1)")})
+        }
     }
 }
