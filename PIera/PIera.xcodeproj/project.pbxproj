@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */; };
-		951422CE1E53EB4C003FCDC0 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CD1E53EB4C003FCDC0 /* IntroController.swift */; };
 		951422D11E53EB4C003FCDC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422CF1E53EB4C003FCDC0 /* Main.storyboard */; };
 		951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951422D21E53EB4C003FCDC0 /* Assets.xcassets */; };
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
@@ -29,12 +28,12 @@
 		DBB20A7D1E703555003B76B3 /* TeacherLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A7C1E703555003B76B3 /* TeacherLoginController.swift */; };
 		DBB20A7F1E703D49003B76B3 /* StudentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */; };
 		DBB20A811E703D5F003B76B3 /* TeacherMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */; };
+		DBB20A841E732CCF003B76B3 /* RequirementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A831E732CCF003B76B3 /* RequirementStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		951422C81E53EB4C003FCDC0 /* PIera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		951422CD1E53EB4C003FCDC0 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroController.swift; sourceTree = "<group>"; };
 		951422D01E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		951422D21E53EB4C003FCDC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		951422D51E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		DBB20A7C1E703555003B76B3 /* TeacherLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLoginController.swift; sourceTree = "<group>"; };
 		DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentMainController.swift; sourceTree = "<group>"; };
 		DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherMainController.swift; sourceTree = "<group>"; };
+		DBB20A831E732CCF003B76B3 /* RequirementStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequirementStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */,
-				951422CD1E53EB4C003FCDC0 /* IntroController.swift */,
 				951422CF1E53EB4C003FCDC0 /* Main.storyboard */,
 				951422D21E53EB4C003FCDC0 /* Assets.xcassets */,
 				951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */,
@@ -110,8 +109,11 @@
 				DBB20A701E674BB0003B76B3 /* ExperimentDetailViewController.swift */,
 				DBB20A721E6D9C20003B76B3 /* PieraNavigationController.swift */,
 				DBB20A741E6DCB95003B76B3 /* ExperimentCreationController.swift */,
-				95341B5E1E70812700DEC93C /* Server.swift */,
-			);
+
+				DBB20A831E732CCF003B76B3 /* RequirementStore.swift */,
+
+				95341B5E1E70812700DEC93C /* Server.swift */,			
+);
 			path = PIera;
 			sourceTree = "<group>";
 		};
@@ -192,9 +194,9 @@
 				DBB20A6D1E674801003B76B3 /* ExperimentCell.swift in Sources */,
 				DBB20A691E67446A003B76B3 /* Experiment.swift in Sources */,
 				DBB20A771E6FA8BD003B76B3 /* StudentCreationController.swift in Sources */,
+				DBB20A841E732CCF003B76B3 /* RequirementStore.swift in Sources */,
 				DBB20A6B1E67474F003B76B3 /* ExperimentStore.swift in Sources */,
 				DBB20A7F1E703D49003B76B3 /* StudentMainController.swift in Sources */,
-				951422CE1E53EB4C003FCDC0 /* IntroController.swift in Sources */,
 				DBB20A671E67443E003B76B3 /* Teacher.swift in Sources */,
 				DBB20A6F1E67496E003B76B3 /* ExperimentsViewController.swift in Sources */,
 				DBB20A711E674BB0003B76B3 /* ExperimentDetailViewController.swift in Sources */,

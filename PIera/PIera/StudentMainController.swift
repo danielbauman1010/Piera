@@ -18,11 +18,16 @@ class StudentMainController: UIViewController{
         let navigator = parent as! PieraNavigationController
         if segue.identifier == "StudentCurrent"{
             let experimentsTable = segue.destination as! ExperimentsViewController
-            experimentsTable.relevantExperiments = navigator.experiments.filter{$0.time != "history"}
+            navigator.experiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
         }
         if segue.identifier == "StudentHistory"{
             let experimentsTable = segue.destination as! ExperimentsViewController
-            experimentsTable.relevantExperiments = navigator.experiments.filter{$0.time == "history"}
+            navigator.experiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
         }
+    }
+    
+    func filterTime(experiments: [Experiment], _ comparisonType: ComparisonResult)->[Experiment]{
+        //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
+        return experiments.filter{($0.time?.compare(Date())) == comparisonType}
     }
 }

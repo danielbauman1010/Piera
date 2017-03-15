@@ -5,6 +5,13 @@ class ExperimentsViewController: UITableViewController{
     var experimentStore: ExperimentStore!
     var relevantExperiments = [Experiment]()
     
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return experimentStore.allExperiments.count
     }
@@ -13,8 +20,6 @@ class ExperimentsViewController: UITableViewController{
         super.init(coder: aDecoder)
         
         experimentStore = ExperimentStore()
-        
-        //navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
@@ -25,7 +30,7 @@ class ExperimentsViewController: UITableViewController{
         let experiment = experimentStore.allExperiments[indexPath.row]
         
         cell.nameLabel.text = experiment.name
-        cell.timeLabel.text = experiment.time
+        cell.timeLabel.text = dateFormatter.string(from: experiment.time! as Date)
         cell.locationLabel.text = experiment.location
         
         return cell
@@ -38,7 +43,7 @@ class ExperimentsViewController: UITableViewController{
         tableView.estimatedRowHeight = 65
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let experiment = experimentStore.allExperiments[indexPath.row]
             
@@ -60,7 +65,7 @@ class ExperimentsViewController: UITableViewController{
             
             present(ac, animated: true, completion: nil)
         }
-    }
+    }*/
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         experimentStore.moveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
