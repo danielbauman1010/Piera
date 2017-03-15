@@ -20,18 +20,21 @@ class TeacherMainController: UIViewController{
             let experimentsTable = segue.destination as! ExperimentsViewController
             experimentsTable.relevantExperiments = navigator.experiments.filter{$0.author == navigator.currentPerson?.name}
             if segue.identifier == "TeacherCurrent"{
-                experimentsTable.relevantExperiments = (experimentsTable.relevantExperiments.filter{$0.time != "history"}
-                                                                        .filter{$0.time != "gradable"}
-                                                                        .filter{$0.author == navigator.currentPerson?.name})
+                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
             }
             if segue.identifier == "TeacherGradable"{
                 let experimentsTable = segue.destination as! ExperimentsViewController
-                experimentsTable.relevantExperiments = experimentsTable.relevantExperiments.filter{$0.time == "gradable"}
+                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
             }
             if segue.identifier == "TeacherHistory"{
                 let experimentsTable = segue.destination as! ExperimentsViewController
-                experimentsTable.relevantExperiments = experimentsTable.relevantExperiments.filter{$0.time == "history"}
+                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
             }
         }
+    }
+    
+    func filterTime(experiments: [Experiment], _ comparisonType: ComparisonResult)->[Experiment]{
+        //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
+        return experiments.filter{($0.time?.compare(Date())) == comparisonType}
     }
 }

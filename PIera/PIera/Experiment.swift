@@ -2,13 +2,13 @@ import UIKit
 
 class Experiment: NSObject {
     var name : String
-    var time: String? //Date?
+    var time: NSDate?
     var location: String?
     var descript: String?
     var objective: String?
     var author: String
     
-    init(name: String, time: String?, location: String?, descript: String?, objective: String?, author: String){
+    init(name: String, time: NSDate?, location: String?, descript: String?, objective: String?, author: String){
         self.name = name
         self.time = time
         self.location = location
@@ -32,10 +32,10 @@ class Experiment: NSObject {
             let randomName = "\(randomAdjective) \(randomNoun)"
             
             
-            self.init(name: randomName, time: randomName, location: randomName, descript: randomName, objective: randomName, author: randomName)
+            self.init(name: randomName, time: NSDate(), location: randomName, descript: randomName, objective: randomName, author: randomName)
         }
         else{
-            self.init(name: "Experiment Sample", time: "3/5/17", location: "Room 3024", descript: "Have students do something", objective: "Learn something", author: "Bill")
+            self.init(name: "Experiment Sample", time: NSDate(), location: "Room 3024", descript: "Have students do something", objective: "Learn something", author: "Bill")
         }
     }
 }

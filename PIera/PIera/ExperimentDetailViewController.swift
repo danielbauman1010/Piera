@@ -9,6 +9,13 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var descript: UITextView!
     @IBOutlet var objective: UITextView!
     
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+    
     var experiment: Experiment! {
         didSet{
             navigationItem.title = experiment.name
@@ -25,7 +32,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         
         nameLabel.text = experiment.name
         authorLabel.text = experiment.author
-        timeLabel.text = "Time: \(experiment.time!)"
+        timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time! as Date))"
         locationLabel.text = "Location: \(experiment.location!)"
         descript.text = "Description:\n\(experiment.descript!)"
         objective.text = "Objective:\n\(experiment.objective!)"
