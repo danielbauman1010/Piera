@@ -7,6 +7,7 @@ class Experiment: NSObject {
     var descript: String?
     var objective: String?
     var author: String
+    var requirements = [String]()
     
     init(name: String, time: NSDate?, location: String?, descript: String?, objective: String?, author: String){
         self.name = name
