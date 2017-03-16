@@ -8,13 +8,7 @@
 
 import Foundation
 class Server {
-
-    var url: URL
-    
-    init(url: URL) {
-        self.url = url
-    }
-    
+        
     enum userType {
         case Student, Teacher, Administrator
     }
@@ -27,7 +21,7 @@ class Server {
             counter = counter + 1
         }
         let jsonData = try? JSONSerialization.data(withJSONObject: userdata, options: .prettyPrinted)
-        let url = NSURL(string: "http://10.64.12.100:3000/createuser")!
+        let url = NSURL(string: "http://localhost:3000/createuser")!
         let request = NSMutableURLRequest(url: url as URL)
         request.httpMethod = "POST"
         request.httpBody = jsonData
@@ -60,18 +54,18 @@ class Server {
     }
     
     /*func getMain() {
-        let urlString = URL(string: "http://192.168.1.245:3000/")
-        if let url = urlString {
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if error != nil {
-                    print(error)
-                } else {
-                    if let usableData = data {
-                        print(usableData)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }*/
+     let urlString = URL(string: "http://192.168.1.245:3000/")
+     if let url = urlString {
+     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+     if error != nil {
+     print(error)
+     } else {
+     if let usableData = data {
+     print(usableData)
+     }
+     }
+     }
+     task.resume()
+     }
+     }*/
 }
