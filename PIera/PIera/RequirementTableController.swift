@@ -4,6 +4,7 @@ class RequirementTableController: UITableViewController{
     
     var requirementStore: RequirementStore!
     var activeRequirements = [String]()
+    var hasLeftRequirements = false
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -52,6 +53,7 @@ class RequirementTableController: UITableViewController{
                 if(cell.requirementSwitch.isOn){
                     let currentStudent = navigator.currentPerson as! Student
                     currentStudent.requirements.append(cell.requirementLabel.text!)
+                    hasLeftRequirements = true
                 }
             }
         }
@@ -60,7 +62,7 @@ class RequirementTableController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-        update()
+        if(!hasLeftRequirements){ update() }
     }
     
     func update(){

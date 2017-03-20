@@ -23,11 +23,9 @@ class TeacherMainController: UIViewController{
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedDescending)
             }
             if segue.identifier == "TeacherGradable"{
-                let experimentsTable = segue.destination as! ExperimentsViewController
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
             }
             if segue.identifier == "TeacherHistory"{
-                let experimentsTable = segue.destination as! ExperimentsViewController
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
             }
         }

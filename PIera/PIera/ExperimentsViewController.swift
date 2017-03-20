@@ -4,6 +4,7 @@ class ExperimentsViewController: UITableViewController{
     
     var experimentStore: ExperimentStore!
     var relevantExperiments = [Experiment]()
+    var hasBeenInCell: Bool = false
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -77,6 +78,7 @@ class ExperimentsViewController: UITableViewController{
                 let experiment = experimentStore.allExperiments[row]
                 let detailViewController = segue.destination as! ExperimentDetailViewController
                 detailViewController.experiment = experiment
+                hasBeenInCell = true
             }
         }
     }
@@ -84,7 +86,7 @@ class ExperimentsViewController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-        update()
+        if(!hasBeenInCell){ update() }
     }
     
     func update(){

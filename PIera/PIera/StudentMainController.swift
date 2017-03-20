@@ -20,11 +20,10 @@ class StudentMainController: UIViewController{
             let experimentsTable = segue.destination as! ExperimentsViewController
             experimentsTable.relevantExperiments = navigator.experiments.filter{$0.studentIDs.contains(navigator.currentPerson!.personID)}
             if segue.identifier == "StudentCurrent"{
-            navigator.experiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
+                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
             }
             if segue.identifier == "StudentHistory"{
-                let experimentsTable = segue.destination as! ExperimentsViewController
-                navigator.experiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
+                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
             }
         }
     }
