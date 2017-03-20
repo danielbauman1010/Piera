@@ -4,6 +4,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
+    @IBOutlet var maxParticipantLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var descript: UITextView!
@@ -32,6 +33,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         
         nameLabel.text = experiment.name
         authorLabel.text = experiment.author
+        maxParticipantLabel.text = "Max Participants: \(experiment.maxParticipants), Current Participants: \(experiment.studentIDs.count)"
         timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time! as Date))"
         locationLabel.text = "Location: \(experiment.location!)"
         descript.text = "Description:\n\(experiment.descript!)"

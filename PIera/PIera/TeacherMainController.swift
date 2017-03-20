@@ -18,22 +18,23 @@ class TeacherMainController: UIViewController{
         let navigator = parent as! PieraNavigationController
         if segue.identifier == "TeacherCurrent" || segue.identifier == "TeacherGradable" || segue.identifier == "TeacherHistory"{
             let experimentsTable = segue.destination as! ExperimentsViewController
-            experimentsTable.relevantExperiments = navigator.experiments.filter{$0.author == navigator.currentPerson?.name}
+            experimentsTable.relevantExperiments = navigator.experiments.filter{$0.authorID == navigator.currentPerson?.personID}
             if segue.identifier == "TeacherCurrent"{
-                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
+                experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedDescending)
             }
             if segue.identifier == "TeacherGradable"{
                 let experimentsTable = segue.destination as! ExperimentsViewController
-                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
+                experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
             }
             if segue.identifier == "TeacherHistory"{
                 let experimentsTable = segue.destination as! ExperimentsViewController
-                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
+                experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
             }
         }
     }
     
-    func filterTime(experiments: [Experiment], _ comparisonType: ComparisonResult)->[Experiment]{
+    //Replace and reorganize
+    func filterTime(_ experiments: [Experiment], comparisonType: ComparisonResult)->[Experiment]{
         //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
         return experiments.filter{($0.time?.compare(Date())) == comparisonType}
     }

@@ -28,6 +28,8 @@
 		DBB20A7F1E703D49003B76B3 /* StudentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */; };
 		DBB20A811E703D5F003B76B3 /* TeacherMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */; };
 		DBB20A841E732CCF003B76B3 /* RequirementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A831E732CCF003B76B3 /* RequirementStore.swift */; };
+		DBB20A861E79CB91003B76B3 /* RequirementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A851E79CB91003B76B3 /* RequirementCell.swift */; };
+		DBB20A881E7B1895003B76B3 /* RequirementTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A871E7B1895003B76B3 /* RequirementTableController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentMainController.swift; sourceTree = "<group>"; };
 		DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherMainController.swift; sourceTree = "<group>"; };
 		DBB20A831E732CCF003B76B3 /* RequirementStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequirementStore.swift; sourceTree = "<group>"; };
+		DBB20A851E79CB91003B76B3 /* RequirementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequirementCell.swift; sourceTree = "<group>"; };
+		DBB20A871E7B1895003B76B3 /* RequirementTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequirementTableController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				DBB20A721E6D9C20003B76B3 /* PieraNavigationController.swift */,
 				DBB20A741E6DCB95003B76B3 /* ExperimentCreationController.swift */,
 				DBB20A831E732CCF003B76B3 /* RequirementStore.swift */,
+				DBB20A851E79CB91003B76B3 /* RequirementCell.swift */,
+				DBB20A871E7B1895003B76B3 /* RequirementTableController.swift */,
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -184,11 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBB20A881E7B1895003B76B3 /* RequirementTableController.swift in Sources */,
 				DBB20A7D1E703555003B76B3 /* TeacherLoginController.swift in Sources */,
 				DBB20A7B1E70317F003B76B3 /* Person.swift in Sources */,
 				DBB20A6D1E674801003B76B3 /* ExperimentCell.swift in Sources */,
 				DBB20A691E67446A003B76B3 /* Experiment.swift in Sources */,
 				DBB20A771E6FA8BD003B76B3 /* StudentCreationController.swift in Sources */,
+				DBB20A861E79CB91003B76B3 /* RequirementCell.swift in Sources */,
 				DBB20A841E732CCF003B76B3 /* RequirementStore.swift in Sources */,
 				DBB20A6B1E67474F003B76B3 /* ExperimentStore.swift in Sources */,
 				DBB20A7F1E703D49003B76B3 /* StudentMainController.swift in Sources */,
