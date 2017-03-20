@@ -28,7 +28,7 @@ class StudentMainController: UIViewController{
         }
     }
     
-    //Replace and reorganize
+    //Replace and reorganize 
     func filterTime(experiments: [Experiment], _ comparisonType: ComparisonResult)->[Experiment]{
         //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
         return experiments.filter{($0.time?.compare(Date())) == comparisonType}
