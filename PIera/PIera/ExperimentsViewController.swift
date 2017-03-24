@@ -9,7 +9,7 @@ class ExperimentsViewController: UITableViewController{
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        formatter.timeStyle = .medium
+        formatter.timeStyle = .short
         return formatter
     }()
     

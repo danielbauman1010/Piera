@@ -26,6 +26,11 @@ class StudentMainController: UIViewController{
                 experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
             }
         }
+        if segue.identifier == "ExperimentFound"{
+            let detailViewController = segue.destination as! ExperimentDetailViewController
+            detailViewController.experiment = sender as! Experiment!
+            detailViewController.fromExperimentSearch = true
+        }
     }
     
     //Replace and reorganize
@@ -34,12 +39,17 @@ class StudentMainController: UIViewController{
         return experiments.filter{($0.time?.compare(Date())) == comparisonType}
     }
     
+    //sender = experiment? No problems so far.
     @IBAction func search(){
         let experiment = searchForExperiment()
         if let result = experiment{
             print(result.name)
+            performSegue(withIdentifier: "ExperimentFound", sender: experiment)
         }else{
-            print("No experiment matches")
+            let alert = UIAlertController(title: "No Experiment Found", message: "Update your requirements or wait for a new experiment to open", preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -49,7 +59,6 @@ class StudentMainController: UIViewController{
         for experiment in navigator.currentExperiments{
             if(Set(experiment.requirements).isSubset(of: Set(currentStudent.requirements)) && !experiment.studentIDs.contains(currentStudent.personID)){
                 if(experiment.studentIDs.count < experiment.maxParticipants){
-                    experiment.studentIDs.append(currentStudent.personID)
                     return experiment
                 }
             }
