@@ -8,21 +8,32 @@
 
 import Foundation
 class Server {
-        
+    
     enum userType {
         case Student, Teacher, Administrator
     }
     
-    func createUser(username: String, email: String, password: String, classes: [String], bio: String, type: userType) -> [String: String]? {
-        var userdata = ["username": username, "Password":password, "email":email, "bio": bio] as [String: Any]
+    let url: URL
+    
+    init(url: URL) {
+        self.url = url
+    }
+    
+    func createUser(username: String, email: String, password: String, classes: String, bio: String, type: userType) -> [String: String]? {
+        var userdata = ["Username": username, "Password":password, "email":email, "bio": bio] as [String: Any]
         var counter = 0
-        for c in classes {
+        var classesArray = classes.components(separatedBy: " ")
+        for c in classesArray {
             userdata["class\(counter)"] = c
             counter = counter + 1
         }
+        switch type {
+        case .Student: userdata["User"] = "Student"
+        case .Teacher: userdata["User"] = "Teacher"
+        case .Administrator: userdata["User"] = "Administrator"
+        }
         let jsonData = try? JSONSerialization.data(withJSONObject: userdata, options: .prettyPrinted)
-        let url = NSURL(string: "http://localhost:3000/createuser")!
-        let request = NSMutableURLRequest(url: url as URL)
+        let request = NSMutableURLRequest(url: self.url)
         request.httpMethod = "POST"
         request.httpBody = jsonData
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -53,19 +64,4 @@ class Server {
         return res
     }
     
-    /*func getMain() {
-     let urlString = URL(string: "http://192.168.1.245:3000/")
-     if let url = urlString {
-     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-     if error != nil {
-     print(error)
-     } else {
-     if let usableData = data {
-     print(usableData)
-     }
-     }
-     }
-     task.resume()
-     }
-     }*/
 }

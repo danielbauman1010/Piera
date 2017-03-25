@@ -5,5 +5,5 @@ class PieraNavigationController: UINavigationController{
     var students = [Student]()
     var teachers = [Teacher]()
     var experiments = [Experiment]()
-    var server = Server()
+    var server = Server(url: URL(string: "https://piera.tk")!)
 }
