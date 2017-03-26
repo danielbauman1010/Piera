@@ -21,5 +21,6 @@ class StudentCreationController: UIViewController{
         navigator.students.append(newStudent)
         navigator.currentPerson = newStudent
         let response = navigator.server.createUser(username: newStudent.name, email: newStudent.email, password: newStudent.password, classes: classesField.text!, bio: newStudent.bio, type: .Student)
+        print("\n\nresponse(in creation)\n\(response)\n\n\n")
     }
 }
