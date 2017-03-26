@@ -19,6 +19,6 @@ class TeacherCreationController: UIViewController{
         let navigator = parent as! PieraNavigationController
         navigator.teachers.append(newTeacher)
         navigator.currentPerson = newTeacher
-        let response = navigator.server.createUser(username: newStudent.name, email: newStudent.email, password: newStudent.password, classes: classesField.text!, bio: newStudent.bio, type: .Student)
+        let response = navigator.server.createUser(username: newTeacher.name, email: newTeacher.email, password: newTeacher.password, classes: classesField.text!, bio: newTeacher.bio, type: .Teacher)
     }
 }
