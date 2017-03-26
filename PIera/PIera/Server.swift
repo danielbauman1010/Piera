@@ -30,9 +30,9 @@ class Server {
             counter = counter + 1
         }
         switch type {
-        case .Student: userdata["User"] = "Student"
-        case .Teacher: userdata["User"] = "Teacher"
-        case .Administrator: userdata["User"] = "Administrator"
+        case .Student: userdata["typeOfUser"] = "Student"
+        case .Teacher: userdata["typeOfUser"] = "Teacher"
+        case .Administrator: userdata["typeOfUser"] = "Administrator"
         }
         let jsonData = try? JSONSerialization.data(withJSONObject: userdata, options: .prettyPrinted)
         let request = NSMutableURLRequest(url: URL(string: "\(self.url.absoluteString)/createuser")!)
