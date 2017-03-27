@@ -58,7 +58,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         super.viewWillAppear(animated)
         
         nameLabel.text = experiment.name
-        authorLabel.text = experiment.author
+        authorLabel.text = "Author: \(experiment.author)"
         maxParticipantLabel.text = "Max Participants: \(experiment.maxParticipants), Current Participants: \(experiment.studentIDs.count)"
         timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time! as Date))"
         locationLabel.text = "Location: \(experiment.location!)"
