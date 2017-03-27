@@ -22,7 +22,7 @@ class Server {
     }
     
     func createUser(username: String, email: String, password: String, classes: String, bio: String, type: userType) -> [String: String]? {
-        var userdata = ["Username": username, "Password":password, "email":email, "bio": bio] as [String: Any]
+        var userdata = ["username": username, "password":password, "email":email, "bio": bio] as [String: Any]
         var counter = 0
         let classesArray = classes.components(separatedBy: " ")
         for c in classesArray {
@@ -61,5 +61,37 @@ class Server {
         sleep(2)
         return self.jsonResponse
     }
+    
+    func login(email: String, password: String) -> [String: String]? {
+        var userdata = ["email": email, "password":password] as [String: Any]
+        let jsonData = try? JSONSerialization.data(withJSONObject: userdata, options: .prettyPrinted)
+        let request = NSMutableURLRequest(url: URL(string: "\(self.url.absoluteString)/login")!)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
+            if error != nil{
+                print(error?.localizedDescription ?? "error")
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as? [String: String]
+                
+                if let parseJSON = json {
+                    print("\n\nparseJSON:\n\(parseJSON)\n\n\n")
+                    self.jsonResponse = parseJSON
+                }
+                
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        task.resume()
+        sleep(2)
+        return self.jsonResponse
+    }
+    
+    
     
 }
