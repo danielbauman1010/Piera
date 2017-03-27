@@ -13,6 +13,8 @@ class Server {
         case Student, Teacher, Administrator
     }
     
+    var jsonResponse: [String: String]?
+    
     let url: URL
     
     init(url: URL) {
@@ -22,22 +24,21 @@ class Server {
     func createUser(username: String, email: String, password: String, classes: String, bio: String, type: userType) -> [String: String]? {
         var userdata = ["Username": username, "Password":password, "email":email, "bio": bio] as [String: Any]
         var counter = 0
-        var classesArray = classes.components(separatedBy: " ")
+        let classesArray = classes.components(separatedBy: " ")
         for c in classesArray {
             userdata["class\(counter)"] = c
             counter = counter + 1
         }
         switch type {
-        case .Student: userdata["User"] = "Student"
-        case .Teacher: userdata["User"] = "Teacher"
-        case .Administrator: userdata["User"] = "Administrator"
+        case .Student: userdata["typeOfUser"] = "Student"
+        case .Teacher: userdata["typeOfUser"] = "Teacher"
+        case .Administrator: userdata["typeOfUser"] = "Administrator"
         }
         let jsonData = try? JSONSerialization.data(withJSONObject: userdata, options: .prettyPrinted)
-        let request = NSMutableURLRequest(url: self.url)
+        let request = NSMutableURLRequest(url: URL(string: "\(self.url.absoluteString)/createuser")!)
         request.httpMethod = "POST"
         request.httpBody = jsonData
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        var res: [String: String]?
         let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
             if error != nil{
                 print(error?.localizedDescription ?? "error")
@@ -48,20 +49,17 @@ class Server {
                 let json = try JSONSerialization.jsonObject(with: data!) as? [String: String]
                 
                 if let parseJSON = json {
-                    print(parseJSON)
-                    res = [String: String]()
-                    for (key,value) in parseJSON {
-                        res![key] = value
-                    }
+                    print("\n\nparseJSON:\n\(parseJSON)\n\n\n")
+                    self.jsonResponse = parseJSON
                 }
-                print("\(response)")
                 
             } catch let error as NSError {
                 print(error)
             }
         }
         task.resume()
-        return res
+        sleep(2)
+        return self.jsonResponse
     }
     
 }
