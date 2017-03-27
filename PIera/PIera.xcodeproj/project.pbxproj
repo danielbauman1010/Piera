@@ -11,6 +11,7 @@
 		951422D11E53EB4C003FCDC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422CF1E53EB4C003FCDC0 /* Main.storyboard */; };
 		951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951422D21E53EB4C003FCDC0 /* Assets.xcassets */; };
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
+		9552A2041E862AB5000DEFA9 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552A2031E862AB5000DEFA9 /* Server.swift */; };
 		DBB20A631E66FBA5003B76B3 /* StudentLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */; };
 		DBB20A651E6743F7003B76B3 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A641E6743F7003B76B3 /* Student.swift */; };
 		DBB20A671E67443E003B76B3 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A661E67443E003B76B3 /* Teacher.swift */; };
@@ -41,6 +42,7 @@
 		951422D21E53EB4C003FCDC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		951422D51E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		951422D71E53EB4C003FCDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9552A2031E862AB5000DEFA9 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLoginController.swift; sourceTree = "<group>"; };
 		DBB20A641E6743F7003B76B3 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		DBB20A661E67443E003B76B3 /* Teacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
@@ -116,10 +118,14 @@
 				DBB20A721E6D9C20003B76B3 /* PieraNavigationController.swift */,
 				DBB20A741E6DCB95003B76B3 /* ExperimentCreationController.swift */,
 				DBB20A831E732CCF003B76B3 /* RequirementStore.swift */,
+<<<<<<< HEAD
 				DBB20A851E79CB91003B76B3 /* RequirementCell.swift */,
 				DBB20A871E7B1895003B76B3 /* RequirementTableController.swift */,
 				DBD78DB21E857D3A005FA12C /* StudentCell.swift */,
 				DBD78DB41E857EA5005FA12C /* StudentTableController.swift */,
+=======
+				9552A2031E862AB5000DEFA9 /* Server.swift */,
+>>>>>>> master
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -212,6 +218,7 @@
 				DBB20A6F1E67496E003B76B3 /* ExperimentsViewController.swift in Sources */,
 				DBB20A711E674BB0003B76B3 /* ExperimentDetailViewController.swift in Sources */,
 				DBB20A751E6DCB95003B76B3 /* ExperimentCreationController.swift in Sources */,
+				9552A2041E862AB5000DEFA9 /* Server.swift in Sources */,
 				DBB20A731E6D9C20003B76B3 /* PieraNavigationController.swift in Sources */,
 				DBB20A631E66FBA5003B76B3 /* StudentLoginController.swift in Sources */,
 				951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */,

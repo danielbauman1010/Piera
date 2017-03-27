@@ -2,9 +2,8 @@ import UIKit
 
 class PieraNavigationController: UINavigationController{
     var currentPerson: Person? = nil
-    var students = [Student]()
-    var teachers = [Teacher]()
     var experiments = [Experiment]()
+<<<<<<< HEAD
     
     func filterTime(comparisonType: ComparisonResult)->[Experiment]{
         //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
@@ -18,4 +17,7 @@ class PieraNavigationController: UINavigationController{
     var pastExperiments: [Experiment]{
         return filterTime(comparisonType: .orderedAscending)
     }
+=======
+    var server = Server(url: URL(string: "https://www.piera.tk")!)
+>>>>>>> master
 }
