@@ -30,7 +30,8 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
     
     @IBAction func finishedCreation(){
         let navigator = parent as! PieraNavigationController
-        let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: (navigator.currentPerson?.name)!)
+        // Remove nil coallescor?
+        let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: (navigator.currentPerson?.name)!, authorID: (navigator.currentPerson?.personID)!, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100)
         navigator.experiments.append(newExperiment)
     }
     
