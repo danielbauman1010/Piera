@@ -5,7 +5,7 @@ class PieraNavigationController: UINavigationController{
     var server = Server(url: URL(string: "https://www.piera.tk")!)
     var experiments = [Experiment]()
     var debugMode: Bool = false
-    
+    var ucode = "" 
     func filterTime(comparisonType: ComparisonResult)->[Experiment]{
         //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
         return experiments.filter{($0.time?.compare(Date())) == comparisonType}
