@@ -32,7 +32,13 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         let navigator = parent as! PieraNavigationController
         // Remove nil coallescor?
         let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: (navigator.currentPerson?.name)!, authorID: (navigator.currentPerson?.personID)!, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100)
-        navigator.experiments.append(newExperiment)
+        guard let exp = navigator.server.createExperiment(exp: newExperiment) else {
+            let alert = UIAlertController(title: "Creating experiment failed.", message: "Check your internet connection and try again later.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

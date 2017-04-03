@@ -20,7 +20,7 @@ class StudentMainController: UIViewController{
         if segue.identifier == "StudentCurrent" || segue.identifier == "StudentHistory"{
             navigator.navigationBar.isHidden = false
             let experimentsTable = segue.destination as! ExperimentsViewController
-            experimentsTable.relevantExperiments = navigator.experiments.filter{$0.studentIDs.contains(navigator.currentPerson!.personID)}
+            experimentsTable.relevantExperiments = [Experiment]()
             if segue.identifier == "StudentCurrent"{
                 experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
             }

@@ -57,6 +57,32 @@ class Server {
         return nil
     }
     
+    func createExperiment(exp: Experiment) -> Experiment? {
+        let time = exp.time ?? NSDate.init()
+        let description = exp.descript ?? "not specified"
+        let explocation = exp.location ?? "not specified"
+        let objective = exp.objective ?? "not specified"
+        let expJson = ["authorID": exp.authorID, "time": time.description, "explocation": explocation, "descript": description, "objective": objective, "maxParticipants": exp.maxParticipants, "requirements": exp.requirements.joined(separator: " "), "expname": exp.name] as [String: Any]
+        let response = formRequest(method: "POST", address: "createexperiment", data: expJson)
+        if let r = response, r["createStatus"]=="1" {
+            return Experiment(name: exp.name, time: exp.time, location: explocation, descript: description, objective: objective, author: r["author"]!, authorID: exp.authorID, requirements: exp.requirements, maxParticipants: exp.maxParticipants)
+        }
+        return nil
+    }
+    
+    func getTeacherExperiments(author: Teacher) -> [Experiment]?{
+        if let r = formRequest(method: "GET", address: "teacherexperiments/\(author.personID)", data: ["": ""] as [String: Any]), r["getStatus"]! == "1" {
+            var counter = 0
+            var experiments = [Experiment]()
+            while let expname = r["expname\(counter)"] {
+                experiments.append(Experiment(name: expname, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation\(counter)"]!, descript: r["descript\(counter)"]!, objective: r["objective\(counter)"]!, author: author.name, authorID: author.personID, requirements: r["requirements\(counter)"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants\(counter)"]!)!))
+                counter = counter + 1
+            }
+            return experiments
+        }
+        return nil
+    }
+    
     func formRequest(method: String, address: String, data: [String: Any]) -> [String: String]?{
         let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
         let request = NSMutableURLRequest(url: URL(string: "\(self.url.absoluteString)/\(address)")!)
