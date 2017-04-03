@@ -8,13 +8,14 @@ class Experiment: NSObject {
     var objective: String?
     var author: String
     var authorID: Int
+    var completionTime: Double
     var maxParticipants: Int
     var requirements : [String]
     
     var studentIDs = [Int]()
     
     
-    init(name: String, time: NSDate?, location: String?, descript: String?, objective: String?, author: String, authorID: Int, requirements: [String], maxParticipants: Int){
+    init(name: String, time: NSDate?, location: String?, descript: String?, objective: String?, author: String, authorID: Int, completionTime: Double, requirements: [String], maxParticipants: Int){
         self.name = name
         self.time = time
         self.location = location
@@ -22,6 +23,7 @@ class Experiment: NSObject {
         self.objective = objective
         self.author = author
         self.authorID = authorID
+        self.completionTime = completionTime
         self.requirements = requirements
         self.maxParticipants = maxParticipants
         super.init()

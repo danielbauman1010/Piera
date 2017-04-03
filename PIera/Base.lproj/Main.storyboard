@@ -436,6 +436,7 @@
                     </view>
                     <connections>
                         <outlet property="classLabel" destination="lyM-7L-bSy" id="CKB-MK-Pxw"/>
+                        <outlet property="creditsLabel" destination="ZvP-Hl-61n" id="LtL-Rs-3Mu"/>
                         <outlet property="nameLabel" destination="9m1-RM-roN" id="zVR-Du-mtm"/>
                         <segue destination="AeO-bK-rVX" kind="show" identifier="ExperimentFound" id="6qy-YW-xfY"/>
                     </connections>
@@ -453,14 +454,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update your experiment requirements:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ONa-FD-zaK">
-                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <navigationBar key="tableFooterView" contentMode="scaleToFill" id="h48-ZH-7cO">
-                            <rect key="frame" x="0.0" y="180" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem id="60W-1S-4wu">
@@ -623,6 +624,7 @@
                     <connections>
                         <outlet property="acceptOrGradeButton" destination="pdJ-Bf-P1P" id="UYm-bM-138"/>
                         <outlet property="authorLabel" destination="yF9-OU-TIf" id="w9z-Po-XeU"/>
+                        <outlet property="completionTimeLabel" destination="ny9-ty-x3J" id="Pcb-4b-DLW"/>
                         <outlet property="declineButton" destination="Ear-fO-JnJ" id="1DU-EB-EUt"/>
                         <outlet property="descript" destination="8N2-dL-vRB" id="jkx-Gg-fCT"/>
                         <outlet property="locationLabel" destination="a4Y-M3-RGQ" id="hUL-is-pin"/>
@@ -648,7 +650,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <navigationBar key="tableFooterView" contentMode="scaleToFill" id="Gqm-1t-v3u">
-                            <rect key="frame" x="0.0" y="136" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem id="LS5-rI-JQk">
@@ -1322,8 +1324,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minimumValue="1" maximumValue="1500" stepValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="dOy-EX-6fc">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minimumValue="15" maximumValue="1500" stepValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="dOy-EX-6fc">
                                                 <rect key="frame" x="265" y="0.0" width="94" height="29"/>
+                                                <connections>
+                                                    <action selector="changeTimeWithSender:" destination="ZKk-HC-q3G" eventType="valueChanged" id="tG6-FE-jjp"/>
+                                                </connections>
                                             </stepper>
                                         </subviews>
                                     </stackView>
@@ -1474,6 +1479,7 @@
                     </view>
                     <connections>
                         <outlet property="descript" destination="Aw1-bI-C0e" id="mgZ-1U-swO"/>
+                        <outlet property="experimentTimeLabel" destination="6cw-aA-YtR" id="SmQ-CY-OCz"/>
                         <outlet property="locationField" destination="UYB-JP-gYi" id="Wv5-oL-NJY"/>
                         <outlet property="nameField" destination="nhr-iy-xj5" id="GPE-YM-TJ5"/>
                         <outlet property="objective" destination="ppb-xb-eL7" id="jXa-nC-zfK"/>
@@ -1481,6 +1487,7 @@
                         <outlet property="requirementField" destination="qvB-C8-H8z" id="5Ma-fh-jyo"/>
                         <outlet property="requirementsTable" destination="44z-bd-uJB" id="gkJ-Qz-L89"/>
                         <outlet property="timePicker" destination="DaA-pq-A3S" id="8kV-oI-pDf"/>
+                        <outlet property="timeStepper" destination="dOy-EX-6fc" id="lrE-IY-rSX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dvt-NG-vaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1489,10 +1496,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YXU-zI-mnZ"/>
+        <segue reference="6qy-YW-xfY"/>
+        <segue reference="8g8-g9-bQo"/>
         <segue reference="rb9-m9-1Z5"/>
-        <segue reference="CUi-F0-TAi"/>
-        <segue reference="You-1K-bzE"/>
+        <segue reference="pII-Qo-tKT"/>
         <segue reference="vef-uJ-53j"/>
         <segue reference="EdM-2L-Dcz"/>
     </inferredMetricsTieBreakers>

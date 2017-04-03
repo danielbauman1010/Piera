@@ -7,6 +7,7 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet var locationField: UITextField!
     @IBOutlet var participantField: UITextField!
     @IBOutlet var experimentTimeLabel : UILabel!
+    @IBOutlet var timeStepper: UIStepper!
     @IBOutlet var objective: UITextView!
     @IBOutlet var descript: UITextView!
     @IBOutlet var requirementField: UITextField!
@@ -27,12 +28,14 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         requirementStore = RequirementStore()
         requirementsTable.delegate = self
         requirementsTable.dataSource = self
+        
+        experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) + 1.0) Cr.)"
     }
     
     @IBAction func finishedCreation(){
         let navigator = parent as! PieraNavigationController
         // Remove nil coallescor?
-        let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: (navigator.currentPerson?.name)!, authorID: (navigator.currentPerson?.personID)!, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100)
+        let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: (navigator.currentPerson?.name)!, authorID: (navigator.currentPerson?.personID)!, completionTime: timeStepper.value, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100)
         navigator.experiments.append(newExperiment)
     }
     
@@ -79,8 +82,8 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         requirementsTable.isEditing ? requirementsTable.setEditing(false, animated: true) : requirementsTable.setEditing(true, animated: true)
     }
     
-    @IBAction func increaseTime(sender: UIStepper){
-        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Int(sender.value) % 30 + 1) Cr.)"
+    @IBAction func changeTime(sender: UIStepper){
+        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) + 1.0) Cr.)"
     }
     
 }

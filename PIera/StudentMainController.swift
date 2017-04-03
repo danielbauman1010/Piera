@@ -4,6 +4,7 @@ class StudentMainController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var classLabel: UILabel!
+    @IBOutlet var creditsLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -13,6 +14,7 @@ class StudentMainController: UIViewController{
         let student = navigator.currentPerson! as! Student
         nameLabel.text = "User: \(student.name)"
         classLabel.text = "Classes: \(student.classes)"
+        creditsLabel.text = "Credits: \(student.credits)"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
