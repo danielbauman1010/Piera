@@ -3,8 +3,8 @@ import Foundation
 class Teacher: Person{
     var classes: String
     
-    init(name: String, password: String, email: String, classes: String, bio: String){
+    init(name: String, password: String, email: String, classes: String, bio: String, id: Int){
         self.classes = classes
-        super.init(name: name, password: password, email: email, bio: bio)
+        super.init(name: name, password: password, email: email, bio: bio, id: id)
     }
 }

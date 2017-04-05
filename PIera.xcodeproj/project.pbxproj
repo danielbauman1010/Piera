@@ -12,6 +12,9 @@
 		951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951422D21E53EB4C003FCDC0 /* Assets.xcassets */; };
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
 		DB64E57E1E8E838900B7A710 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64E57D1E8E838900B7A710 /* InitialViewController.swift */; };
+		DB64E5801E95624C00B7A710 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64E57F1E95624C00B7A710 /* Server.swift */; };
+		DB64E5821E9562B300B7A710 /* TeacherCreationUcodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64E5811E9562B300B7A710 /* TeacherCreationUcodeController.swift */; };
+		DB64E5841E9562DD00B7A710 /* StudentCreationUcodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64E5831E9562DD00B7A710 /* StudentCreationUcodeController.swift */; };
 		DBB20A631E66FBA5003B76B3 /* StudentLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */; };
 		DBB20A651E6743F7003B76B3 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A641E6743F7003B76B3 /* Student.swift */; };
 		DBB20A671E67443E003B76B3 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A661E67443E003B76B3 /* Teacher.swift */; };
@@ -43,6 +46,9 @@
 		951422D51E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		951422D71E53EB4C003FCDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB64E57D1E8E838900B7A710 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		DB64E57F1E95624C00B7A710 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		DB64E5811E9562B300B7A710 /* TeacherCreationUcodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCreationUcodeController.swift; sourceTree = "<group>"; };
+		DB64E5831E9562DD00B7A710 /* StudentCreationUcodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCreationUcodeController.swift; sourceTree = "<group>"; };
 		DBB20A621E66FBA4003B76B3 /* StudentLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLoginController.swift; sourceTree = "<group>"; };
 		DBB20A641E6743F7003B76B3 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		DBB20A661E67443E003B76B3 /* Teacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
@@ -123,6 +129,9 @@
 				DBD78DB21E857D3A005FA12C /* StudentCell.swift */,
 				DBD78DB41E857EA5005FA12C /* StudentTableController.swift */,
 				DB64E57D1E8E838900B7A710 /* InitialViewController.swift */,
+				DB64E57F1E95624C00B7A710 /* Server.swift */,
+				DB64E5811E9562B300B7A710 /* TeacherCreationUcodeController.swift */,
+				DB64E5831E9562DD00B7A710 /* StudentCreationUcodeController.swift */,
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -203,6 +212,7 @@
 				DBB20A881E7B1895003B76B3 /* RequirementTableController.swift in Sources */,
 				DBB20A7D1E703555003B76B3 /* TeacherLoginController.swift in Sources */,
 				DBB20A7B1E70317F003B76B3 /* Person.swift in Sources */,
+				DB64E5821E9562B300B7A710 /* TeacherCreationUcodeController.swift in Sources */,
 				DBB20A6D1E674801003B76B3 /* ExperimentCell.swift in Sources */,
 				DBB20A691E67446A003B76B3 /* Experiment.swift in Sources */,
 				DBB20A771E6FA8BD003B76B3 /* StudentCreationController.swift in Sources */,
@@ -221,7 +231,9 @@
 				951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */,
 				DBB20A811E703D5F003B76B3 /* TeacherMainController.swift in Sources */,
 				DBB20A651E6743F7003B76B3 /* Student.swift in Sources */,
+				DB64E5801E95624C00B7A710 /* Server.swift in Sources */,
 				DBB20A791E6FA8CD003B76B3 /* TeacherCreationController.swift in Sources */,
+				DB64E5841E9562DD00B7A710 /* StudentCreationUcodeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,9 +15,14 @@ class TeacherCreationController: UIViewController{
     }
     
     @IBAction func finishedCreation(){
-        let newTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, bio: bio.text!)
         let navigator = parent as! PieraNavigationController
-        navigator.teachers.append(newTeacher)
-        navigator.currentPerson = newTeacher
+        let tryTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, bio: bio.text, id: 0)
+        guard let t = navigator.server.createTeacher(teacher: tryTeacher, ucode: navigator.ucode) else {
+            let alert = UIAlertController(title: "Creation failed", message: "Wrong university code or error connecting to server, please check your internet connection and try again later.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        navigator.currentPerson =  t
     }
 }

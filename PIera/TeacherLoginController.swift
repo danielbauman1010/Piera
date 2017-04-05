@@ -11,11 +11,14 @@ class TeacherLoginController: UIViewController{
     
     @IBAction func attemptLogin(){
         let navigator = parent as! PieraNavigationController
-        for teacher in navigator.teachers{
-            if (teacher.email == emailField.text!) && (teacher.password == passwordField.text!){
-                navigator.currentPerson = teacher
-                performSegue(withIdentifier: "TeacherLoginComplete", sender: nil)
-            }
+        let response = navigator.server.loginTeacher(email: emailField.text!, password: passwordField.text!)
+        guard let t = response else {
+            let alert = UIAlertController(title: "Login failed", message: "Username or Password not valid.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
         }
+        navigator.currentPerson = t
+        performSegue(withIdentifier: "TeacherLoginComplete", sender: nil)
     }
 }

@@ -7,18 +7,11 @@ class Person{
     var bio: String
     var personID: Int
     
-    static var nextID = 0
-    
-    static func getNextID()->Int{
-        Person.nextID += 1
-        return Person.nextID
-    }
-    
-    init(name: String, password: String, email: String, bio: String){
+    init(name: String, password: String, email: String, bio: String, id: Int){
         self.name = name
         self.password = password
         self.email = email
         self.bio = bio
-        personID = Person.getNextID()
+        self.personID = id
     }
 }
