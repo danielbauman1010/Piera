@@ -65,7 +65,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         locationLabel.text = "Location: \(experiment.location!)"
         descript.text = "Description:\n\(experiment.descript!)"
         objective.text = "Objective:\n\(experiment.objective!)"
-        completionTimeLabel.text =  "Time required: \(experiment.completionTime) min. (\(Double((Int(experiment.completionTime-1.0) / 30)) + 1.0) Cr.)"
+        completionTimeLabel.text =  "Time required: \(experiment.completionTime) min. (\(experiment.creditValue) Cr.)"
         var requirementsList : String = "Requirements:\n"
         for requirement in experiment.requirements{
             requirementsList += "\(requirement)\n"
