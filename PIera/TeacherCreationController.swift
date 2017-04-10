@@ -15,23 +15,14 @@ class TeacherCreationController: UIViewController{
     }
     
     @IBAction func finishedCreation(){
-        let newTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, bio: bio.text!)
         let navigator = parent as! PieraNavigationController
-        let response = navigator.server.createUser(username: newTeacher.name, email: newTeacher.email, password: newTeacher.password, classes: classesField.text!, bio: newTeacher.bio, type: .Teacher)
-        print("\n\nresponse(in creation)\n\(response)\n\n\n")
-        guard let r = response else {
-            let alert = UIAlertController(title: "Login failed", message: "Error creating new teacher.", preferredStyle: UIAlertControllerStyle.alert)
+        let tryTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, bio: bio.text, id: 0)
+        guard let t = navigator.server.createTeacher(teacher: tryTeacher, ucode: navigator.ucode) else {
+            let alert = UIAlertController(title: "Creation failed", message: "Wrong university code or error connecting to server, please check your internet connection and try again later.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
-        var classes = ""
-        for k in r.keys {
-            if k.contains("class") {
-                classes += r[k]!
-            }
-        }
-        navigator.currentPerson = Teacher(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: classes, bio: r["bio"]!)
-        
+        navigator.currentPerson =  t
     }
 }

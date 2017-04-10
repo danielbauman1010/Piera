@@ -12,6 +12,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var requirementsListView: UITextView!
     @IBOutlet var acceptOrGradeButton: UIButton!
     @IBOutlet var declineButton: UIButton!
+    @IBOutlet var completionTimeLabel: UILabel!
     
     var fromExperimentSearch = false
     
@@ -64,6 +65,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         locationLabel.text = "Location: \(experiment.location!)"
         descript.text = "Description:\n\(experiment.descript!)"
         objective.text = "Objective:\n\(experiment.objective!)"
+        completionTimeLabel.text =  "Time required: \(experiment.completionTime) min. (\(experiment.creditValue) Cr.)"
         var requirementsList : String = "Requirements:\n"
         for requirement in experiment.requirements{
             requirementsList += "\(requirement)\n"
