@@ -4,6 +4,7 @@ class StudentMainController: UIViewController{
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var classLabel: UILabel!
+    @IBOutlet var creditsLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -13,6 +14,7 @@ class StudentMainController: UIViewController{
         let student = navigator.currentPerson! as! Student
         nameLabel.text = "User: \(student.name)"
         classLabel.text = "Classes: \(student.classes)"
+        creditsLabel.text = "Credits: \(student.credits)"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -20,13 +22,18 @@ class StudentMainController: UIViewController{
         if segue.identifier == "StudentCurrent" || segue.identifier == "StudentHistory"{
             navigator.navigationBar.isHidden = false
             let experimentsTable = segue.destination as! ExperimentsViewController
-            experimentsTable.relevantExperiments = navigator.experiments.filter{$0.studentIDs.contains(navigator.currentPerson!.personID)}
-            if segue.identifier == "StudentCurrent"{
-                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
-            }
-            if segue.identifier == "StudentHistory"{
-                experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
-            }
+            
+            //
+            experimentsTable.relevantExperiments = [Experiment]()
+            //
+            
+            //experimentsTable.relevantExperiments = navigator.experiments.filter{$0.studentIDs.contains(navigator.currentPerson!.personID)}
+            //if segue.identifier == "StudentCurrent"{
+                //experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
+            //}
+            //if segue.identifier == "StudentHistory"{
+                //experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
+            //}
         }
         if segue.identifier == "ExperimentFound"{
             let detailViewController = segue.destination as! ExperimentDetailViewController
