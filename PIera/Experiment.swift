@@ -12,7 +12,7 @@ class Experiment: NSObject {
     var maxParticipants: Int
     var requirements : [String]
     var graded: Bool = false
-    
+    var experimentID: Int
     var studentIDs = [Int]()
     
     var creditValue: Double{
@@ -22,7 +22,7 @@ class Experiment: NSObject {
     }
     
     
-    init(name: String, time: NSDate?, location: String?, descript: String?, objective: String?, author: String, authorID: Int, completionTime: Double, requirements: [String], maxParticipants: Int){
+    init(name: String, time: NSDate?, location: String?, descript: String?, objective: String?, author: String, authorID: Int, completionTime: Double, requirements: [String], maxParticipants: Int, experimentID: Int){
         self.name = name
         self.time = time
         self.location = location
@@ -33,6 +33,7 @@ class Experiment: NSObject {
         self.completionTime = completionTime
         self.requirements = requirements
         self.maxParticipants = maxParticipants
+        self.experimentID = experimentID
         super.init()
     }
 }
