@@ -62,7 +62,7 @@ class Server {
         let description = exp.descript ?? "not specified"
         let explocation = exp.location ?? "not specified"
         let objective = exp.objective ?? "not specified"
-        let expJson = ["authorID": exp.authorID, "time": time.description, "explocation": explocation, "descript": description, "objective": objective, "maxParticipants": exp.maxParticipants, "requirements": exp.requirements.joined(separator: " "), "expname": exp.name] as [String: Any]
+        let expJson = ["authorID": exp.authorID, "time": time.description, "explocation": explocation, "descript": description, "objective": objective, "maxParticipants": exp.maxParticipants, "requirements": exp.requirements.joined(separator: ","), "expname": exp.name] as [String: Any]
         let response = formRequest(method: "POST", address: "createexperiment", requestData: expJson)
         if let r = response, r["createStatus"]=="1" {
             return Experiment(name: exp.name, time: exp.time, location: explocation, descript: description, objective: objective, author: r["author"]!, authorID: exp.authorID, completionTime: 0.00, requirements: exp.requirements, maxParticipants: exp.maxParticipants, experimentID: Int(r["expid"]!)!)
@@ -84,6 +84,20 @@ class Server {
         return nil
     }
     
+    func getRequirements()->[String] {
+        if let r = formRequest(method: "GET", address: "requirements", requestData: nil), let requirements = r["requirements"] {
+            return requirements.components(separatedBy: ",")
+        }
+        return [String]()
+    }
+    
+    func updateRequirements(studentId: Int, requirements: [String])->Bool {
+        if let r = formRequest(method: "POST", address: "updaterequirements", requestData: ["userId": "\(studentId)", "requirements": "\(requirements.joined(separator: ","))"]), r["updateStatus"] == "1" {
+            return true
+        }
+        return false
+    }
+    
     func participateInExperiment(studentId: Int, experimentId: Int) -> Bool{
         if let response = formRequest(method: "POST", address: "participate", requestData: ["userId": "\(studentId)", "expid": "\(experimentId)"]), response["participateStatus"] == "1" {
             return true
@@ -95,6 +109,13 @@ class Server {
         var experiments = [Experiment]()
         
         return experiments
+    }
+    
+    func getStudentRequirements(studentId: Int)->[String] {
+        if let r = formRequest(method: "GET", address: "studentrequirements/\(studentId)", requestData: nil), r["getStatus"] == "1" {
+            return r["requirements"]!.components(separatedBy: ",")
+        }
+        return [String]()
     }
     
     func formRequest(method: String, address: String, requestData: [String: Any]?) -> [String: String]?{
