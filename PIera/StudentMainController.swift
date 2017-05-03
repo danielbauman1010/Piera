@@ -42,7 +42,7 @@ class StudentMainController: UIViewController{
         }
         if(segue.identifier == "StudentLogout"){
             navigator.currentPerson = nil
-        }
+        }        
     }
     
     //Replace and reorganize
@@ -68,13 +68,15 @@ class StudentMainController: UIViewController{
     func searchForExperiment()->Experiment?{
         let navigator = parent as! PieraNavigationController
         let currentStudent = navigator.currentPerson as! Student
-        for experiment in navigator.currentExperiments{
-            if(Set(experiment.requirements).isSubset(of: Set(currentStudent.requirements)) && !experiment.studentIDs.contains(currentStudent.personID)){
-                if(experiment.studentIDs.count < experiment.maxParticipants){
-                    return experiment
-                }
-            }
-        }
+        
+        
+        //        for experiment in navigator.currentExperiments{
+//            if(Set(experiment.requirements).isSubset(of: Set(currentStudent.requirements)) && !experiment.studentIDs.contains(currentStudent.personID)){
+//                if(experiment.studentIDs.count < experiment.maxParticipants){
+//                    return experiment
+//                }
+//            }
+//        }
         return nil
     }
 }

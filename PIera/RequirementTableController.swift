@@ -1,8 +1,6 @@
 import UIKit
 
 class RequirementTableController: UITableViewController{
-    var hasLeftRequirements = false
-    
     var activeRequirements = [String]()
     let sections = ["Unmet Requirements", "Met Requirements"]
     
@@ -64,31 +62,31 @@ class RequirementTableController: UITableViewController{
         if segue.identifier == "FinishRequirements"{
             let navigator = parent as! PieraNavigationController
             let currentStudent = navigator.currentPerson as! Student
+            var newRequirements = [String]()
             for cell in tableView.visibleCells as! [RequirementCell]{
-                let index = tableView.indexPath(for: cell)!
-                if(index.section == 0 && cell.requirementSwitch.isOn){
-                    currentStudent.requirements.append(cell.requirementLabel.text!)
-                }
-                if(index.section == 1 && !cell.requirementSwitch.isOn){                    currentStudent.requirements = currentStudent.requirements.filter{cell.requirementLabel!.text! != $0}
-                }
+                if cell.requirementSwitch.isOn { newRequirements.append(cell.requirementLabel.text!) }
             }
-            hasLeftRequirements = true
+            if !navigator.server.updateRequirements(studentId: currentStudent.personID, requirements: newRequirements) {
+                let alert = UIAlertController(title: "Update failed", message: "Connection to Server failed. Try later.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-        if(!hasLeftRequirements){ update() }
+        update()
     }
     
     func update(){
         let navigator = parent as! PieraNavigationController
-        let currentStudent = navigator.currentPerson as! Student
-        for experiment in navigator.currentExperiments{
-            activeRequirements.append(contentsOf: experiment.requirements)
+        let studentRequirements = navigator.server.getStudentRequirements(studentId: navigator.currentPerson!.personID).filter{$0 != ""}
+        for requirement in navigator.server.getRequirements().filter({$0 != ""}) {
+            activeRequirements.append(requirement)
         }
-        activeRequirements = activeRequirements.filter{!currentStudent.requirements.contains($0)}
+        activeRequirements = activeRequirements.filter{!studentRequirements.contains($0)}
         let activeRequirementsSet = Set(activeRequirements)
         for requirement in activeRequirementsSet{
             requirementsData[0]!.allRequirements.append(requirement)
@@ -99,7 +97,8 @@ class RequirementTableController: UITableViewController{
                 tableView.insertRows(at: [indexPath], with: .automatic)
             }
         }
-        for requirement in currentStudent.requirements{
+        
+        for requirement in studentRequirements {
             requirementsData[1]!.allRequirements.append(requirement)
             
             if let index = requirementsData[1]!.allRequirements.index(of: requirement){
