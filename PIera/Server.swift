@@ -118,6 +118,14 @@ class Server {
         return [String]()
     }
     
+    func searchForExperiment(studentId: Int)->Experiment?{
+        if let r = formRequest(method: "GET", address: "/searchforexperiments/\(studentId)", requestData: nil), let status = r["searchStatus"], status == "1" {
+            return Experiment(name: r["expname"]!, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation"]!, descript: r["descript"]!, objective: r["objective"]!, author: "Author", authorID: Int(r["authorId"]!)!, completionTime: 0.00,  requirements: r["requirements"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants"]!)!, experimentID: Int(r["expid"]!)!)
+        }
+        return nil
+    }
+    
+    
     func formRequest(method: String, address: String, requestData: [String: Any]?) -> [String: String]?{
         let request = NSMutableURLRequest(url: URL(string: "\(self.url.absoluteString)/\(address)")!)
         var jsonResponse: [String: String]?
