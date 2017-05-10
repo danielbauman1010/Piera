@@ -76,7 +76,13 @@ class Server {
             var counter = 0
             var experiments = [Experiment]()
             while let expname = r["expname\(counter)"] {
-                experiments.append(Experiment(name: expname, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation\(counter)"]!, descript: r["descript\(counter)"]!, objective: r["objective\(counter)"]!, author: author.name, authorID: author.personID, completionTime: 0.00,  requirements: r["requirements\(counter)"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants\(counter)"]!)!, experimentID: Int(r["expid"]!)!))
+                let experiment = Experiment(name: expname, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation\(counter)"]!, descript: r["descript\(counter)"]!, objective: r["objective\(counter)"]!, author: author.name, authorID: author.personID, completionTime: 0.00,  requirements: r["requirements\(counter)"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants\(counter)"]!)!, experimentID: Int(r["expid\(counter)"]!)!)
+                if r["participants\(counter)"] != "" {
+                    for stid in r["participants\(counter)"]!.components(separatedBy: ",") {
+                        experiment.studentIDs.append(Int(stid)!)
+                    }
+                }
+                experiments.append(experiment)
                 counter = counter + 1
             }
             return experiments
@@ -117,6 +123,14 @@ class Server {
         }
         return [String]()
     }
+    
+    func searchForExperiment(studentId: Int)->Experiment?{
+        if let r = formRequest(method: "GET", address: "searchforexperiments/\(studentId)", requestData: nil), let status = r["searchStatus"], status == "1" {
+            return Experiment(name: r["expname"]!, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation"]!, descript: r["descript"]!, objective: r["objective"]!, author: "Author", authorID: Int(r["authorId"]!)!, completionTime: 0.00,  requirements: r["requirements"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants"]!)!, experimentID: Int(r["expid"]!)!)
+        }
+        return nil
+    }
+    
     
     func formRequest(method: String, address: String, requestData: [String: Any]?) -> [String: String]?{
         let request = NSMutableURLRequest(url: URL(string: "\(self.url.absoluteString)/\(address)")!)

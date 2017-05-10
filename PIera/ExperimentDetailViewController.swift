@@ -43,8 +43,9 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func acceptOrGradeExperiment(){
         let navigator = parent as! PieraNavigationController
-        if let currentStudent = navigator.currentPerson as? Student?{
-            experiment.studentIDs.append(currentStudent!.personID)
+        if let currentStudent = navigator.currentPerson as? Student?, navigator.server.participateInExperiment(studentId: currentStudent!.personID, experimentId: experiment.experimentID){
+            
+            //experiment.studentIDs.append(currentStudent!.personID)
             performSegue(withIdentifier: "ExperimentDecisionMade", sender: nil)
         }else{
             performSegue(withIdentifier: "ViewParticipants", sender: nil)
