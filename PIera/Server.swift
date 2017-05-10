@@ -76,7 +76,13 @@ class Server {
             var counter = 0
             var experiments = [Experiment]()
             while let expname = r["expname\(counter)"] {
-                experiments.append(Experiment(name: expname, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation\(counter)"]!, descript: r["descript\(counter)"]!, objective: r["objective\(counter)"]!, author: author.name, authorID: author.personID, completionTime: 0.00,  requirements: r["requirements\(counter)"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants\(counter)"]!)!, experimentID: Int(r["expid"]!)!))
+                let experiment = Experiment(name: expname, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation\(counter)"]!, descript: r["descript\(counter)"]!, objective: r["objective\(counter)"]!, author: author.name, authorID: author.personID, completionTime: 0.00,  requirements: r["requirements\(counter)"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants\(counter)"]!)!, experimentID: Int(r["expid\(counter)"]!)!)
+                if r["participants\(counter)"] != "" {
+                    for stid in r["participants\(counter)"]!.components(separatedBy: ",") {
+                        experiment.studentIDs.append(Int(stid)!)
+                    }
+                }
+                experiments.append(experiment)
                 counter = counter + 1
             }
             return experiments
