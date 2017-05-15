@@ -126,11 +126,24 @@ class Server {
     
     func searchForExperiment(studentId: Int)->Experiment?{
         if let r = formRequest(method: "GET", address: "searchforexperiments/\(studentId)", requestData: nil), let status = r["searchStatus"], status == "1" {
-            return Experiment(name: r["expname"]!, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation"]!, descript: r["descript"]!, objective: r["objective"]!, author: "Author", authorID: Int(r["authorId"]!)!, completionTime: 0.00,  requirements: r["requirements"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants"]!)!, experimentID: Int(r["expid"]!)!)
+            let experiment = Experiment(name: r["expname"]!, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation"]!, descript: r["descript"]!, objective: r["objective"]!, author: "Author", authorID: Int(r["authorId"]!)!, completionTime: 0.00,  requirements: r["requirements"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants"]!)!, experimentID: Int(r["expid"]!)!)
+            if r["participants"] != "" {
+                for stid in r["participants"]!.components(separatedBy: ",") {
+                    experiment.studentIDs.append(Int(stid)!)
+                }
+            }
+            return experiment
+
         }
         return nil
     }
     
+    func gradeStudent(studentId: Int, experimentId: Int, grade: Double)->Bool {
+        if let r = formRequest(method: "POST", address: "gradestudent", requestData: ["userId": "\(studentId)", "expid": "\(experimentId)", "grade": "\(grade)"] as [String: Any]!), r["gradeStatus"] == "1" {
+            return true
+        }
+        return false
+    }
     
     func formRequest(method: String, address: String, requestData: [String: Any]?) -> [String: String]?{
         let request = NSMutableURLRequest(url: URL(string: "\(self.url.absoluteString)/\(address)")!)
