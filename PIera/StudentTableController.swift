@@ -27,7 +27,7 @@ class StudentTableController: UITableViewController{
         
         let student = students[indexPath.row]
         
-        cell.nameLabel.text = student.name
+        cell.nameLabel.text = "\(student.name) (\(student.email))"
         
         if(!gradable){
             cell.gradingSwitch.onTintColor = UIColor.gray
