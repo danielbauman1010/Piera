@@ -40,7 +40,7 @@ class PersonCreationController: UIViewController{
             navigator.currentPerson =  s
             performSegue(withIdentifier: "StudentCreated", sender: nil)
         case.Teacher:
-            let tryTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, bio: "", id: 0)
+            let tryTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, id: 0)
             guard let t = navigator.server.createTeacher(teacher: tryTeacher, ucode: navigator.ucode) else {
                 errorMessage()
                 return
