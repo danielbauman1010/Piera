@@ -8,7 +8,7 @@ class PieraNavigationController: UINavigationController{
     var ucode = ""
     var ucodeType: personType = personType.None
     var currentExperiments = [Experiment]()
-    var administrations: [Administration] = [Administration(studentCode: "a", teacherCode: "t", adminCode: "s", perTime: 1.0, required: 5.0, penalty: 0.0), Administration(studentCode: "1234", teacherCode: "4321", adminCode: "2143", perTime: 1.0, required: 5.0, penalty: 0.0)]
+    var administrations: [Administration] = [Administration(name: "Default U", studentCode: "s", teacherCode: "t", adminCode: "a")]
     var administrators : [Person] = []
     /*func filterTime(comparisonType: ComparisonResult)->[Experiment]{
      //orderedAscending - Past, orderedSame - Present, orderedDescending - Future

@@ -14,7 +14,7 @@ class StudentMainController: UIViewController{
         let student = navigator.currentPerson! as! Student
         nameLabel.text = "User: \(student.name)"
         classLabel.text = "Classes: \(student.classes)"
-        creditsLabel.text = "Credits: \(student.credits)"
+        creditsLabel.text = "Credits: \(student.credits) Cr. out of \(navigator.currentAdministration!.required) Cr. required"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
