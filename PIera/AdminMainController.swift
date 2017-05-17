@@ -9,22 +9,38 @@ class AdminMainController: UIViewController{
     @IBOutlet var requiredStepper : UIStepper!
     @IBOutlet var penaltyStepper : UIStepper!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let navigator = parent as! PieraNavigationController
         navigator.navigationBar.isHidden = !navigator.debugMode
         let admin = navigator.currentPerson!
         
         nameLabel.text = "User: \(admin.name)"
         //Update for administration from server
-        creditsPerTime.text = "Credits per half hour: \(navigator.currentAdministration!.perTime)"
-        creditsRequired.text = "Credits required: \(navigator.currentAdministration!.required)"
-        creditsPenalized.text = "Penalty for missing exp: \(navigator.currentAdministration!.penalty)"
+        perTimeStepper.value = navigator.currentAdministration!.perTime
+        requiredStepper.value = navigator.currentAdministration!.required
+        penaltyStepper.value = navigator.currentAdministration!.penalty
+        creditsPerTime.text = "Credits per half hour: \(perTimeStepper.value)"
+        creditsRequired.text = "Credits required: \(requiredStepper.value)"
+        creditsPenalized.text = "Penalty for missing exp: \(penaltyStepper.value)"
     }
     
     @IBAction func update(){
         let navigator = parent as! PieraNavigationController
-        navigator.currentAdministration?.updateCredits(perTime: perTimeStepper.value, required: requiredStepper.value, penalty: penaltyStepper.value)
+        navigator.currentAdministration!.updateCredits(perTime: perTimeStepper.value, required: requiredStepper.value, penalty: penaltyStepper.value)
+    }
+    
+    @IBAction func creditsPerTimeChanged(){
+        creditsPerTime.text = "Credits per half hour: \(perTimeStepper.value)"
+
+    }
+    
+    @IBAction func creditsRequiredChanged(){
+        creditsRequired.text = "Credits required: \(requiredStepper.value)"
+
+    }
+    
+    @IBAction func creditsPenalizedChanged(){
+        creditsPenalized.text = "Penalty for missing exp: \(penaltyStepper.value)"
     }
 }

@@ -1,19 +1,21 @@
 import UIKit
 
 class UniversityCodeController: UIViewController{
-    @IBOutlet var adminCode: UILabel?
-    @IBOutlet var teacherCode: UILabel?
-    @IBOutlet var studentCode: UILabel?
+    @IBOutlet var adminCode: UILabel!
+    @IBOutlet var teacherCode: UILabel!
+    @IBOutlet var studentCode: UILabel!
+    @IBOutlet var nameField: UITextField!
     
-    override func viewWillAppear(_ animated: Bool) {
+    @IBAction func submitName(){
         let navigator = parent as! PieraNavigationController
+        
         let admin = randomString(6)
         let teacher = randomString(6)
         let student = randomString(6)
         adminCode?.text = "Administrator Code: \(admin)"
         teacherCode?.text = "Teacher Code: \(teacher)"
         studentCode?.text = "Student Code: \(student)"
-        navigator.administrations.append(Administration(studentCode: admin, teacherCode: teacher, adminCode: student, perTime: 1.0, required: 5.0, penalty: 0.0))
+        navigator.administrations.append(Administration(name: nameField.text!, studentCode: student, teacherCode: teacher, adminCode: admin))
     }
     
     func randomString(_ length: Int) -> String {

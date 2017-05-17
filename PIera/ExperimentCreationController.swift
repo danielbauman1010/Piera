@@ -23,13 +23,15 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let navigator = parent as! PieraNavigationController
         self.requirementsTable.register(UITableViewCell.self, forCellReuseIdentifier: "RequirementCell")
 
         requirementStore = RequirementStore()
         requirementsTable.delegate = self
         requirementsTable.dataSource = self
         
-        experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) + 1.0) Cr.)"
+        experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) * (navigator.currentAdministration!.perTime) + navigator.currentAdministration!.perTime) Cr.)"
+        participantField.keyboardType = UIKeyboardType.numberPad
     }
     
     @IBAction func finishedCreation(){
@@ -89,7 +91,8 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
     }
     
     @IBAction func changeTime(sender: UIStepper){
-        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) + 1.0) Cr.)"
+        let navigator = parent as! PieraNavigationController
+        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.currentAdministration!.perTime) + navigator.currentAdministration!.perTime)) Cr.)"
     }
     
 }
