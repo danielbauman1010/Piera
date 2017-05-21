@@ -22,19 +22,19 @@ class Server {
     }
     
     func createStudent(student: Student, ucode: String) -> Student? {
-        let studentJson = ["username": student.name, "password": student.password, "email": student.email, "bio": student.bio, "interests": student.interests, "classesEnrolled": student.classes, "ucode": ucode] as [String: Any]
+        let studentJson = ["username": student.name, "password": student.password, "email": student.email, "bio": "", "interests": "", "classesEnrolled": student.classes, "ucode": ucode] as [String: Any]
         let response = formRequest(method: "POST", address: "createstudent", requestData: studentJson)
         if let r = response, r["createStatus"]! == "1" {
-            return Student(name: r["username"]!, password: r["password"]!, email: r["email"]!, interests: r["interests"]!, classes: r["classesEnrolled"]!, bio: r["bio"]!, id: Int(r["userId"]!)!)
+            return Student(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
         }
         return nil
     }
     
     func createTeacher(teacher: Teacher, ucode: String) -> Teacher? {
-        let teacherJson = ["username": teacher.name, "password": teacher.password, "email": teacher.email, "bio": teacher.bio, "classesEnrolled": teacher.classes, "ucode": ucode] as [String: Any]
+        let teacherJson = ["username": teacher.name, "password": teacher.password, "email": teacher.email, "bio": "", "classesEnrolled": teacher.classes, "ucode": ucode] as [String: Any]
         let response = formRequest(method: "POST", address: "createteacher", requestData: teacherJson)
         if let r = response, r["createStatus"]! == "1" {
-            return Teacher(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, bio: r["bio"]!, id: Int(r["userId"]!)!)
+            return Teacher(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
         }
         return nil
     }
@@ -43,7 +43,7 @@ class Server {
         let studentJson = ["email": email, "password":password] as [String: Any]
         let response = formRequest(method: "POST", address: "loginstudent", requestData: studentJson)
         if let r = response, r["loginStatus"] == "1" {
-            return Student(name: r["username"]!, password: r["password"]!, email: r["email"]!, interests: r["interests"]!, classes: r["classesEnrolled"]!, bio: r["bio"]!, id: Int(r["userId"]!)!)
+            return Student(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
         }
         return nil
     }
@@ -52,7 +52,7 @@ class Server {
         let teacherJson = ["email": email, "password":password] as [String: Any]
         let response = formRequest(method: "POST", address: "loginteacher", requestData: teacherJson)
         if let r = response, r["loginStatus"] == "1" {
-            return Teacher(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, bio: r["bio"]!, id: Int(r["userId"]!)!)
+            return Teacher(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
         }
         return nil
     }
