@@ -32,19 +32,35 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         
         experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) * (navigator.currentAdministration!.perTime) + navigator.currentAdministration!.perTime) Cr.)"
         participantField.keyboardType = UIKeyboardType.numberPad
+        descript.textColor = UIColor.lightGray
+        objective.textColor = UIColor.lightGray
     }
     
     @IBAction func finishedCreation(){
+        guard nameField.text! != "" || locationField.text! != "" || participantField.text! != "" else{
+            let alert = UIAlertController(title: "Creation failed", message: "Must fill in all fields.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let navigator = parent as! PieraNavigationController
         // Remove nil coallescor?
-        let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: "\((navigator.currentPerson?.name)!) (\(navigator.currentPerson?.email))" , authorID: (navigator.currentPerson?.personID)!, completionTime: timeStepper.value, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100, experimentID: 0)
+        var date = timePicker.date as NSDate
+        let timeInterval = floor(date .timeIntervalSinceReferenceDate / 60.0) * 60.0
+        date = NSDate(timeIntervalSinceReferenceDate: timeInterval)
+        let newExperiment = Experiment(name: nameField.text!, time: date, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: "\((navigator.currentPerson?.name)!) (\(navigator.currentPerson?.email))" , authorID: (navigator.currentPerson?.personID)!, completionTime: timeStepper.value, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100, experimentID: 0)
         guard navigator.server.createExperiment(exp: newExperiment) != nil else {
             let alert = UIAlertController(title: "Creating experiment failed.", message: "Check your internet connection and try again later.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
         }
-        
+        navigator.addItem(TodoItem(deadline: newExperiment.time!.addingTimeInterval(TimeInterval(-604800)) as Date, title: "in one week", UUID: UUID().uuidString, expName: newExperiment.name, location: newExperiment.location!))
+        navigator.addItem(TodoItem(deadline: newExperiment.time!.addingTimeInterval(TimeInterval(-172800)) as Date, title: "in two days", UUID: UUID().uuidString, expName: newExperiment.name, location: newExperiment.location!))
+        navigator.addItem(TodoItem(deadline: newExperiment.time!.addingTimeInterval(TimeInterval(-86400)) as Date, title: "in one days", UUID: UUID().uuidString, expName: newExperiment.name, location: newExperiment.location!))
+        navigator.addItem(TodoItem(deadline: newExperiment.time!.addingTimeInterval(TimeInterval(-21600)) as Date, title: "in six hours", UUID: UUID().uuidString, expName: newExperiment.name, location: newExperiment.location!))
+        navigator.addItem(TodoItem(deadline: newExperiment.time!.addingTimeInterval(TimeInterval(-3600)) as Date, title: "in one hours", UUID: UUID().uuidString, expName: newExperiment.name, location: newExperiment.location!))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,9 +106,16 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         requirementsTable.isEditing ? requirementsTable.setEditing(false, animated: true) : requirementsTable.setEditing(true, animated: true)
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
     @IBAction func changeTime(sender: UIStepper){
         let navigator = parent as! PieraNavigationController
-        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.currentAdministration!.perTime) + navigator.currentAdministration!.perTime)) Cr.)"
+        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.currentAdministration!.perTime) + navigator.currentAdministration!.perTime) Cr.)"
     }
     
 }
