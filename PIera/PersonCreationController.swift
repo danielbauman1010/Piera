@@ -29,6 +29,12 @@ class PersonCreationController: UIViewController{
             self.present(alert, animated: true, completion: nil)
             return
         }
+        guard nameField.text! != "" || passwordField.text! != "" || emailField.text! != "" else{
+            let alert = UIAlertController(title: "Creation failed", message: "Must fill in all fields.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         let navigator = parent as! PieraNavigationController
         switch(navigator.ucodeType){
         case .Student:
