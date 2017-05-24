@@ -27,7 +27,9 @@ class AdminMainController: UIViewController{
     
     @IBAction func update(){
         let navigator = parent as! PieraNavigationController
-        navigator.server.updateCredits(userId: navigator.currentPerson!.personID, pertime: perTimeStepper.value, required: requiredStepper.value, penalty: penaltyStepper.value)
+        if navigator.server.updateCredits(userId: navigator.currentPerson!.personID, pertime: perTimeStepper.value, required: requiredStepper.value, penalty: penaltyStepper.value) {
+            
+        }
     }
     
     @IBAction func creditsPerTimeChanged(){

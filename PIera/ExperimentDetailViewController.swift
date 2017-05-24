@@ -62,10 +62,10 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         nameLabel.text = experiment.name
         authorLabel.text = "Author: \(experiment.author)"
         maxParticipantLabel.text = "Max Participants: \(experiment.maxParticipants), Current Participants: \(experiment.studentIDs.count)"
-        timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time! as Date))"
-        locationLabel.text = "Location: \(experiment.location!)"
-        descript.text = "Description:\n\(experiment.descript!)"
-        objective.text = "Objective:\n\(experiment.objective!)"
+        timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time as Date))"
+        locationLabel.text = "Location: \(experiment.location)"
+        descript.text = "Description:\n\(experiment.descript)"
+        objective.text = "Objective:\n\(experiment.objective)"
         completionTimeLabel.text =  "Time required: \(experiment.completionTime) min. (\(experiment.creditValue) Cr.)"
         var requirementsList : String = "Requirements:\n"
         for requirement in experiment.requirements{

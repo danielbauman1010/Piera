@@ -41,6 +41,6 @@ class TeacherMainController: UIViewController{
     //Replace and reorganize
     func filterTime(_ experiments: [Experiment], comparisonType: ComparisonResult)->[Experiment]{
         //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
-        return experiments.filter{($0.time?.compare(Date())) == comparisonType}
+        return experiments.filter{($0.time.compare(Date())) == comparisonType}
     }
 }

@@ -25,11 +25,11 @@ class Student: Person{
     }
     var requirements: [String]
     var experiments: [Experiment]
-    var gradedExperiments: [Int: Double]
+    var gradedExperiments: [Experiment: Double]
     override init(name: String, password: String, email: String, university: String, id: Int){        
         self.requirements = [String]()
         self.experiments = [Experiment]()
-        self.gradedExperiments = [Int: Double]()
+        self.gradedExperiments = [Experiment: Double]()
         super.init(name: name, password: password, email: email, university: university, id: id)
     }
 }

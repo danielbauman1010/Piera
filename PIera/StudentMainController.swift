@@ -28,10 +28,9 @@ class StudentMainController: UIViewController{
             let experimentsTable = segue.destination as! ExperimentsViewController
             var experiments = [Experiment]()
             if let history = navigator.server.getStudentHistory(studentId: navigator.currentPerson!.personID) {
-                for expid in history.keys {
-                    if let edata = navigator.server.formRequest(method: "GET", address: "experiment/\(expid)", requestData: nil), let exp = navigator.server.formatExperiment(data: edata) {
-                        experiments.append(exp)
-                    }
+                for exp in history.keys {
+                    exp.grade = history[exp]
+                    experiments.append(exp)
                 }
             }
             experimentsTable.relevantExperiments = experiments
@@ -49,7 +48,7 @@ class StudentMainController: UIViewController{
     //Replace and reorganize
     func filterTime(experiments: [Experiment], _ comparisonType: ComparisonResult)->[Experiment]{
         //orderedAscending - Past, orderedSame - Present, orderedDescending - Future
-        return experiments.filter{($0.time?.compare(Date())) == comparisonType}
+        return experiments.filter{($0.time.compare(Date())) == comparisonType}
     }
     
     //sender = experiment? No problems so far.

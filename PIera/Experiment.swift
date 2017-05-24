@@ -2,10 +2,10 @@ import UIKit
 
 class Experiment: NSObject {
     var name : String
-    var time: NSDate?
-    var location: String?
-    var descript: String?
-    var objective: String?
+    var time: NSDate
+    var location: String
+    var descript: String
+    var objective: String
     var author: String
     var authorID: Int
     var completionTime: Double
@@ -14,6 +14,8 @@ class Experiment: NSObject {
     var graded: Bool = false
     var experimentID: Int
     var studentIDs: [Int]
+    var grade: Double?
+    
     
     var creditValue: Double{
         get{
@@ -24,10 +26,10 @@ class Experiment: NSObject {
     
     init(name: String, time: NSDate?, location: String?, descript: String?, objective: String?, author: String, authorID: Int, completionTime: Double, requirements: [String], maxParticipants: Int, experimentID: Int){
         self.name = name
-        self.time = time
-        self.location = location
-        self.descript = descript
-        self.objective = objective
+        self.time = time ?? NSDate.init(timeIntervalSinceNow: 0.0)
+        self.location = location ?? "not specified"
+        self.descript = descript ?? "not specified"
+        self.objective = objective ?? "not specified"
         self.author = author
         self.authorID = authorID
         self.completionTime = completionTime

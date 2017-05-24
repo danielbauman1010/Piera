@@ -78,7 +78,9 @@ class StudentTableController: UITableViewController{
             for cell in tableView.visibleCells as! [StudentCell]{
                 let index = tableView.indexPath(for: cell)!
                 if(cell.gradingSwitch.isOn){
-                   navigator.server.gradeStudent(studentId: students[index.row].personID, experimentId: experiment.experimentID, grade: experiment.creditValue)
+                    if navigator.server.gradeStudent(studentId: students[index.row].personID, experimentId: experiment.experimentID, grade: experiment.creditValue) == false{
+                        
+                    }
                 }
                 cell.gradingSwitch.onTintColor = UIColor.gray
                 cell.gradingSwitch.isUserInteractionEnabled = false

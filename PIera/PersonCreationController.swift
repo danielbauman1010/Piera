@@ -9,7 +9,10 @@ class PersonCreationController: UIViewController{
 
     
     override func viewWillAppear(_ animated: Bool) {
-        let navigator = parent as! PieraNavigationController
+        nameField.text = ""
+        passwordField.text = ""
+        confirmPasswordField.text = ""
+        emailField.text = ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
