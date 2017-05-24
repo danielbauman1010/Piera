@@ -15,11 +15,8 @@
 		DB24EB1F1EC5FEE800D39BCF /* PersonCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB1E1EC5FEE800D39BCF /* PersonCreationController.swift */; };
 		DB24EB211EC604E500D39BCF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB201EC604E500D39BCF /* LoginController.swift */; };
 		DB24EB231EC62B4900D39BCF /* AdminMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB221EC62B4900D39BCF /* AdminMainController.swift */; };
-		DB24EB251EC9CE1E00D39BCF /* Administration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB241EC9CE1E00D39BCF /* Administration.swift */; };
 		DB64E57E1E8E838900B7A710 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64E57D1E8E838900B7A710 /* InitialViewController.swift */; };
 		DB64E5801E95624C00B7A710 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64E57F1E95624C00B7A710 /* Server.swift */; };
-		DBB20A651E6743F7003B76B3 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A641E6743F7003B76B3 /* Student.swift */; };
-		DBB20A671E67443E003B76B3 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A661E67443E003B76B3 /* Teacher.swift */; };
 		DBB20A691E67446A003B76B3 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A681E67446A003B76B3 /* Experiment.swift */; };
 		DBB20A6B1E67474F003B76B3 /* ExperimentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A6A1E67474F003B76B3 /* ExperimentStore.swift */; };
 		DBB20A6D1E674801003B76B3 /* ExperimentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB20A6C1E674801003B76B3 /* ExperimentCell.swift */; };
@@ -48,11 +45,8 @@
 		DB24EB1E1EC5FEE800D39BCF /* PersonCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCreationController.swift; sourceTree = "<group>"; };
 		DB24EB201EC604E500D39BCF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DB24EB221EC62B4900D39BCF /* AdminMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminMainController.swift; sourceTree = "<group>"; };
-		DB24EB241EC9CE1E00D39BCF /* Administration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Administration.swift; sourceTree = "<group>"; };
 		DB64E57D1E8E838900B7A710 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		DB64E57F1E95624C00B7A710 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
-		DBB20A641E6743F7003B76B3 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
-		DBB20A661E67443E003B76B3 /* Teacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		DBB20A681E67446A003B76B3 /* Experiment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experiment.swift; sourceTree = "<group>"; };
 		DBB20A6A1E67474F003B76B3 /* ExperimentStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentStore.swift; sourceTree = "<group>"; };
 		DBB20A6C1E674801003B76B3 /* ExperimentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentCell.swift; sourceTree = "<group>"; };
@@ -106,9 +100,6 @@
 				951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */,
 				951422D71E53EB4C003FCDC0 /* Info.plist */,
 				DBB20A7A1E70317F003B76B3 /* Person.swift */,
-				DBB20A641E6743F7003B76B3 /* Student.swift */,
-				DBB20A661E67443E003B76B3 /* Teacher.swift */,
-				DB24EB241EC9CE1E00D39BCF /* Administration.swift */,
 				DBB20A7E1E703D49003B76B3 /* StudentMainController.swift */,
 				DBB20A801E703D5F003B76B3 /* TeacherMainController.swift */,
 				DB24EB221EC62B4900D39BCF /* AdminMainController.swift */,
@@ -215,11 +206,9 @@
 				DB24EB1D1EC5D9EB00D39BCF /* UniversityCodeController.swift in Sources */,
 				DBB20A861E79CB91003B76B3 /* RequirementCell.swift in Sources */,
 				DB24EB211EC604E500D39BCF /* LoginController.swift in Sources */,
-				DB24EB251EC9CE1E00D39BCF /* Administration.swift in Sources */,
 				DBB20A841E732CCF003B76B3 /* RequirementStore.swift in Sources */,
 				DBB20A6B1E67474F003B76B3 /* ExperimentStore.swift in Sources */,
 				DBB20A7F1E703D49003B76B3 /* StudentMainController.swift in Sources */,
-				DBB20A671E67443E003B76B3 /* Teacher.swift in Sources */,
 				DB24EB231EC62B4900D39BCF /* AdminMainController.swift in Sources */,
 				DB64E57E1E8E838900B7A710 /* InitialViewController.swift in Sources */,
 				DBB20A6F1E67496E003B76B3 /* ExperimentsViewController.swift in Sources */,
@@ -228,7 +217,6 @@
 				DBB20A731E6D9C20003B76B3 /* PieraNavigationController.swift in Sources */,
 				951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */,
 				DBB20A811E703D5F003B76B3 /* TeacherMainController.swift in Sources */,
-				DBB20A651E6743F7003B76B3 /* Student.swift in Sources */,
 				DB64E5801E95624C00B7A710 /* Server.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

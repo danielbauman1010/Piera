@@ -12,7 +12,7 @@ class TeacherMainController: UIViewController{
         let teacher = navigator.currentPerson! as! Teacher
         navigator.navigationBar.isHidden = !navigator.debugMode
         nameLabel.text = "User: \(teacher.name)"
-        classLabel.text = "Classes: \(teacher.classes)"
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

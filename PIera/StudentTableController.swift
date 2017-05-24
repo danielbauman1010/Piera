@@ -50,12 +50,12 @@ class StudentTableController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-        //update()
+        update()
     }
     
-    /*func update(){
+    func update(){
         let navigator = parent as! PieraNavigationController
-        //let relevantStudents = navigator.students.filter{experiment.studentIDs.contains($0.personID)}
+        let relevantStudents = experiment.studentIDs.map{navigator.server.getStudent(studentId: $0)!}
         if(navigator.currentExperiments.contains(experiment)){
             gradable = false
             gradeButton.title! = "Cannot grade. Experiment still active."
@@ -70,14 +70,15 @@ class StudentTableController: UITableViewController{
         for student in relevantStudents{
             students.append(student)
         }
-    }*/
+    }
     
     @IBAction func grade(){
+        let navigator = parent as! PieraNavigationController
         if gradable{
             for cell in tableView.visibleCells as! [StudentCell]{
                 let index = tableView.indexPath(for: cell)!
                 if(cell.gradingSwitch.isOn){
-                    students[index.row].credits += experiment.creditValue
+                   navigator.server.gradeStudent(studentId: students[index.row].personID, experimentId: experiment.experimentID, grade: experiment.creditValue)
                 }
                 cell.gradingSwitch.onTintColor = UIColor.gray
                 cell.gradingSwitch.isUserInteractionEnabled = false

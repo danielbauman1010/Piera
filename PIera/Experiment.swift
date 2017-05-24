@@ -13,7 +13,7 @@ class Experiment: NSObject {
     var requirements : [String]
     var graded: Bool = false
     var experimentID: Int
-    var studentIDs = [Int]()
+    var studentIDs: [Int]
     
     var creditValue: Double{
         get{
@@ -34,6 +34,7 @@ class Experiment: NSObject {
         self.requirements = requirements
         self.maxParticipants = maxParticipants
         self.experimentID = experimentID
+        self.studentIDs = [Int]()
         super.init()
     }
 }

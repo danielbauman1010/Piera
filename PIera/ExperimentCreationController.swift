@@ -29,15 +29,14 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         requirementStore = RequirementStore()
         requirementsTable.delegate = self
         requirementsTable.dataSource = self
-        
-        experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) * (navigator.currentAdministration!.perTime) + navigator.currentAdministration!.perTime) Cr.)"
+        experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) * (navigator.perTime) + navigator.perTime) Cr.)"
         participantField.keyboardType = UIKeyboardType.numberPad
     }
     
     @IBAction func finishedCreation(){
         let navigator = parent as! PieraNavigationController
         // Remove nil coallescor?
-        let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: "\((navigator.currentPerson?.name)!) (\(navigator.currentPerson?.email))" , authorID: (navigator.currentPerson?.personID)!, completionTime: timeStepper.value, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100, experimentID: 0)
+        let newExperiment = Experiment(name: nameField.text!, time: timePicker.date as NSDate?, location: locationField.text!, descript: descript.text!, objective: objective.text!, author: "\((navigator.currentPerson?.name)!)" , authorID: (navigator.currentPerson?.personID)!, completionTime: timeStepper.value, requirements: requirementStore.allRequirements, maxParticipants: Int(participantField.text!) ?? 100, experimentID: 0)
         guard navigator.server.createExperiment(exp: newExperiment) != nil else {
             let alert = UIAlertController(title: "Creating experiment failed.", message: "Check your internet connection and try again later.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
@@ -92,7 +91,7 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
     
     @IBAction func changeTime(sender: UIStepper){
         let navigator = parent as! PieraNavigationController
-        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.currentAdministration!.perTime) + navigator.currentAdministration!.perTime)) Cr.)"
+        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.perTime) + navigator.perTime)) Cr.)"
     }
     
 }

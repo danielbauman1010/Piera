@@ -89,7 +89,7 @@ class ExperimentsViewController: UITableViewController{
         if(!hasBeenInCell){ update() }
     }
     
-    func update(){
+    func update(){        
         for experiment in relevantExperiments{
             experimentStore.allExperiments.append(experiment)
             

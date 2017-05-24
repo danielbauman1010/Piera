@@ -2,8 +2,7 @@ import UIKit
 
 class StudentMainController: UIViewController{
     
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var classLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!    
     @IBOutlet var creditsLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -13,27 +12,29 @@ class StudentMainController: UIViewController{
         navigator.navigationBar.isHidden = !navigator.debugMode
         let student = navigator.currentPerson! as! Student
         nameLabel.text = "User: \(student.name)"
-        classLabel.text = "Classes: \(student.classes)"
-        creditsLabel.text = "Credits: \(student.credits) Cr. out of \(navigator.currentAdministration!.required) Cr. required"
+        creditsLabel.text = "Credits: \(student.grade) Cr. out of \(navigator.required)"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigator = parent as! PieraNavigationController
-        if segue.identifier == "StudentCurrent" || segue.identifier == "StudentHistory"{
-            navigator.navigationBar.isHidden = false
+        navigator.navigationBar.isHidden = false
+        
+        if segue.identifier == "StudentCurrent" {
             let experimentsTable = segue.destination as! ExperimentsViewController
-            
-            //
-            experimentsTable.relevantExperiments = [Experiment]()
-            //
-            
-            //experimentsTable.relevantExperiments = navigator.experiments.filter{$0.studentIDs.contains(navigator.currentPerson!.personID)}
-            //if segue.identifier == "StudentCurrent"{
-                //experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedDescending)
-            //}
-            //if segue.identifier == "StudentHistory"{
-                //experimentsTable.relevantExperiments = filterTime(experiments: experimentsTable.relevantExperiments, .orderedAscending)
-            //}
+            experimentsTable.relevantExperiments = navigator.server.getStudentExperiments(studentId: navigator.currentPerson!.personID) ?? [Experiment]()
+        }
+        
+        if segue.identifier == "StudentHistory" {
+            let experimentsTable = segue.destination as! ExperimentsViewController
+            var experiments = [Experiment]()
+            if let history = navigator.server.getStudentHistory(studentId: navigator.currentPerson!.personID) {
+                for expid in history.keys {
+                    if let edata = navigator.server.formRequest(method: "GET", address: "experiment/\(expid)", requestData: nil), let exp = navigator.server.formatExperiment(data: edata) {
+                        experiments.append(exp)
+                    }
+                }
+            }
+            experimentsTable.relevantExperiments = experiments
         }
         if segue.identifier == "ExperimentFound"{
             let detailViewController = segue.destination as! ExperimentDetailViewController
