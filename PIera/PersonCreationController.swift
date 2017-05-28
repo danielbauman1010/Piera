@@ -28,12 +28,7 @@ class PersonCreationController: UIViewController{
             return
         }
         let navigator = parent as! PieraNavigationController
-        if let person = navigator.server.createUser(person: Person(name: nameField.text!, password: passwordField.text!, email: emailField.text!, university: "", id: 0), ucode: navigator.ucode) {
-            if let creditSystem = navigator.server.getCredits(university: person.university) {
-                navigator.perTime = creditSystem["pertime"]!
-                navigator.penalty = creditSystem["penalty"]!
-                navigator.required = creditSystem["required"]!
-            }
+        if let person = navigator.server.createUser(person: Person(name: nameField.text!, password: passwordField.text!, email: emailField.text!, university: "", id: 0), ucode: navigator.ucode) {            
             if let student = person as? Student {
                 navigator.currentPerson =  student
                 performSegue(withIdentifier: "StudentCreated", sender: nil)

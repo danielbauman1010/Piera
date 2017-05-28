@@ -82,11 +82,13 @@ class RequirementTableController: UITableViewController{
     
     func update(){
         let navigator = parent as! PieraNavigationController
-        let studentRequirements = navigator.server.getStudentRequirements(studentId: navigator.currentPerson!.personID).filter{$0 != ""}
-        for requirement in navigator.server.getRequirements().filter({$0 != ""}) {
+        let getrequirements = navigator.server.getRequirements(studentId: navigator.currentPerson!.personID)
+        let requirements = getrequirements[0]!
+        let allrequirements = getrequirements[1]!
+        for requirement in allrequirements.filter({$0 != ""}) {
             activeRequirements.append(requirement)
         }
-        activeRequirements = activeRequirements.filter{!studentRequirements.contains($0)}
+        activeRequirements = activeRequirements.filter{!requirements.contains($0)}
         let activeRequirementsSet = Set(activeRequirements)
         for requirement in activeRequirementsSet{
             requirementsData[0]!.allRequirements.append(requirement)
@@ -98,7 +100,7 @@ class RequirementTableController: UITableViewController{
             }
         }
         
-        for requirement in studentRequirements {
+        for requirement in requirements {
             requirementsData[1]!.allRequirements.append(requirement)
             
             if let index = requirementsData[1]!.allRequirements.index(of: requirement){

@@ -15,7 +15,7 @@ class Experiment: NSObject {
     var experimentID: Int
     var studentIDs: [Int]
     var grade: Double?
-    
+    var gradable: Bool = false
     
     var creditValue: Double{
         get{

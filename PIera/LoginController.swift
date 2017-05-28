@@ -12,14 +12,8 @@ class LoginController: UIViewController{
     @IBAction func attemptLogin(){
         let navigator = parent as! PieraNavigationController        
         if let person = navigator.server.login(email: emailField.text!, password: passwordField.text!, ucode: navigator.ucode) {
-            if let creditSystem = navigator.server.getCredits(university: person.university) {
-                navigator.perTime = creditSystem["pertime"]!
-                navigator.penalty = creditSystem["penalty"]!
-                navigator.required = creditSystem["required"]!
-            }
             if let student = person as? Student {
                 navigator.currentPerson = student
-                student.experiments = navigator.server.getStudentExperiments(studentId: student.personID) ?? [Experiment]()                
                 performSegue(withIdentifier: "StudentLoginComplete", sender: nil)
             } else if let teacher = person as? Teacher {
                 navigator.currentPerson =  teacher

@@ -29,7 +29,9 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         requirementStore = RequirementStore()
         requirementsTable.delegate = self
         requirementsTable.dataSource = self
-        experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) * (navigator.perTime) + navigator.perTime) Cr.)"
+        let perTime = navigator.currentPerson!.pertime
+        
+        experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) * (perTime) + perTime) Cr.)"
         participantField.keyboardType = UIKeyboardType.numberPad
     }
     
@@ -91,7 +93,7 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
     
     @IBAction func changeTime(sender: UIStepper){
         let navigator = parent as! PieraNavigationController
-        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.perTime) + navigator.perTime)) Cr.)"
+        experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.currentPerson!.pertime) + navigator.currentPerson!.pertime)) Cr.)"
     }
     
 }

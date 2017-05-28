@@ -22,37 +22,61 @@ class Server {
     }
     
     func createUser(person: Person, ucode: String) -> Person?{
-        guard let r = formRequest(method: "POST", address: "signup", requestData: ["username": "\(person.name)", "password": "\(person.password)", "email": "\(person.email)", "ucode": "\(ucode)"] as [String: Any]), r["createStatus"] == "1", let userIdString = r["userId"], let userId = Int(userIdString), let typeOfUser = r["userType"], let university = r["university"] else {
+        guard let r = formRequest(method: "POST", address: "signup", requestData: ["username": "\(person.name)", "password": "\(person.password)", "email": "\(person.email)", "ucode": "\(ucode)"] as [String: Any]), r["createStatus"] == "1", let userIdString = r["userId"], let userId = Int(userIdString), let typeOfUser = r["userType"], let university = r["university"], let pertimeString = r["pertime"], let requiredString = r["required"], let penaltyString = r["penalty"], let pertime = Double(pertimeString), let required = Double(requiredString), let penalty = Double(penaltyString) else {
             return nil
         }
+        
         switch typeOfUser {
         case "Student":
-            return Student(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            let s = Student(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            s.penalty = penalty
+            s.required = required
+            s.pertime = pertime
+            return s
         case "Teacher":
-            return Teacher(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            let t = Teacher(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            t.penalty = penalty
+            t.required = required
+            t.pertime = pertime
+            return t
         case "Admin":
-            return Admin(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            let a = Admin(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            a.penalty = penalty
+            a.required = required
+            a.pertime = pertime
+            return a
         default:
             return nil
         }
     }
     
     func login(email: String, password: String, ucode: String) -> Person? {
-        guard let r = formRequest(method: "POST", address: "signin", requestData: ["email": "\(email)", "password": "\(password)", "ucode": "\(ucode)"]), let status = r["loginStatus"], status == "1", let userIdString = r["userId"], let userId = Int(userIdString), let typeOfUser = r["userType"], let name = r["username"], let university = r["university"] else {
+        guard let r = formRequest(method: "POST", address: "signin", requestData: ["email": "\(email)", "password": "\(password)", "ucode": "\(ucode)"]), let status = r["loginStatus"], status == "1", let userIdString = r["userId"], let userId = Int(userIdString), let typeOfUser = r["userType"], let name = r["username"], let university = r["university"], let pertimeString = r["pertime"], let requiredString = r["required"], let penaltyString = r["penalty"], let pertime = Double(pertimeString), let required = Double(requiredString), let penalty = Double(penaltyString) else {
             return nil
         }
         
         switch typeOfUser {
         case "Student":
             let student = Student(name: name, password: password, email: email, university: university, id: userId)
-            if let history = getStudentHistory(studentId: userId) {
-                student.gradedExperiments = history
+            if let gradeString = r["grade"], let grade = Double(gradeString){
+                student.grade = grade
             }
+            student.penalty = penalty
+            student.required = required
+            student.pertime = pertime
             return student
         case "Teacher":
-            return Teacher(name: name, password: password, email: email, university: university, id: userId)
+            let teacher = Teacher(name: name, password: password, email: email, university: university, id: userId)
+            teacher.penalty = penalty
+            teacher.required = required
+            teacher.pertime = pertime
+            return teacher
         case "Admin":
-            return Admin(name: name, password: password, email: email, university: university, id: userId)
+            let admin = Admin(name: name, password: password, email: email, university: university, id: userId)
+            admin.penalty = penalty
+            admin.required = required
+            admin.pertime = pertime
+            return admin
         default:
             return nil
         }                
@@ -107,13 +131,6 @@ class Server {
         return experiments
     }
     
-    func getRequirements()->[String] {
-        if let r = formRequest(method: "GET", address: "requirements", requestData: nil), let requirements = r["requirements"] {
-            return requirements.components(separatedBy: ",")
-        }
-        return [String]()
-    }
-    
     func updateRequirements(studentId: Int, requirements: [String])->Bool {
         if let r = formRequest(method: "POST", address: "updaterequirements", requestData: ["userId": "\(studentId)", "requirements": "\(requirements.joined(separator: ","))"]), r["updateStatus"] == "1" {
             return true
@@ -128,11 +145,19 @@ class Server {
         return false
     }
     
-    func getStudentRequirements(studentId: Int)->[String] {
-        if let r = formRequest(method: "GET", address: "studentrequirements/\(studentId)", requestData: nil), r["getStatus"] == "1" {
-            return r["requirements"]!.components(separatedBy: ",")
+    func getRequirements(studentId: Int)->[Int: [String]] {
+        if let r = formRequest(method: "GET", address: "studentrequirements/\(studentId)", requestData: nil), r["getStatus"] == "1", let requirements = r["requirements"], let allrequirements = r["allrequirements"]{
+            var srequirements = [String]()
+            if requirements != "" {
+                srequirements = requirements.components(separatedBy: ",")
+            }
+            var sallrequirements = [String]()
+            if allrequirements != "" {
+                sallrequirements = allrequirements.components(separatedBy: ",")
+            }
+            return [0: srequirements, 1: sallrequirements]
         }
-        return [String]()
+        return [0: [String](), 1: [String]()]
     }
     
     func searchForExperiment(studentId: Int)->Experiment?{
@@ -169,19 +194,24 @@ class Server {
         return ["student": studentCode, "teacher": teacherCode, "admin": adminCode]
     }
     
-    func getCredits(university: String) -> [String: Double]? {
-        guard let r = formRequest(method: "GET", address: "credits/\(university)", requestData: nil), r["getStatus"] == "1", let pertimeString = r["pertime"], let requiredString = r["required"], let penaltyString = r["penalty"], let pertime = Double(pertimeString), let required = Double(requiredString), let penalty = Double(penaltyString) else {
-            return nil
-        }
-        
-        return ["pertime": pertime, "required": required, "penalty": penalty]
-    }
-    
     func updateCredits(userId: Int, pertime: Double, required: Double, penalty: Double) -> Bool{
         guard let r = formRequest(method: "POST", address: "updatecredits", requestData: ["userId": "\(userId)", "pertime": "\(pertime)", "required": "\(required)", "penalty": "\(penalty)"] as [String: Any]), r["updateStatus"] == "1" else {
             return false
         }
         return true
+    }
+    
+    func getParticipants(expid: Int) -> [Student]{
+        guard let r = formRequest(method: "GET", address: "participants/\(expid)", requestData: nil), r["getStatus"] == "1" else {
+            return [Student]()
+        }
+        var students = [Student]()
+        var counter = 0
+        while let studentIdString = r["\(counter)userId"], let studentId = Int(studentIdString), let username = r["\(counter)username"], let email = r["\(counter)email"], let university = r["\(counter)university"] {
+            students.append(Student(name: username, password: "", email: email, university: university, id: studentId))
+            counter = counter + 1
+        }
+        return students
     }
     
     func formatExperiment(data: [String: String], counter: String)-> Experiment? {
@@ -236,8 +266,8 @@ class Server {
         }
         task.resume()
         var maxTime = 0
-        while jsonResponse == nil && maxTime <= 15 {
-            sleep(2)
+        while jsonResponse == nil && maxTime <= 20 {
+            sleep(1)
             maxTime += 1
         }
         return jsonResponse

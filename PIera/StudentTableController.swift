@@ -4,7 +4,6 @@ class StudentTableController: UITableViewController{
     @IBOutlet var gradeButton: UIBarButtonItem!
     
     var students = [Student]()
-    var gradable: Bool = true
     
     var experiment: Experiment! {
         didSet{
@@ -29,7 +28,7 @@ class StudentTableController: UITableViewController{
         
         cell.nameLabel.text = "\(student.name) (\(student.email))"
         
-        if(!gradable){
+        if(!experiment.gradable){
             cell.gradingSwitch.onTintColor = UIColor.gray
             cell.gradingSwitch.isUserInteractionEnabled = false
         }else{
@@ -56,14 +55,11 @@ class StudentTableController: UITableViewController{
     func update(){
         let navigator = parent as! PieraNavigationController
         let relevantStudents = experiment.studentIDs.map{navigator.server.getStudent(studentId: $0)!}
-        if(navigator.currentExperiments.contains(experiment)){
-            gradable = false
-            gradeButton.title! = "Cannot grade. Experiment still active."
-        }else if(experiment.graded){
-            gradable = false
+        if(experiment.graded){
+            experiment.gradable = false
             gradeButton.title! = "Re-open experiment."
         }else{
-            gradable = true
+            experiment.gradable = true
             gradeButton.title! = "Grade"
         }
         students = [Student]()
@@ -74,7 +70,7 @@ class StudentTableController: UITableViewController{
     
     @IBAction func grade(){
         let navigator = parent as! PieraNavigationController
-        if gradable{
+        if experiment.gradable{
             for cell in tableView.visibleCells as! [StudentCell]{
                 let index = tableView.indexPath(for: cell)!
                 if(cell.gradingSwitch.isOn){
@@ -87,7 +83,7 @@ class StudentTableController: UITableViewController{
             }
             gradeButton.title! = "Re-open experiment."
             experiment.graded = true
-            gradable = false
+            experiment.gradable = false
         }
     }
 }

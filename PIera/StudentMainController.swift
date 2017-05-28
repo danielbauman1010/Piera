@@ -12,7 +12,7 @@ class StudentMainController: UIViewController{
         navigator.navigationBar.isHidden = !navigator.debugMode
         let student = navigator.currentPerson! as! Student
         nameLabel.text = "User: \(student.name)"
-        creditsLabel.text = "Credits: \(student.grade) Cr. out of \(navigator.required)"
+        creditsLabel.text = "Credits: \(student.grade) Cr. out of \(student.required)"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -20,7 +20,7 @@ class StudentMainController: UIViewController{
         navigator.navigationBar.isHidden = false
         
         if segue.identifier == "StudentCurrent" {
-            let experimentsTable = segue.destination as! ExperimentsViewController
+            let experimentsTable = segue.destination as! ExperimentsViewController            
             experimentsTable.relevantExperiments = navigator.server.getStudentExperiments(studentId: navigator.currentPerson!.personID) ?? [Experiment]()
         }
         

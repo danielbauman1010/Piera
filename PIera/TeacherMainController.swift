@@ -23,14 +23,17 @@ class TeacherMainController: UIViewController{
             experimentsTable.relevantExperiments = navigator.server.getTeacherExperiments(author: navigator.currentPerson! as! Teacher) ?? [Experiment]()
             if segue.identifier == "TeacherCurrent"{
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedDescending)
+                experimentsTable.relevantExperiments.forEach{$0.gradable=false}
             }
             if segue.identifier == "TeacherGradable"{
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
                     .filter{!$0.graded}
+                experimentsTable.relevantExperiments.forEach{$0.gradable=true}
             }
             if segue.identifier == "TeacherHistory"{
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
                     .filter{$0.graded}
+                experimentsTable.relevantExperiments.forEach{$0.gradable=false}
             }
         }
         if(segue.identifier == "TeacherLogout"){

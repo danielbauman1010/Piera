@@ -673,7 +673,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Create Experiment"/>
                                 <connections>
-                                    <segue destination="ZKk-HC-q3G" kind="showDetail" identifier="" action="showViewController:sender:" id="y2O-G1-r13"/>
+                                    <segue destination="ZKk-HC-q3G" kind="showDetail" identifier="CreateExperiment" action="showViewController:sender:" id="y2O-G1-r13"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTH-D2-zal">
@@ -1285,12 +1285,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mrF-xX-hl5"/>
-        <segue reference="EkB-Wp-NgK"/>
+        <segue reference="VE0-OK-H42"/>
+        <segue reference="09T-Wm-vza"/>
+        <segue reference="H9C-wY-2h2"/>
+        <segue reference="FFn-X6-Qdm"/>
         <segue reference="bpJ-fm-DK8"/>
         <segue reference="6qy-YW-xfY"/>
-        <segue reference="rb9-m9-1Z5"/>
-        <segue reference="zd3-SW-cic"/>
-        <segue reference="dOp-65-N0w"/>
+        <segue reference="vef-uJ-53j"/>
     </inferredMetricsTieBreakers>
 </document>
