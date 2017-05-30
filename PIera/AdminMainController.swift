@@ -13,13 +13,13 @@ class AdminMainController: UIViewController{
         super.viewDidLoad()
         let navigator = parent as! PieraNavigationController
         navigator.navigationBar.isHidden = !navigator.debugMode
-        let admin = navigator.currentPerson!
+        let admin = navigator.currentPerson as! Admin
         
         nameLabel.text = "User: \(admin.name)"
         //Update for administration from server
-        perTimeStepper.value = navigator.currentAdministration!.perTime
-        requiredStepper.value = navigator.currentAdministration!.required
-        penaltyStepper.value = navigator.currentAdministration!.penalty
+        perTimeStepper.value = admin.pertime
+        requiredStepper.value = admin.required
+        penaltyStepper.value = admin.penalty
         creditsPerTime.text = "Credits per half hour: \(perTimeStepper.value)"
         creditsRequired.text = "Credits required: \(requiredStepper.value)"
         creditsPenalized.text = "Penalty for missing exp: \(penaltyStepper.value)"
@@ -27,7 +27,9 @@ class AdminMainController: UIViewController{
     
     @IBAction func update(){
         let navigator = parent as! PieraNavigationController
-        navigator.currentAdministration!.updateCredits(perTime: perTimeStepper.value, required: requiredStepper.value, penalty: penaltyStepper.value)
+        if navigator.server.updateCredits(userId: navigator.currentPerson!.personID, pertime: perTimeStepper.value, required: requiredStepper.value, penalty: penaltyStepper.value) {
+            
+        }
     }
     
     @IBAction func creditsPerTimeChanged(){

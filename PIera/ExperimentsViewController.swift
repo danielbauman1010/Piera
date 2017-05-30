@@ -31,7 +31,7 @@ class ExperimentsViewController: UITableViewController{
         let experiment = experimentStore.allExperiments[indexPath.row]
         
         cell.nameLabel.text = experiment.name
-        cell.timeLabel.text = dateFormatter.string(from: experiment.time! as Date)
+        cell.timeLabel.text = dateFormatter.string(from: experiment.time as Date)
         cell.locationLabel.text = experiment.location
         
         return cell
@@ -89,7 +89,7 @@ class ExperimentsViewController: UITableViewController{
         if(!hasBeenInCell){ update() }
     }
     
-    func update(){
+    func update(){        
         for experiment in relevantExperiments{
             experimentStore.allExperiments.append(experiment)
             

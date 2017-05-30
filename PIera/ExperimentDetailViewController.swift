@@ -44,14 +44,10 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     @IBAction func acceptOrGradeExperiment(){
         let navigator = parent as! PieraNavigationController
         if let currentStudent = navigator.currentPerson as? Student?, navigator.server.participateInExperiment(studentId: currentStudent!.personID, experimentId: experiment.experimentID){
-            navigator.addItem(TodoItem(deadline: experiment.time!.addingTimeInterval(TimeInterval(-604800)) as Date, title: "in one week", UUID: UUID().uuidString, expName: experiment.name, location: experiment.location!))
-            navigator.addItem(TodoItem(deadline: experiment.time!.addingTimeInterval(TimeInterval(-172800)) as Date, title: "in two days", UUID: UUID().uuidString, expName: experiment.name, location: experiment.location!))
-            navigator.addItem(TodoItem(deadline: experiment.time!.addingTimeInterval(TimeInterval(-86400)) as Date, title: "in one days", UUID: UUID().uuidString, expName: experiment.name, location: experiment.location!))
-            navigator.addItem(TodoItem(deadline: experiment.time!.addingTimeInterval(TimeInterval(-21600)) as Date, title: "in six hours", UUID: UUID().uuidString, expName: experiment.name, location: experiment.location!))
-            navigator.addItem(TodoItem(deadline: experiment.time!.addingTimeInterval(TimeInterval(-3600)) as Date, title: "in one hours", UUID: UUID().uuidString, expName: experiment.name, location: experiment.location!))
+            
             //experiment.studentIDs.append(currentStudent!.personID)
             performSegue(withIdentifier: "ExperimentDecisionMade", sender: nil)
-        }else{
+        }else{            
             performSegue(withIdentifier: "ViewParticipants", sender: nil)
         }
     }
@@ -66,14 +62,14 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         nameLabel.text = experiment.name
         authorLabel.text = "Author: \(experiment.author)"
         maxParticipantLabel.text = "Max Participants: \(experiment.maxParticipants), Current Participants: \(experiment.studentIDs.count)"
-        timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time! as Date))"
-        locationLabel.text = "Location: \(experiment.location!)"
-        descript.text = "Description:\n\(experiment.descript!)"
-        objective.text = "Objective:\n\(experiment.objective!)"
+        timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time as Date))"
+        locationLabel.text = "Location: \(experiment.location)"
+        descript.text = "Description:\n\(experiment.descript)"
+        objective.text = "Objective:\n\(experiment.objective)"
         completionTimeLabel.text =  "Time required: \(experiment.completionTime) min. (\(experiment.creditValue) Cr.)"
         var requirementsList : String = "Requirements:\n"
         for requirement in experiment.requirements{
-            requirementsList += "\(requirement) "
+            requirementsList += "\(requirement)\n"
         }
         requirementsListView.text = requirementsList
         

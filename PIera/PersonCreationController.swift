@@ -6,15 +6,13 @@ class PersonCreationController: UIViewController{
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var confirmPasswordField: UITextField!
     @IBOutlet var emailField: UITextField!
-    @IBOutlet var classesField: UITextField!
-    @IBOutlet var classesLabel: UILabel!
+
     
     override func viewWillAppear(_ animated: Bool) {
-        let navigator = parent as! PieraNavigationController
-        switch (navigator.ucodeType){
-            case .Student: classesLabel.text! = "Classes you enroll:"
-            default: classesLabel.text! = "Classes you teach:"
-        }
+        nameField.text = ""
+        passwordField.text = ""
+        confirmPasswordField.text = ""
+        emailField.text = ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -29,38 +27,20 @@ class PersonCreationController: UIViewController{
             self.present(alert, animated: true, completion: nil)
             return
         }
-        guard nameField.text! != "" || passwordField.text! != "" || emailField.text! != "" else{
-            let alert = UIAlertController(title: "Creation failed", message: "Must fill in all fields.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
         let navigator = parent as! PieraNavigationController
-        switch(navigator.ucodeType){
-        case .Student:
-            let tryStudent = Student(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, id: 0)
-            guard let s = navigator.server.createStudent(student: tryStudent, ucode: navigator.ucode) else {
-                errorMessage()
-                return
+        if let person = navigator.server.createUser(person: Person(name: nameField.text!, password: passwordField.text!, email: emailField.text!, university: "", id: 0), ucode: navigator.ucode) {            
+            if let student = person as? Student {
+                navigator.currentPerson =  student
+                performSegue(withIdentifier: "StudentCreated", sender: nil)
+            } else if let teacher = person as? Teacher {
+                navigator.currentPerson =  teacher
+                performSegue(withIdentifier: "TeacherCreated", sender: nil)
+            } else if let admin = person as? Admin {
+                navigator.currentPerson = admin
+                performSegue(withIdentifier: "AdminCreated", sender: nil)
             }
-            navigator.currentPerson =  s
-            performSegue(withIdentifier: "StudentCreated", sender: nil)
-        case.Teacher:
-            let tryTeacher = Teacher(name: nameField.text!, password: passwordField.text!, email: emailField.text!, classes: classesField.text!, id: 0)
-            guard let t = navigator.server.createTeacher(teacher: tryTeacher, ucode: navigator.ucode) else {
-                errorMessage()
-                return
-            }
-            navigator.currentPerson =  t
-            performSegue(withIdentifier: "TeacherCreated", sender: nil)
-        case .Admin:
-            let a = Person(name: nameField.text!, password: passwordField.text!, email: emailField.text!, id: 0)
-            navigator.administrators.append(a)
-            navigator.currentPerson = a
-            performSegue(withIdentifier: "AdminCreated", sender: nil)
-        default:
-            print("error")
         }
+
     }
     
     func errorMessage(){

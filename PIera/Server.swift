@@ -21,80 +21,129 @@ class Server {
         return id
     }
     
-    func createStudent(student: Student, ucode: String) -> Student? {
-        let studentJson = ["username": student.name, "password": student.password, "email": student.email, "bio": "", "interests": "", "classesEnrolled": student.classes, "ucode": ucode] as [String: Any]
-        let response = formRequest(method: "POST", address: "createstudent", requestData: studentJson)
-        if let r = response, r["createStatus"]! == "1" {
-            return Student(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
+    func createUser(person: Person, ucode: String) -> Person?{
+        guard let r = formRequest(method: "POST", address: "signup", requestData: ["username": "\(person.name)", "password": "\(person.password)", "email": "\(person.email)", "ucode": "\(ucode)"] as [String: Any]), r["createStatus"] == "1", let userIdString = r["userId"], let userId = Int(userIdString), let typeOfUser = r["userType"], let university = r["university"], let pertimeString = r["pertime"], let requiredString = r["required"], let penaltyString = r["penalty"], let pertime = Double(pertimeString), let required = Double(requiredString), let penalty = Double(penaltyString) else {
+            return nil
         }
-        return nil
+        
+        switch typeOfUser {
+        case "Student":
+            let s = Student(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            s.penalty = penalty
+            s.required = required
+            s.pertime = pertime
+            return s
+        case "Teacher":
+            let t = Teacher(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            t.penalty = penalty
+            t.required = required
+            t.pertime = pertime
+            return t
+        case "Admin":
+            let a = Admin(name: person.name, password: person.password, email: person.email, university: university, id: userId)
+            a.penalty = penalty
+            a.required = required
+            a.pertime = pertime
+            return a
+        default:
+            return nil
+        }
     }
     
-    func createTeacher(teacher: Teacher, ucode: String) -> Teacher? {
-        let teacherJson = ["username": teacher.name, "password": teacher.password, "email": teacher.email, "bio": "", "classesEnrolled": teacher.classes, "ucode": ucode] as [String: Any]
-        let response = formRequest(method: "POST", address: "createteacher", requestData: teacherJson)
-        if let r = response, r["createStatus"]! == "1" {
-            return Teacher(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
+    func login(email: String, password: String, ucode: String) -> Person? {
+        guard let r = formRequest(method: "POST", address: "signin", requestData: ["email": "\(email)", "password": "\(password)", "ucode": "\(ucode)"]), let status = r["loginStatus"], status == "1", let userIdString = r["userId"], let userId = Int(userIdString), let typeOfUser = r["userType"], let name = r["username"], let university = r["university"], let pertimeString = r["pertime"], let requiredString = r["required"], let penaltyString = r["penalty"], let pertime = Double(pertimeString), let required = Double(requiredString), let penalty = Double(penaltyString) else {
+            return nil
         }
-        return nil
-    }
-    
-    func loginStudent(email: String, password: String) -> Student? {
-        let studentJson = ["email": email, "password":password] as [String: Any]
-        let response = formRequest(method: "POST", address: "loginstudent", requestData: studentJson)
-        if let r = response, r["loginStatus"] == "1" {
-            return Student(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
-        }
-        return nil
-    }
-    
-    func loginTeacher(email: String, password: String) -> Teacher? {
-        let teacherJson = ["email": email, "password":password] as [String: Any]
-        let response = formRequest(method: "POST", address: "loginteacher", requestData: teacherJson)
-        if let r = response, r["loginStatus"] == "1" {
-            return Teacher(name: r["username"]!, password: r["password"]!, email: r["email"]!, classes: r["classesEnrolled"]!, id: Int(r["userId"]!)!)
-        }
-        return nil
+        
+        switch typeOfUser {
+        case "Student":
+            let student = Student(name: name, password: password, email: email, university: university, id: userId)
+            if let gradeString = r["grade"], let grade = Double(gradeString){
+                student.grade = grade
+            }
+            student.penalty = penalty
+            student.required = required
+            student.pertime = pertime
+            return student
+        case "Teacher":
+            let teacher = Teacher(name: name, password: password, email: email, university: university, id: userId)
+            teacher.penalty = penalty
+            teacher.required = required
+            teacher.pertime = pertime
+            return teacher
+        case "Admin":
+            let admin = Admin(name: name, password: password, email: email, university: university, id: userId)
+            admin.penalty = penalty
+            admin.required = required
+            admin.pertime = pertime
+            return admin
+        default:
+            return nil
+        }                
     }
     
     func createExperiment(exp: Experiment) -> Experiment? {
-        let time = exp.time ?? NSDate.init()
-        let description = exp.descript ?? "not specified"
-        let explocation = exp.location ?? "not specified"
-        let objective = exp.objective ?? "not specified"
-        let expJson = ["authorID": exp.authorID, "time": time.description, "explocation": explocation, "descript": description, "objective": objective, "maxParticipants": exp.maxParticipants, "requirements": exp.requirements.joined(separator: ","), "expname": exp.name] as [String: Any]
-        let response = formRequest(method: "POST", address: "createexperiment", requestData: expJson)
-        if let r = response, r["createStatus"]=="1" {
-            return Experiment(name: exp.name, time: exp.time, location: explocation, descript: description, objective: objective, author: r["author"]!, authorID: exp.authorID, completionTime: 0.00, requirements: exp.requirements, maxParticipants: exp.maxParticipants, experimentID: Int(r["expid"]!)!)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let unformattedtime = exp.time
+        let time = dateFormatter.string(from: unformattedtime as Date)
+        let timeToComplete = "\(exp.completionTime)"        
+        if let r = formRequest(method: "POST", address: "createexperiment", requestData: ["authorID": exp.authorID, "time": time.description, "timeToComplete": timeToComplete, "explocation": exp.location, "descript": exp.descript, "objective": exp.objective, "maxParticipants": exp.maxParticipants, "requirements": exp.requirements.joined(separator: ","), "expname": exp.name, "credit": exp.creditValue] as [String: Any]) , r["createStatus"]=="1", let  experiment = formatExperiment(data: r, counter: "") {
+            return experiment
         }
         return nil
+    }
+    
+    func getStudent(studentId: Int)->Student? {
+        guard let r = formRequest(method: "GET", address: "student/\(studentId)", requestData: nil), r["getStatus"] == "1", let name = r["username"], let email = r["email"], let university = r["university"] else {
+            return nil
+        }
+        let student = Student(name: name, password: "", email: email, university: university, id: studentId)
+        return student
     }
     
     func getTeacherExperiments(author: Teacher) -> [Experiment]?{
         if let r = formRequest(method
-            : "GET", address: "teacherexperiments/\(author.personID)", requestData: nil), r["getStatus"]! == "1" {
-            var counter = 0
+            : "GET", address: "teacherexperiments/\(author.personID)", requestData: nil), r["getStatus"]! == "1"{
             var experiments = [Experiment]()
-            while let expname = r["expname\(counter)"] {
-                let experiment = Experiment(name: expname, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation\(counter)"]!, descript: r["descript\(counter)"]!, objective: r["objective\(counter)"]!, author: author.name, authorID: author.personID, completionTime: 0.00,  requirements: r["requirements\(counter)"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants\(counter)"]!)!, experimentID: Int(r["expid\(counter)"]!)!)
-                if r["participants\(counter)"] != "" {
-                    for stid in r["participants\(counter)"]!.components(separatedBy: ",") {
-                        experiment.studentIDs.append(Int(stid)!)
-                    }
-                }
-                experiments.append(experiment)
+            var counter = 0
+            while let exp = formatExperiment(data: r, counter: "\(counter)") {
+                experiments.append(exp)
                 counter = counter + 1
             }
+            
             return experiments
         }
         return nil
     }
     
-    func getRequirements()->[String] {
-        if let r = formRequest(method: "GET", address: "requirements", requestData: nil), let requirements = r["requirements"] {
-            return requirements.components(separatedBy: ",")
+    func getTeacherHistory(author: Teacher) -> [Experiment]?{
+        if let r = formRequest(method
+            : "GET", address: "teacherhistory/\(author.personID)", requestData: nil), r["getStatus"]! == "1"{
+            var experiments = [Experiment]()
+            var counter = 0
+            while let exp = formatExperiment(data: r, counter: "\(counter)") {
+                experiments.append(exp)
+                counter = counter + 1
+            }
+            
+            return experiments
         }
-        return [String]()
+        return nil
+    }
+    
+    func getStudentHistory(studentId: Int)->[Experiment: Double]? {
+        guard let r = formRequest(method: "GET", address: "studenthistory/\(studentId)", requestData: nil), r["getStatus"] == "1" else {
+            return nil
+        }
+        var experiments = [Experiment: Double]()
+        var counter = 0
+        while let exp = formatExperiment(data: r, counter: "\(counter)") {
+            experiments[exp] = Double(r["\(counter)grade"]!)!
+            counter = counter + 1
+        }
+        
+        return experiments
     }
     
     func updateRequirements(studentId: Int, requirements: [String])->Bool {
@@ -111,38 +160,97 @@ class Server {
         return false
     }
     
-    func getAllExperiments()->[Experiment]{
-        var experiments = [Experiment]()
-        
-        return experiments
-    }
-    
-    func getStudentRequirements(studentId: Int)->[String] {
-        if let r = formRequest(method: "GET", address: "studentrequirements/\(studentId)", requestData: nil), r["getStatus"] == "1" {
-            return r["requirements"]!.components(separatedBy: ",")
+    func getRequirements(studentId: Int)->[Int: [String]] {
+        if let r = formRequest(method: "GET", address: "studentrequirements/\(studentId)", requestData: nil), r["getStatus"] == "1", let requirements = r["requirements"], let allrequirements = r["allrequirements"]{
+            var srequirements = [String]()
+            if requirements != "" {
+                srequirements = requirements.components(separatedBy: ",")
+            }
+            var sallrequirements = [String]()
+            if allrequirements != "" {
+                sallrequirements = allrequirements.components(separatedBy: ",")
+            }
+            return [0: srequirements, 1: sallrequirements]
         }
-        return [String]()
+        return [0: [String](), 1: [String]()]
     }
     
     func searchForExperiment(studentId: Int)->Experiment?{
-        if let r = formRequest(method: "GET", address: "searchforexperiments/\(studentId)", requestData: nil), let status = r["searchStatus"], status == "1" {
-            let experiment = Experiment(name: r["expname"]!, time: NSDate.init(timeIntervalSinceNow: 1), location: r["explocation"]!, descript: r["descript"]!, objective: r["objective"]!, author: "Author", authorID: Int(r["authorId"]!)!, completionTime: 0.00,  requirements: r["requirements"]!.components(separatedBy: " "), maxParticipants: Int(r["maxParticipants"]!)!, experimentID: Int(r["expid"]!)!)
-            if r["participants"] != "" {
-                for stid in r["participants"]!.components(separatedBy: ",") {
-                    experiment.studentIDs.append(Int(stid)!)
-                }
-            }
-            return experiment
-
+        if let r = formRequest(method: "GET", address: "searchforexperiments/\(studentId)", requestData: nil), let status = r["searchStatus"], status == "1", let expidString = r["expid"], let expid = Int(expidString), let expdata = formRequest(method: "GET", address: "experiment/\(expid)", requestData: nil)  {
+            return formatExperiment(data: expdata, counter: "")
         }
         return nil
     }
     
-    func gradeStudent(studentId: Int, experimentId: Int, grade: Double)->Bool {
-        if let r = formRequest(method: "POST", address: "gradestudent", requestData: ["userId": "\(studentId)", "expid": "\(experimentId)", "grade": "\(grade)"] as [String: Any]!), r["gradeStatus"] == "1" {
+    func gradeStudents(studentIds: [Int: Bool], experimentId: Int)->Bool {
+        let passedids: [String] = studentIds.keys.filter{studentIds[$0]!}.map{"\($0)"}
+        let failedids: [String] = studentIds.keys.filter{!(studentIds[$0]!)}.map{"\($0)"}
+        if let r = formRequest(method: "POST", address: "gradestudents", requestData: ["passedids": "\(passedids.joined(separator: ","))", "failedids": failedids.joined(separator: ","), "expid": "\(experimentId)"] as [String: Any]!), r["gradeStatus"] == "1" {
             return true
         }
         return false
+    }
+    
+    func getStudentExperiments(studentId: Int) -> [Experiment]?{
+        guard let r = formRequest(method: "GET", address: "studentexperiments/\(studentId)", requestData: nil), r["getStatus"] == "1" else {
+            return nil
+        }
+        var experiments = [Experiment]()
+        var counter = 0
+        while let exp = formatExperiment(data: r, counter: "\(counter)") {
+            experiments.append(exp)
+            counter = counter + 1
+        }
+        return experiments
+    }
+    
+    func getUniversityCodes(university: String) -> [String: String]? {
+        guard let r = formRequest(method: "GET", address: "generateucodes/\(university)", requestData: nil), r["generateStatus"] == "1", let studentCode = r["studentucode"], let teacherCode = r["teacherucode"], let adminCode = r["adminucode"] else {
+            return nil
+        }
+        return ["student": studentCode, "teacher": teacherCode, "admin": adminCode]
+    }
+    
+    func updateCredits(userId: Int, pertime: Double, required: Double, penalty: Double) -> Bool{
+        guard let r = formRequest(method: "POST", address: "updatecredits", requestData: ["userId": "\(userId)", "pertime": "\(pertime)", "required": "\(required)", "penalty": "\(penalty)"] as [String: Any]), r["updateStatus"] == "1" else {
+            return false
+        }
+        return true
+    }
+    
+    func getParticipants(expid: Int) -> [Student]{
+        guard let r = formRequest(method: "GET", address: "participants/\(expid)", requestData: nil), r["getStatus"] == "1" else {
+            return [Student]()
+        }
+        var students = [Student]()
+        var counter = 0
+        while let studentIdString = r["\(counter)userId"], let studentId = Int(studentIdString), let username = r["\(counter)username"], let email = r["\(counter)email"], let university = r["\(counter)university"] {
+            students.append(Student(name: username, password: "", email: email, university: university, id: studentId))
+            counter = counter + 1
+        }
+        return students
+    }
+    
+    func formatExperiment(data: [String: String], counter: String)-> Experiment? {
+        guard let expname = data["\(counter)expname"], let explocation = data["\(counter)explocation"], let descript = data["\(counter)descript"], let objective = data["\(counter)objective"], let author = data["\(counter)author"], let authorIdString = data["\(counter)authorId"], let authorId = Int(authorIdString), let requirementsString = data["\(counter)requirements"], let maxParticipantsString = data["\(counter)maxParticipants"], let maxParticipants = Int(maxParticipantsString), let expidString = data["\(counter)expid"], let expid = Int(expidString), let participantsString = data["\(counter)participants"], let stringTime = data["\(counter)time"], let stringTimeToComplete = data["\(counter)timeToComplete"], let timeToComplete = Double(stringTimeToComplete) else {
+            return nil
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let datetime = dateFormatter.date(from: stringTime) ?? Date.init()
+        let nsdatetime = datetime as NSDate
+        let requirements = requirementsString.components(separatedBy: " ")
+        let experiment = Experiment(name: expname, time: nsdatetime, location: explocation, descript: descript, objective: objective, author: author, authorID: authorId, completionTime: timeToComplete,  requirements: requirements, maxParticipants: maxParticipants, experimentID: expid)
+        if participantsString.characters.count > 0 {
+            let participants = participantsString.components(separatedBy: ",")
+            for participant in participants {
+                if let partId = Int(participant) {
+                    experiment.studentIDs.append(partId)
+                }
+            }
+
+        }
+        return experiment
     }
     
     func formRequest(method: String, address: String, requestData: [String: Any]?) -> [String: String]?{
@@ -175,8 +283,8 @@ class Server {
         }
         task.resume()
         var maxTime = 0
-        while jsonResponse == nil && maxTime <= 15 {
-            sleep(2)
+        while jsonResponse == nil && maxTime <= 20 {
+            sleep(1)
             maxTime += 1
         }
         return jsonResponse

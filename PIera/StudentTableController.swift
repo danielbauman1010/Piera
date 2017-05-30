@@ -4,7 +4,6 @@ class StudentTableController: UITableViewController{
     @IBOutlet var gradeButton: UIBarButtonItem!
     
     var students = [Student]()
-    var gradable: Bool = true
     
     var experiment: Experiment! {
         didSet{
@@ -29,7 +28,7 @@ class StudentTableController: UITableViewController{
         
         cell.nameLabel.text = "\(student.name) (\(student.email))"
         
-        if(!gradable){
+        if(!experiment.gradable){
             cell.gradingSwitch.onTintColor = UIColor.gray
             cell.gradingSwitch.isUserInteractionEnabled = false
         }else{
@@ -50,41 +49,46 @@ class StudentTableController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
-        //update()
+        update()
     }
     
-    /*func update(){
+    func update(){
         let navigator = parent as! PieraNavigationController
-        //let relevantStudents = navigator.students.filter{experiment.studentIDs.contains($0.personID)}
-        if(navigator.currentExperiments.contains(experiment)){
-            gradable = false
-            gradeButton.title! = "Cannot grade. Experiment still active."
-        }else if(experiment.graded){
-            gradable = false
-            gradeButton.title! = "Re-open experiment."
-        }else{
-            gradable = true
+        let relevantStudents = experiment.studentIDs.map{navigator.server.getStudent(studentId: $0)!}
+        if(experiment.gradable){
             gradeButton.title! = "Grade"
+            gradeButton.isEnabled = true
+        }else{
+            gradeButton.title! = "Experiment closed."
+            gradeButton.isEnabled = false
         }
         students = [Student]()
         for student in relevantStudents{
             students.append(student)
         }
-    }*/
+    }
+    
+    
     
     @IBAction func grade(){
-        if gradable{
+        let navigator = parent as! PieraNavigationController
+        var studentIds = [Int: Bool]()
+        print("grade function called")
+        if experiment.gradable{
+            print("experiment gradable")
             for cell in tableView.visibleCells as! [StudentCell]{
                 let index = tableView.indexPath(for: cell)!
-                if(cell.gradingSwitch.isOn){
-                    students[index.row].credits += experiment.creditValue
-                }
+                print("\(students[index.row].personID) : \(cell.gradingSwitch.isOn)")
+                studentIds[students[index.row].personID] = cell.gradingSwitch.isOn
                 cell.gradingSwitch.onTintColor = UIColor.gray
                 cell.gradingSwitch.isUserInteractionEnabled = false
             }
             gradeButton.title! = "Re-open experiment."
             experiment.graded = true
-            gradable = false
+            experiment.gradable = false
+            if navigator.server.gradeStudents(studentIds: studentIds, experimentId: experiment.experimentID) == false{
+                print("error grading")
+            }
         }
     }
 }
