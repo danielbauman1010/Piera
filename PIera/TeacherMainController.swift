@@ -20,19 +20,19 @@ class TeacherMainController: UIViewController{
         if segue.identifier == "TeacherCurrent" || segue.identifier == "TeacherGradable" || segue.identifier == "TeacherHistory"{
             navigator.navigationBar.isHidden = false
             let experimentsTable = segue.destination as! ExperimentsViewController
-            experimentsTable.relevantExperiments = navigator.server.getTeacherExperiments(author: navigator.currentPerson! as! Teacher) ?? [Experiment]()
             if segue.identifier == "TeacherCurrent"{
+                experimentsTable.relevantExperiments = navigator.server.getTeacherExperiments(author: navigator.currentPerson! as! Teacher) ?? [Experiment]()
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedDescending)
                 experimentsTable.relevantExperiments.forEach{$0.gradable=false}
             }
             if segue.identifier == "TeacherGradable"{
+                experimentsTable.relevantExperiments = navigator.server.getTeacherExperiments(author: navigator.currentPerson! as! Teacher) ?? [Experiment]()
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
-                    .filter{!$0.graded}
                 experimentsTable.relevantExperiments.forEach{$0.gradable=true}
             }
             if segue.identifier == "TeacherHistory"{
+                experimentsTable.relevantExperiments = navigator.server.getTeacherHistory(author: navigator.currentPerson! as! Teacher) ?? [Experiment]()
                 experimentsTable.relevantExperiments = filterTime(experimentsTable.relevantExperiments, comparisonType: .orderedAscending)
-                    .filter{$0.graded}
                 experimentsTable.relevantExperiments.forEach{$0.gradable=false}
             }
         }

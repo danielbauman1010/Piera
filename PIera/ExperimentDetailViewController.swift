@@ -47,7 +47,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
             
             //experiment.studentIDs.append(currentStudent!.personID)
             performSegue(withIdentifier: "ExperimentDecisionMade", sender: nil)
-        }else{
+        }else{            
             performSegue(withIdentifier: "ViewParticipants", sender: nil)
         }
     }

@@ -55,12 +55,12 @@ class StudentTableController: UITableViewController{
     func update(){
         let navigator = parent as! PieraNavigationController
         let relevantStudents = experiment.studentIDs.map{navigator.server.getStudent(studentId: $0)!}
-        if(experiment.graded){
-            experiment.gradable = false
-            gradeButton.title! = "Re-open experiment."
-        }else{
-            experiment.gradable = true
+        if(experiment.gradable){
             gradeButton.title! = "Grade"
+            gradeButton.isEnabled = true
+        }else{
+            gradeButton.title! = "Experiment closed."
+            gradeButton.isEnabled = false
         }
         students = [Student]()
         for student in relevantStudents{
@@ -68,22 +68,27 @@ class StudentTableController: UITableViewController{
         }
     }
     
+    
+    
     @IBAction func grade(){
         let navigator = parent as! PieraNavigationController
+        var studentIds = [Int: Bool]()
+        print("grade function called")
         if experiment.gradable{
+            print("experiment gradable")
             for cell in tableView.visibleCells as! [StudentCell]{
                 let index = tableView.indexPath(for: cell)!
-                if(cell.gradingSwitch.isOn){
-                    if navigator.server.gradeStudent(studentId: students[index.row].personID, experimentId: experiment.experimentID, grade: experiment.creditValue) == false{
-                        
-                    }
-                }
+                print("\(students[index.row].personID) : \(cell.gradingSwitch.isOn)")
+                studentIds[students[index.row].personID] = cell.gradingSwitch.isOn
                 cell.gradingSwitch.onTintColor = UIColor.gray
                 cell.gradingSwitch.isUserInteractionEnabled = false
             }
             gradeButton.title! = "Re-open experiment."
             experiment.graded = true
             experiment.gradable = false
+            if navigator.server.gradeStudents(studentIds: studentIds, experimentId: experiment.experimentID) == false{
+                print("error grading")
+            }
         }
     }
 }

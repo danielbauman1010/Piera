@@ -88,7 +88,7 @@ class Server {
         let unformattedtime = exp.time
         let time = dateFormatter.string(from: unformattedtime as Date)
         let timeToComplete = "\(exp.completionTime)"        
-        if let r = formRequest(method: "POST", address: "createexperiment", requestData: ["authorID": exp.authorID, "time": time.description, "timeToComplete": timeToComplete, "explocation": exp.location, "descript": exp.descript, "objective": exp.objective, "maxParticipants": exp.maxParticipants, "requirements": exp.requirements.joined(separator: ","), "expname": exp.name] as [String: Any]) , r["createStatus"]=="1", let  experiment = formatExperiment(data: r, counter: "") {
+        if let r = formRequest(method: "POST", address: "createexperiment", requestData: ["authorID": exp.authorID, "time": time.description, "timeToComplete": timeToComplete, "explocation": exp.location, "descript": exp.descript, "objective": exp.objective, "maxParticipants": exp.maxParticipants, "requirements": exp.requirements.joined(separator: ","), "expname": exp.name, "credit": exp.creditValue] as [String: Any]) , r["createStatus"]=="1", let  experiment = formatExperiment(data: r, counter: "") {
             return experiment
         }
         return nil
@@ -105,6 +105,21 @@ class Server {
     func getTeacherExperiments(author: Teacher) -> [Experiment]?{
         if let r = formRequest(method
             : "GET", address: "teacherexperiments/\(author.personID)", requestData: nil), r["getStatus"]! == "1"{
+            var experiments = [Experiment]()
+            var counter = 0
+            while let exp = formatExperiment(data: r, counter: "\(counter)") {
+                experiments.append(exp)
+                counter = counter + 1
+            }
+            
+            return experiments
+        }
+        return nil
+    }
+    
+    func getTeacherHistory(author: Teacher) -> [Experiment]?{
+        if let r = formRequest(method
+            : "GET", address: "teacherhistory/\(author.personID)", requestData: nil), r["getStatus"]! == "1"{
             var experiments = [Experiment]()
             var counter = 0
             while let exp = formatExperiment(data: r, counter: "\(counter)") {
@@ -167,8 +182,10 @@ class Server {
         return nil
     }
     
-    func gradeStudent(studentId: Int, experimentId: Int, grade: Double)->Bool {
-        if let r = formRequest(method: "POST", address: "gradestudent", requestData: ["userId": "\(studentId)", "expid": "\(experimentId)", "grade": "\(grade)"] as [String: Any]!), r["gradeStatus"] == "1" {
+    func gradeStudents(studentIds: [Int: Bool], experimentId: Int)->Bool {
+        let passedids: [String] = studentIds.keys.filter{studentIds[$0]!}.map{"\($0)"}
+        let failedids: [String] = studentIds.keys.filter{!(studentIds[$0]!)}.map{"\($0)"}
+        if let r = formRequest(method: "POST", address: "gradestudents", requestData: ["passedids": "\(passedids.joined(separator: ","))", "failedids": failedids.joined(separator: ","), "expid": "\(experimentId)"] as [String: Any]!), r["gradeStatus"] == "1" {
             return true
         }
         return false
