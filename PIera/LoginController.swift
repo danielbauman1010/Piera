@@ -22,11 +22,13 @@ class LoginController: UIViewController{
                 navigator.currentPerson = admin
                 performSegue(withIdentifier: "AdminLoginComplete", sender: nil)
             }
-        }        
+        } else {
+            errorMessage()
+        }
     }
     
     func errorMessage(){
-        let alert = UIAlertController(title: "Login failed", message: "Username or Password not valid.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Login failed", message: "Username or Password not valid. (If error repeats, check your internet connection)", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

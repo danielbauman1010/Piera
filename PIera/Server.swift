@@ -11,7 +11,7 @@ class Server {
     
     let url: URL
     var id: Int = 0
-    
+    let internet_error = "The request timed out."
     init(url: URL) {
         self.url = url
     }
@@ -232,15 +232,15 @@ class Server {
     }
     
     func formatExperiment(data: [String: String], counter: String)-> Experiment? {
-        guard let expname = data["\(counter)expname"], let explocation = data["\(counter)explocation"], let descript = data["\(counter)descript"], let objective = data["\(counter)objective"], let author = data["\(counter)author"], let authorIdString = data["\(counter)authorId"], let authorId = Int(authorIdString), let requirementsString = data["\(counter)requirements"], let maxParticipantsString = data["\(counter)maxParticipants"], let maxParticipants = Int(maxParticipantsString), let expidString = data["\(counter)expid"], let expid = Int(expidString), let participantsString = data["\(counter)participants"], let stringTime = data["\(counter)time"], let stringTimeToComplete = data["\(counter)timeToComplete"], let timeToComplete = Double(stringTimeToComplete) else {
+        guard let expname = data["\(counter)expname"], let explocation = data["\(counter)explocation"], let descript = data["\(counter)descript"], let objective = data["\(counter)objective"], let author = data["\(counter)author"], let authorIdString = data["\(counter)authorId"], let email = data["\(counter)email"], let authorId = Int(authorIdString), let requirementsString = data["\(counter)requirements"], let maxParticipantsString = data["\(counter)maxParticipants"], let maxParticipants = Int(maxParticipantsString), let expidString = data["\(counter)expid"], let expid = Int(expidString), let participantsString = data["\(counter)participants"], let stringTime = data["\(counter)time"], let stringTimeToComplete = data["\(counter)timeToComplete"], let timeToComplete = Double(stringTimeToComplete) else {
             return nil
         }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         let datetime = dateFormatter.date(from: stringTime) ?? Date.init()
         let nsdatetime = datetime as NSDate
-        let requirements = requirementsString.components(separatedBy: " ")
-        let experiment = Experiment(name: expname, time: nsdatetime, location: explocation, descript: descript, objective: objective, author: author, authorID: authorId, completionTime: timeToComplete,  requirements: requirements, maxParticipants: maxParticipants, experimentID: expid)
+        let requirements = requirementsString.components(separatedBy: ",")
+        let experiment = Experiment(name: expname, time: nsdatetime, location: explocation, descript: descript, objective: objective, author: author, authorID: authorId, email: email,completionTime: timeToComplete,  requirements: requirements, maxParticipants: maxParticipants, experimentID: expid)
         if participantsString.characters.count > 0 {
             let participants = participantsString.components(separatedBy: ",")
             for participant in participants {
@@ -262,10 +262,11 @@ class Server {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
-        
+        var printout: String?
         let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
             if error != nil{
-                print(error?.localizedDescription ?? "error")
+                printout = error?.localizedDescription ?? "error"
+                print(printout!)
                 return
             }
             
@@ -279,7 +280,11 @@ class Server {
                 
             } catch let error as NSError {
                 print(error)
+                printout = error.localizedDescription
             }
+        }
+        if let error = printout {
+            return ["error": error]
         }
         task.resume()
         var maxTime = 0

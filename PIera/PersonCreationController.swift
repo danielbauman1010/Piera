@@ -39,8 +39,10 @@ class PersonCreationController: UIViewController{
                 navigator.currentPerson = admin
                 performSegue(withIdentifier: "AdminCreated", sender: nil)
             }
+        } else {
+            errorMessage()
         }
-
+        
     }
     
     func errorMessage(){

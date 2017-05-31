@@ -60,7 +60,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         super.viewWillAppear(animated)
         
         nameLabel.text = experiment.name
-        authorLabel.text = "Author: \(experiment.author)"
+        authorLabel.text = "Author: \(experiment.author) (\(experiment.email))"
         maxParticipantLabel.text = "Max Participants: \(experiment.maxParticipants), Current Participants: \(experiment.studentIDs.count)"
         timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time as Date))"
         locationLabel.text = "Location: \(experiment.location)"
@@ -68,10 +68,12 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         objective.text = "Objective:\n\(experiment.objective)"
         completionTimeLabel.text =  "Time required: \(experiment.completionTime) min. (\(experiment.creditValue) Cr.)"
         var requirementsList : String = "Requirements:\n"
-        for requirement in experiment.requirements{
+        for requirement in experiment.requirements {
             requirementsList += "\(requirement)\n"
         }
+        
         requirementsListView.text = requirementsList
+        
         
         let navigator = parent as! PieraNavigationController
         if (navigator.currentPerson as? Teacher?) != nil{
