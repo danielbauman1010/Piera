@@ -1,6 +1,6 @@
 import UIKit
 
-class ExperimentCreationController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ExperimentCreationController: UIViewController, UITableViewDataSource, UITableViewDelegate,UITextViewDelegate{
     
     @IBOutlet var nameField: UITextField!
     @IBOutlet var timePicker: UIDatePicker!
@@ -33,6 +33,10 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         
         experimentTimeLabel.text = "Time required: \(timeStepper.value) min. (\(timeStepper.value.truncatingRemainder(dividingBy: 30.0) * (perTime) + perTime) Cr.)"
         participantField.keyboardType = UIKeyboardType.numberPad
+        descript.textColor = UIColor.brown
+        objective.textColor = UIColor.brown
+        descript.delegate = self
+        objective.delegate = self
     }
     
     @IBAction func finishedCreation(){
@@ -96,4 +100,10 @@ class ExperimentCreationController: UIViewController, UITableViewDataSource, UIT
         experimentTimeLabel.text = "Time required: \(sender.value) min. (\(Double((Int(sender.value-1.0) / 30)) * (navigator.currentPerson!.pertime) + navigator.currentPerson!.pertime)) Cr.)"
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.brown {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
 }

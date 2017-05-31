@@ -68,6 +68,11 @@ class StudentMainController: UIViewController{
     func searchForExperiment()->Experiment?{
         let navigator = parent as! PieraNavigationController
         let currentStudent = navigator.currentPerson as! Student
-        return navigator.server.searchForExperiment(studentId: currentStudent.personID)
+        if let experiment = navigator.server.searchForExperiment(studentId: currentStudent.personID){
+            //if(experiment.time.compare(Date()) == .orderedDescending){
+                return experiment
+            //}
+        }
+        return nil
     }
 }
