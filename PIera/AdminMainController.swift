@@ -20,9 +20,9 @@ class AdminMainController: UIViewController{
         perTimeStepper.value = admin.pertime
         requiredStepper.value = admin.required
         penaltyStepper.value = admin.penalty
-        creditsPerTime.text = "Credits per half hour: \(perTimeStepper.value)"
-        creditsRequired.text = "Credits required: \(requiredStepper.value)"
-        creditsPenalized.text = "Penalty for missing exp: \(penaltyStepper.value)"
+        creditsPerTime.text = "1/2 hour credits: \(perTimeStepper.value)"
+        creditsRequired.text = "Required credits: \(requiredStepper.value)"
+        creditsPenalized.text = "Failing penalty: \(penaltyStepper.value)"
     }
     
     @IBAction func update(){
@@ -33,16 +33,16 @@ class AdminMainController: UIViewController{
     }
     
     @IBAction func creditsPerTimeChanged(){
-        creditsPerTime.text = "Credits per half hour: \(perTimeStepper.value)"
+        creditsPerTime.text = "1/2 hour credits: \(perTimeStepper.value)"
 
     }
     
     @IBAction func creditsRequiredChanged(){
-        creditsRequired.text = "Credits required: \(requiredStepper.value)"
+        creditsRequired.text = "Required credits: \(requiredStepper.value)"
 
     }
     
     @IBAction func creditsPenalizedChanged(){
-        creditsPenalized.text = "Penalty for missing exp: \(penaltyStepper.value)"
+        creditsPenalized.text = "Failing penalty: \(penaltyStepper.value)"
     }
 }

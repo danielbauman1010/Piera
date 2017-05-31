@@ -205,7 +205,7 @@ class Server {
     }
     
     func getUniversityCodes(university: String) -> [String: String]? {
-        guard let r = formRequest(method: "GET", address: "generateucodes/\(university)", requestData: nil), r["generateStatus"] == "1", let studentCode = r["studentucode"], let teacherCode = r["teacherucode"], let adminCode = r["adminucode"] else {
+        guard let r = formRequest(method: "GET", address: "generateucodes/\(university.replacingOccurrences(of: " ", with: "_"))", requestData: nil), r["generateStatus"] == "1", let studentCode = r["studentucode"], let teacherCode = r["teacherucode"], let adminCode = r["adminucode"] else {
             return nil
         }
         return ["student": studentCode, "teacher": teacherCode, "admin": adminCode]
