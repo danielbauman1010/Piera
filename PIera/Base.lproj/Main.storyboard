@@ -428,6 +428,9 @@
                                                 <state key="normal" title="Message">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="wEB-yt-jcv" kind="show" identifier="showAuthor" id="Og8-gn-jVq"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -689,7 +692,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4m-5G-1SP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1238" y="4023"/>
+            <point key="canvasLocation" x="1288" y="3592"/>
         </scene>
         <!--Experiments-->
         <scene sceneID="M5u-5q-UQD">
@@ -1460,12 +1463,13 @@
         <image name="Logomakr_8Fy92h" width="459" height="153"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="yeM-Co-NxT"/>
         <segue reference="YXU-zI-mnZ"/>
         <segue reference="rb9-m9-1Z5"/>
-        <segue reference="bpJ-fm-DK8"/>
+        <segue reference="8g8-g9-bQo"/>
+        <segue reference="vef-uJ-53j"/>
+        <segue reference="Og8-gn-jVq"/>
         <segue reference="07c-X0-6be"/>
         <segue reference="VE0-OK-H42"/>
-        <segue reference="vef-uJ-53j"/>
-        <segue reference="yeM-Co-NxT"/>
     </inferredMetricsTieBreakers>
 </document>
