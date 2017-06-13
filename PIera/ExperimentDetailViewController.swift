@@ -34,9 +34,10 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         if segue.identifier == "ViewParticipants"{
             let studentTableController = segue.destination as! StudentTableController
             studentTableController.experiment = experiment
-        } else if segue.identifier == "StudentMessageTeacher" {
-            let messageViewController = segue.destination as! MessageViewController
-            messageViewController.messageDestination = Teacher(name: self.experiment.author, password: "", email: self.experiment.email, university: "", id: self.experiment.authorID)
+        } else if segue.identifier == "showAuthor" {
+            
+            let personDetailViewController = segue.destination as! PersonDetailViewController
+            personDetailViewController.person = Teacher(name: self.experiment.author, password: "", email: self.experiment.email, university: "", id: self.experiment.authorID)            
         }
     }
     

@@ -35,7 +35,7 @@ class PersonCreationController: UIViewController{
         }
 
         let navigator = parent as! PieraNavigationController
-        if let person = navigator.server.createUser(person: Person(name: nameField.text!, password: passwordField.text!, email: emailField.text!, university: "", id: 0), ucode: navigator.ucode) {            
+        if let person = navigator.server.createUser(person: Person(name: nameField.text!, password: passwordField.text!, email: emailField.text!, university: "", id: 0), ucode: navigator.ucode) {     
             if let student = person as? Student {
                 navigator.currentPerson =  student
                 performSegue(withIdentifier: "StudentCreated", sender: nil)
@@ -46,14 +46,9 @@ class PersonCreationController: UIViewController{
                 navigator.currentPerson = admin
                 performSegue(withIdentifier: "AdminCreated", sender: nil)
             }
-<<<<<<< HEAD
         } else {
-=======
-        }else{
->>>>>>> 6f5c3be2d3cff325f23e60802b20e548de8999a5
             errorMessage()
         }
-        
     }
     
     func errorMessage(){
