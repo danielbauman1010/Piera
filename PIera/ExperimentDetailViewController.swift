@@ -13,6 +13,7 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var acceptOrGradeButton: UIButton!
     @IBOutlet var declineButton: UIButton!
     @IBOutlet var completionTimeLabel: UILabel!
+    @IBOutlet weak var messageButton: UIButton!
     
     var fromExperimentSearch = false
     
@@ -33,6 +34,9 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         if segue.identifier == "ViewParticipants"{
             let studentTableController = segue.destination as! StudentTableController
             studentTableController.experiment = experiment
+        } else if segue.identifier == "StudentMessageTeacher" {
+            let messageViewController = segue.destination as! MessageViewController
+            messageViewController.messageDestination = Teacher(name: self.experiment.author, password: "", email: self.experiment.email, university: "", id: self.experiment.authorID)
         }
     }
     
@@ -58,9 +62,9 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        let navigator = parent as! PieraNavigationController
         nameLabel.text = experiment.name
-        authorLabel.text = "Author: \(experiment.author) (\(experiment.email))"
+        authorLabel.text = "\(experiment.author) (\(experiment.email))"
         maxParticipantLabel.text = "Max Participants: \(experiment.maxParticipants), Current Participants: \(experiment.studentIDs.count)"
         timeLabel.text = "Time: \(dateFormatter.string(from: experiment.time as Date))"
         locationLabel.text = "Location: \(experiment.location)"
@@ -74,11 +78,10 @@ class ExperimentDetailViewController: UIViewController, UITextFieldDelegate{
         
         requirementsListView.text = requirementsList
         
-        
-        let navigator = parent as! PieraNavigationController
         if (navigator.currentPerson as? Teacher?) != nil{
-            acceptOrGradeButton.setTitle("Grade Participants",for: .normal)
+            acceptOrGradeButton.setTitle("Participants",for: .normal)
             declineButton.isHidden = true
+            messageButton.isHidden = true
         }else if(navigator.currentPerson as? Student? != nil && !fromExperimentSearch){
             acceptOrGradeButton.isHidden = true
             declineButton.isHidden = true

@@ -231,6 +231,26 @@ class Server {
         return students
     }
     
+    func sendMessage(authorId: Int, recieverId: Int, message: String)->Bool {
+        guard let r = formRequest(method: "POST", address: "sendmessage", requestData: ["authorId": "\(authorId)", "recieverId": "\(recieverId)", "message": message] as [String: Any]), let status = r["sendStatus"], status == "1" else {
+            return false
+        }
+        return true
+    }
+    
+    func getMessages(userId: Int) -> [String: String] {
+        var counter = 0
+        guard let r = formRequest(method: "GET", address: "messages/\(userId)", requestData: nil), let status = r["getStatus"], status == "1", let _ = r["\(counter)author"] else {
+            return [String: String]()
+        }
+        var messages = [String: String]()
+        while r["\(counter)author"] != nil {
+            messages[r["\(counter)author"]!] = r["\(counter)message"]!
+            counter = counter + 1
+        }
+        return messages
+    }
+    
     func formatExperiment(data: [String: String], counter: String)-> Experiment? {
         guard let expname = data["\(counter)expname"], let explocation = data["\(counter)explocation"], let descript = data["\(counter)descript"], let objective = data["\(counter)objective"], let author = data["\(counter)author"], let authorIdString = data["\(counter)authorId"], let email = data["\(counter)email"], let authorId = Int(authorIdString), let requirementsString = data["\(counter)requirements"], let maxParticipantsString = data["\(counter)maxParticipants"], let maxParticipants = Int(maxParticipantsString), let expidString = data["\(counter)expid"], let expid = Int(expidString), let participantsString = data["\(counter)participants"], let stringTime = data["\(counter)time"], let stringTimeToComplete = data["\(counter)timeToComplete"], let timeToComplete = Double(stringTimeToComplete) else {
             return nil

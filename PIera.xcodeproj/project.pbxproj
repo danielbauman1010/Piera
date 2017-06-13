@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */; };
-		951422D11E53EB4C003FCDC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422CF1E53EB4C003FCDC0 /* Main.storyboard */; };
 		951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951422D21E53EB4C003FCDC0 /* Assets.xcassets */; };
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
+		951700FA1EF08EB500CF6A62 /* StudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951700F91EF08EB500CF6A62 /* StudentDetailViewController.swift */; };
+		956FC16B1EF08BE200830D26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956FC1691EF08BE200830D26 /* Main.storyboard */; };
 		DB24EB1D1EC5D9EB00D39BCF /* UniversityCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB1C1EC5D9EB00D39BCF /* UniversityCodeController.swift */; };
 		DB24EB1F1EC5FEE800D39BCF /* PersonCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB1E1EC5FEE800D39BCF /* PersonCreationController.swift */; };
 		DB24EB211EC604E500D39BCF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB201EC604E500D39BCF /* LoginController.swift */; };
@@ -37,10 +38,11 @@
 /* Begin PBXFileReference section */
 		951422C81E53EB4C003FCDC0 /* PIera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		951422D01E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		951422D21E53EB4C003FCDC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		951422D51E53EB4C003FCDC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		951422D71E53EB4C003FCDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		951700F91EF08EB500CF6A62 /* StudentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDetailViewController.swift; sourceTree = "<group>"; };
+		956FC16A1EF08BE200830D26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB24EB1C1EC5D9EB00D39BCF /* UniversityCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityCodeController.swift; sourceTree = "<group>"; };
 		DB24EB1E1EC5FEE800D39BCF /* PersonCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCreationController.swift; sourceTree = "<group>"; };
 		DB24EB201EC604E500D39BCF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -94,8 +96,8 @@
 		951422CA1E53EB4C003FCDC0 /* PIera */ = {
 			isa = PBXGroup;
 			children = (
+				956FC1691EF08BE200830D26 /* Main.storyboard */,
 				951422CB1E53EB4C003FCDC0 /* AppDelegate.swift */,
-				951422CF1E53EB4C003FCDC0 /* Main.storyboard */,
 				951422D21E53EB4C003FCDC0 /* Assets.xcassets */,
 				951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */,
 				951422D71E53EB4C003FCDC0 /* Info.plist */,
@@ -120,6 +122,7 @@
 				DB24EB1C1EC5D9EB00D39BCF /* UniversityCodeController.swift */,
 				DB24EB1E1EC5FEE800D39BCF /* PersonCreationController.swift */,
 				DB24EB201EC604E500D39BCF /* LoginController.swift */,
+				951700F91EF08EB500CF6A62 /* StudentDetailViewController.swift */,
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -184,8 +187,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */,
+				956FC16B1EF08BE200830D26 /* Main.storyboard in Resources */,
 				951422D31E53EB4C003FCDC0 /* Assets.xcassets in Resources */,
-				951422D11E53EB4C003FCDC0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +216,7 @@
 				DB64E57E1E8E838900B7A710 /* InitialViewController.swift in Sources */,
 				DBB20A6F1E67496E003B76B3 /* ExperimentsViewController.swift in Sources */,
 				DBB20A711E674BB0003B76B3 /* ExperimentDetailViewController.swift in Sources */,
+				951700FA1EF08EB500CF6A62 /* StudentDetailViewController.swift in Sources */,
 				DBB20A751E6DCB95003B76B3 /* ExperimentCreationController.swift in Sources */,
 				DBB20A731E6D9C20003B76B3 /* PieraNavigationController.swift in Sources */,
 				951422CC1E53EB4C003FCDC0 /* AppDelegate.swift in Sources */,
@@ -224,20 +228,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		951422CF1E53EB4C003FCDC0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				951422D01E53EB4C003FCDC0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				951422D51E53EB4C003FCDC0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		956FC1691EF08BE200830D26 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				956FC16A1EF08BE200830D26 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

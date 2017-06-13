@@ -44,30 +44,6 @@ class ExperimentsViewController: UITableViewController{
         tableView.estimatedRowHeight = 65
     }
     
-    /*override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            let experiment = experimentStore.allExperiments[indexPath.row]
-            
-            let title = "Delete \(experiment.name)?"
-            let message = "Are you sure you want to delete this item?"
-            
-            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-            experimentStore.removeItem(experiment)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            ac.addAction(cancelAction)
-            
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive,
-                                             handler: { (action) -> Void in
-                                                self.experimentStore.removeItem(experiment)
-                                                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            })
-            ac.addAction(deleteAction)
-            
-            present(ac, animated: true, completion: nil)
-        }
-    }*/
-    
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         experimentStore.moveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
@@ -102,3 +78,29 @@ class ExperimentsViewController: UITableViewController{
         }
     }
 }
+
+
+
+/*override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+ if editingStyle == .delete{
+ let experiment = experimentStore.allExperiments[indexPath.row]
+ 
+ let title = "Delete \(experiment.name)?"
+ let message = "Are you sure you want to delete this item?"
+ 
+ let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+ experimentStore.removeItem(experiment)
+ 
+ let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+ ac.addAction(cancelAction)
+ 
+ let deleteAction = UIAlertAction(title: "Delete", style: .destructive,
+ handler: { (action) -> Void in
+ self.experimentStore.removeItem(experiment)
+ self.tableView.deleteRows(at: [indexPath], with: .automatic)
+ })
+ ac.addAction(deleteAction)
+ 
+ present(ac, animated: true, completion: nil)
+ }
+ }*/

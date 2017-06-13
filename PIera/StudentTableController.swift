@@ -39,6 +39,20 @@ class StudentTableController: UITableViewController{
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TeacherMessageStudent" {
+            for cell in tableView.visibleCells as! [StudentCell] {
+                let index = tableView.indexPath(for: cell)!
+                if cell.selectedForMessaging {
+                    let index = tableView.indexPath(for: cell)!
+                    let messageViewController = segue.destination as! MessageViewController
+                    messageViewController.messageDestination = students[index.row]
+                    cell.selectedForMessaging = false
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +72,7 @@ class StudentTableController: UITableViewController{
         if(experiment.gradable){
             gradeButton.title! = "Grade"
             gradeButton.isEnabled = true
-        }else{
+        } else{
             gradeButton.title! = "Experiment closed."
             gradeButton.isEnabled = false
         }
