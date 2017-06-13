@@ -10,8 +10,7 @@ import UIKit
 
 class MessagesViewController: UITableViewController{
     
-    var messages: [String: String]?
-    var messagesArray: [String]?
+    var messages: [Message]?
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -26,8 +25,8 @@ class MessagesViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-        let messageDis = messagesArray?[indexPath.row] ?? ""
-        cell.textLabel?.text = messageDis
+        let messageDis = messagesArray?[indexPath.row] ?? Message(author: "", message: "")
+        cell.textLabel?.text = "\(messageDis.author) \(messageDis.message)"
         return cell
     }
 }

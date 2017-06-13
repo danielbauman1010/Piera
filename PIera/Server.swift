@@ -7,6 +7,13 @@
 //
 
 import Foundation
+
+
+
+struct Message {
+    let author: String
+    let message: String
+}
 class Server {
     
     let url: URL
@@ -238,14 +245,14 @@ class Server {
         return true
     }
     
-    func getMessages(userId: Int) -> [String: String] {
+    func getMessages(userId: Int) -> [Message] {
         var counter = 0
         guard let r = formRequest(method: "GET", address: "messages/\(userId)", requestData: nil), let status = r["getStatus"], status == "1", let _ = r["\(counter)author"] else {
-            return [String: String]()
+            return [Message]()
         }
-        var messages = [String: String]()
+        var messages = [Message]()
         while r["\(counter)author"] != nil {
-            messages[r["\(counter)author"]!] = r["\(counter)message"]!
+            messages.append(Message(author: r["\(counter)author"]!, message: r["\(counter)message"]!))
             counter = counter + 1
         }
         return messages
