@@ -604,10 +604,10 @@
             </objects>
             <point key="canvasLocation" x="481" y="4030"/>
         </scene>
-        <!--View Controller-->
+        <!--Person Detail View Controller-->
         <scene sceneID="2iy-sH-2Lo">
             <objects>
-                <viewController id="wEB-yt-jcv" sceneMemberID="viewController">
+                <viewController id="wEB-yt-jcv" customClass="PersonDetailViewController" customModule="PIera" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DJl-8G-9cZ"/>
                         <viewControllerLayoutGuide type="bottom" id="UQV-cA-py5"/>
@@ -616,44 +616,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xV7-LG-Qud">
-                                <rect key="frame" x="114" y="28" width="187" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xV7-LG-Qud">
+                                <rect key="frame" x="120" y="72" width="174" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student emaill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMU-1A-54L">
-                                <rect key="frame" x="143" y="72" width="129" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student university" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYc-5d-4uo">
-                                <rect key="frame" x="126" y="660" width="162" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person emaill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMU-1A-54L">
+                                <rect key="frame" x="147" y="116" width="120" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PYc-Tm-M66">
-                                <rect key="frame" x="19" y="136" width="374" height="238"/>
+                                <rect key="frame" x="19" y="180" width="374" height="238"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="238" id="w8H-bf-39z"/>
+                                    <constraint firstAttribute="height" constant="238" id="Ye3-zg-ip1"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0p-2m-Pi2">
-                                <rect key="frame" x="0.0" y="382" width="414" height="36"/>
+                                <rect key="frame" x="0.0" y="426" width="414" height="36"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="send">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="wEB-yt-jcv" eventType="touchUpInside" id="OdW-Fp-4wS"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message student" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8A-oP-8cC">
-                                <rect key="frame" x="129" y="104" width="155" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8A-oP-8cC">
+                                <rect key="frame" x="140" y="148" width="133" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="University" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYc-5d-4uo">
+                                <rect key="frame" x="162" y="660" width="90" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -661,22 +664,28 @@
                         </subviews>
                         <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Z0p-2m-Pi2" firstAttribute="top" secondItem="PYc-Tm-M66" secondAttribute="bottom" constant="8" symbolic="YES" id="3OL-ls-Sxl"/>
-                            <constraint firstItem="A8A-oP-8cC" firstAttribute="centerX" secondItem="Z0p-2m-Pi2" secondAttribute="centerX" id="JHV-sU-otT"/>
-                            <constraint firstItem="PYc-Tm-M66" firstAttribute="leading" secondItem="ZM0-ij-6sP" secondAttribute="leadingMargin" constant="-1" id="JVj-Su-ltR"/>
-                            <constraint firstItem="cMU-1A-54L" firstAttribute="centerX" secondItem="Z0p-2m-Pi2" secondAttribute="centerX" id="KeZ-w6-cjy"/>
-                            <constraint firstItem="PYc-Tm-M66" firstAttribute="top" secondItem="A8A-oP-8cC" secondAttribute="bottom" constant="8" symbolic="YES" id="NT9-aG-QbD"/>
-                            <constraint firstItem="A8A-oP-8cC" firstAttribute="centerX" secondItem="PYc-Tm-M66" secondAttribute="centerX" id="Rex-2P-EOt"/>
-                            <constraint firstItem="UQV-cA-py5" firstAttribute="top" secondItem="EYc-5d-4uo" secondAttribute="bottom" constant="8" symbolic="YES" id="Tda-y4-rca"/>
-                            <constraint firstItem="xV7-LG-Qud" firstAttribute="centerX" secondItem="cMU-1A-54L" secondAttribute="centerX" id="UN2-o7-yTx"/>
-                            <constraint firstItem="cMU-1A-54L" firstAttribute="top" secondItem="xV7-LG-Qud" secondAttribute="bottom" constant="8" symbolic="YES" id="bg6-r2-lih"/>
-                            <constraint firstItem="cMU-1A-54L" firstAttribute="top" secondItem="DJl-8G-9cZ" secondAttribute="bottom" constant="8" symbolic="YES" id="fhW-y6-tUE"/>
-                            <constraint firstAttribute="trailing" secondItem="Z0p-2m-Pi2" secondAttribute="trailing" id="iCE-UY-6SW"/>
-                            <constraint firstItem="A8A-oP-8cC" firstAttribute="top" secondItem="cMU-1A-54L" secondAttribute="bottom" constant="8" symbolic="YES" id="oYl-Rr-MqG"/>
-                            <constraint firstItem="Z0p-2m-Pi2" firstAttribute="centerX" secondItem="EYc-5d-4uo" secondAttribute="centerX" id="qEH-Xe-QGk"/>
-                            <constraint firstItem="Z0p-2m-Pi2" firstAttribute="leading" secondItem="ZM0-ij-6sP" secondAttribute="leading" id="scf-w6-dVn"/>
+                            <constraint firstItem="A8A-oP-8cC" firstAttribute="top" secondItem="cMU-1A-54L" secondAttribute="bottom" constant="8" symbolic="YES" id="67u-TL-hvK"/>
+                            <constraint firstItem="PYc-Tm-M66" firstAttribute="leading" secondItem="ZM0-ij-6sP" secondAttribute="leadingMargin" constant="-1" id="DyM-Jq-Ee9"/>
+                            <constraint firstItem="xV7-LG-Qud" firstAttribute="centerX" secondItem="cMU-1A-54L" secondAttribute="centerX" id="Nsg-Ko-1wv"/>
+                            <constraint firstItem="cMU-1A-54L" firstAttribute="centerX" secondItem="A8A-oP-8cC" secondAttribute="centerX" id="OBW-Jv-r9R"/>
+                            <constraint firstAttribute="trailing" secondItem="Z0p-2m-Pi2" secondAttribute="trailing" id="TfC-iL-T45"/>
+                            <constraint firstItem="Z0p-2m-Pi2" firstAttribute="leading" secondItem="ZM0-ij-6sP" secondAttribute="leading" id="Uiz-n9-nQL"/>
+                            <constraint firstItem="UQV-cA-py5" firstAttribute="top" secondItem="EYc-5d-4uo" secondAttribute="bottom" constant="8" symbolic="YES" id="UzV-1L-VYC"/>
+                            <constraint firstItem="xV7-LG-Qud" firstAttribute="top" secondItem="DJl-8G-9cZ" secondAttribute="bottom" constant="8" symbolic="YES" id="WBs-Ho-g8K"/>
+                            <constraint firstItem="Z0p-2m-Pi2" firstAttribute="centerX" secondItem="EYc-5d-4uo" secondAttribute="centerX" id="XH9-XS-RPg"/>
+                            <constraint firstItem="cMU-1A-54L" firstAttribute="top" secondItem="xV7-LG-Qud" secondAttribute="bottom" constant="8" symbolic="YES" id="aZY-sN-bm5"/>
+                            <constraint firstItem="PYc-Tm-M66" firstAttribute="top" secondItem="A8A-oP-8cC" secondAttribute="bottom" constant="8" symbolic="YES" id="cZ9-M0-MjA"/>
+                            <constraint firstItem="A8A-oP-8cC" firstAttribute="centerX" secondItem="Z0p-2m-Pi2" secondAttribute="centerX" id="jsg-81-pkk"/>
+                            <constraint firstItem="Z0p-2m-Pi2" firstAttribute="top" secondItem="PYc-Tm-M66" secondAttribute="bottom" constant="8" symbolic="YES" id="pvn-3Y-5HY"/>
+                            <constraint firstItem="A8A-oP-8cC" firstAttribute="centerX" secondItem="PYc-Tm-M66" secondAttribute="centerX" id="vn1-Pv-Tc4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailLabel" destination="cMU-1A-54L" id="QUS-r3-G3s"/>
+                        <outlet property="messageTextField" destination="PYc-Tm-M66" id="Vyd-Zh-fYR"/>
+                        <outlet property="personNameLabel" destination="xV7-LG-Qud" id="LXl-Tr-sW9"/>
+                        <outlet property="universityLabel" destination="EYc-5d-4uo" id="s30-qO-q9j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4m-5G-1SP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

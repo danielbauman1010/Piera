@@ -40,15 +40,11 @@ class StudentTableController: UITableViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TeacherMessageStudent" {
-            for cell in tableView.visibleCells as! [StudentCell] {
-                let index = tableView.indexPath(for: cell)!
-                if cell.selectedForMessaging {
-                    let index = tableView.indexPath(for: cell)!
-                    let messageViewController = segue.destination as! MessageViewController
-                    messageViewController.messageDestination = students[index.row]
-                    cell.selectedForMessaging = false
-                }
+        if segue.identifier == "showStudent" {
+            if let row = tableView.indexPathForSelectedRow?.row{
+                let student = students[row]
+                let personDetailViewController = segue.destination as! PersonDetailViewController
+                personDetailViewController.person = student          
             }
         }
     }
