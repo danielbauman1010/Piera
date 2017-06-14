@@ -343,7 +343,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtG-IB-wH0">
-                                <rect key="frame" x="20" y="28" width="374" height="23"/>
+                                <rect key="frame" x="20" y="28" width="332" height="23"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -355,16 +355,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0y-fL-sc6">
+                                <rect key="frame" x="360" y="21" width="34" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="MVZ-7P-NrU"/>
+                                </constraints>
+                                <state key="normal" title="reply">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="wEB-yt-jcv" kind="show" identifier="replyToMessage" id="1dl-VF-Ntb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="PtG-IB-wH0" firstAttribute="trailing" secondItem="sdq-eb-pjh" secondAttribute="trailing" id="ANf-6c-5rC"/>
-                            <constraint firstItem="PtG-IB-wH0" firstAttribute="leading" secondItem="sdq-eb-pjh" secondAttribute="leading" id="Fi2-p0-sDg"/>
-                            <constraint firstItem="PtG-IB-wH0" firstAttribute="leading" secondItem="r5y-on-i2k" secondAttribute="leadingMargin" id="JWh-ij-uiq"/>
-                            <constraint firstItem="PtG-IB-wH0" firstAttribute="trailing" secondItem="r5y-on-i2k" secondAttribute="trailingMargin" id="Z1I-yP-uLQ"/>
-                            <constraint firstItem="sdq-eb-pjh" firstAttribute="top" secondItem="PtG-IB-wH0" secondAttribute="bottom" constant="8" symbolic="YES" id="nNx-D9-cRj"/>
-                            <constraint firstItem="PtG-IB-wH0" firstAttribute="top" secondItem="VeX-WH-pta" secondAttribute="bottom" constant="8" symbolic="YES" id="pDC-KA-zLF"/>
-                            <constraint firstAttribute="bottom" secondItem="sdq-eb-pjh" secondAttribute="bottom" constant="20" symbolic="YES" id="u3U-OT-gFk"/>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="leading" secondItem="r5y-on-i2k" secondAttribute="leadingMargin" id="3YZ-hV-kYu"/>
+                            <constraint firstItem="sdq-eb-pjh" firstAttribute="top" secondItem="b0y-fL-sc6" secondAttribute="bottom" constant="8" symbolic="YES" id="KjQ-4a-X2R"/>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="leading" secondItem="sdq-eb-pjh" secondAttribute="leading" id="MGH-yh-K5m"/>
+                            <constraint firstItem="b0y-fL-sc6" firstAttribute="leading" secondItem="PtG-IB-wH0" secondAttribute="trailing" constant="8" symbolic="YES" id="UrB-i5-gag"/>
+                            <constraint firstItem="sdq-eb-pjh" firstAttribute="top" secondItem="PtG-IB-wH0" secondAttribute="bottom" constant="8" symbolic="YES" id="gW0-JY-7xA"/>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="top" secondItem="VeX-WH-pta" secondAttribute="bottom" constant="8" symbolic="YES" id="gu8-sg-ojj"/>
+                            <constraint firstAttribute="bottom" secondItem="sdq-eb-pjh" secondAttribute="bottom" constant="20" symbolic="YES" id="hQZ-GS-imQ"/>
+                            <constraint firstItem="b0y-fL-sc6" firstAttribute="trailing" secondItem="r5y-on-i2k" secondAttribute="trailingMargin" id="jgF-fN-ufV"/>
+                            <constraint firstItem="b0y-fL-sc6" firstAttribute="trailing" secondItem="sdq-eb-pjh" secondAttribute="trailing" id="tHc-Eo-5PL"/>
                         </constraints>
                     </view>
                     <connections>
@@ -411,7 +426,7 @@
                                 <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R63-BL-EWF" id="pYO-dq-JhT">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requirement" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yce-I5-6TE">
@@ -627,7 +642,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cyW-TB-36J" id="e7R-hM-jWU">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WD6-i6-5xl">
@@ -806,7 +821,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sJA-bY-ajV" id="JbJ-el-kQ4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahC-ep-ISj">
@@ -1184,7 +1199,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="398" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sMd-VW-jKE" id="Zou-VM-J6R">
-                                                    <rect key="frame" x="0.0" y="0.0" width="398" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="398" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -1599,13 +1614,13 @@
         <image name="Logomakr_8Fy92h" width="459" height="153"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rb9-m9-1Z5"/>
+        <segue reference="EkB-Wp-NgK"/>
         <segue reference="8g8-g9-bQo"/>
         <segue reference="6qy-YW-xfY"/>
-        <segue reference="7Ig-0J-9kF"/>
         <segue reference="vef-uJ-53j"/>
-        <segue reference="EkB-Wp-NgK"/>
+        <segue reference="rb9-m9-1Z5"/>
         <segue reference="80j-rU-yt1"/>
+        <segue reference="1dl-VF-Ntb"/>
         <segue reference="mrF-xX-hl5"/>
         <segue reference="dOp-65-N0w"/>
     </inferredMetricsTieBreakers>

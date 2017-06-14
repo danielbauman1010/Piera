@@ -12,6 +12,7 @@ import Foundation
 
 struct Message {
     let author: String
+    let authorId: Int
     let message: String
 }
 class Server {
@@ -252,7 +253,7 @@ class Server {
         }
         var messages = [Message]()
         while r["\(counter)author"] != nil {
-            messages.append(Message(author: r["\(counter)author"]!, message: r["\(counter)message"]!))
+            messages.append(Message(author: r["\(counter)author"]!, authorId: Int(r["\(counter)authorId"]!)!,message: r["\(counter)message"]!))
             counter = counter + 1
         }
         return messages
