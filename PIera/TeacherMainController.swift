@@ -17,8 +17,8 @@ class TeacherMainController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigator = parent as! PieraNavigationController
+        navigator.navigationBar.isHidden = false
         if segue.identifier == "TeacherCurrent" || segue.identifier == "TeacherGradable" || segue.identifier == "TeacherHistory"{
-            navigator.navigationBar.isHidden = false
             let experimentsTable = segue.destination as! ExperimentsViewController
             if segue.identifier == "TeacherCurrent"{
                 experimentsTable.relevantExperiments = navigator.server.getTeacherExperiments(author: navigator.currentPerson! as! Teacher) ?? [Experiment]()
