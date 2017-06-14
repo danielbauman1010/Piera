@@ -12,6 +12,7 @@
 		951422D61E53EB4C003FCDC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951422D41E53EB4C003FCDC0 /* LaunchScreen.storyboard */; };
 		951700FA1EF08EB500CF6A62 /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951700F91EF08EB500CF6A62 /* PersonDetailViewController.swift */; };
 		956FC16B1EF08BE200830D26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956FC1691EF08BE200830D26 /* Main.storyboard */; };
+		9582F3F71EF0B67E00E8113E /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582F3F61EF0B67E00E8113E /* MessageDetailViewController.swift */; };
 		959F5E181EF0A1390017433F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959F5E171EF0A1390017433F /* MessagesViewController.swift */; };
 		DB24EB1D1EC5D9EB00D39BCF /* UniversityCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB1C1EC5D9EB00D39BCF /* UniversityCodeController.swift */; };
 		DB24EB1F1EC5FEE800D39BCF /* PersonCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24EB1E1EC5FEE800D39BCF /* PersonCreationController.swift */; };
@@ -44,6 +45,7 @@
 		951422D71E53EB4C003FCDC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		951700F91EF08EB500CF6A62 /* PersonDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDetailViewController.swift; sourceTree = "<group>"; };
 		956FC16A1EF08BE200830D26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9582F3F61EF0B67E00E8113E /* MessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		959F5E171EF0A1390017433F /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		DB24EB1C1EC5D9EB00D39BCF /* UniversityCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityCodeController.swift; sourceTree = "<group>"; };
 		DB24EB1E1EC5FEE800D39BCF /* PersonCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCreationController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				DB24EB201EC604E500D39BCF /* LoginController.swift */,
 				951700F91EF08EB500CF6A62 /* PersonDetailViewController.swift */,
 				959F5E171EF0A1390017433F /* MessagesViewController.swift */,
+				9582F3F61EF0B67E00E8113E /* MessageDetailViewController.swift */,
 			);
 			path = PIera;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				DBB20A691E67446A003B76B3 /* Experiment.swift in Sources */,
 				DBD78DB31E857D3A005FA12C /* StudentCell.swift in Sources */,
 				DB24EB1F1EC5FEE800D39BCF /* PersonCreationController.swift in Sources */,
+				9582F3F71EF0B67E00E8113E /* MessageDetailViewController.swift in Sources */,
 				DB24EB1D1EC5D9EB00D39BCF /* UniversityCodeController.swift in Sources */,
 				DBB20A861E79CB91003B76B3 /* RequirementCell.swift in Sources */,
 				DB24EB211EC604E500D39BCF /* LoginController.swift in Sources */,

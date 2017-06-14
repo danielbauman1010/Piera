@@ -23,10 +23,18 @@ class MessagesViewController: UITableViewController{
         return 0
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMessage" {
+            let messageDetailController = segue.destination as! MessageDetailViewController
+            messageDetailController.message = messages?[(tableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
         let messageDis = messages?[indexPath.row] ?? Message(author: "", message: "")
         cell.textLabel?.text = "\(messageDis.author): \(messageDis.message)"
         return cell
     }
+        
 }

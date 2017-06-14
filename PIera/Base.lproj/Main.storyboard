@@ -330,10 +330,10 @@
             </objects>
             <point key="canvasLocation" x="1984.7826086956522" y="1643.8858695652175"/>
         </scene>
-        <!--View Controller-->
+        <!--Message Detail View Controller-->
         <scene sceneID="HLr-rx-ynD">
             <objects>
-                <viewController id="6Q2-FA-cFQ" sceneMemberID="viewController">
+                <viewController id="6Q2-FA-cFQ" customClass="MessageDetailViewController" customModule="PIera" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VeX-WH-pta"/>
                         <viewControllerLayoutGuide type="bottom" id="bdW-uE-9SG"/>
@@ -341,12 +341,40 @@
                     <view key="view" contentMode="scaleToFill" id="r5y-on-i2k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtG-IB-wH0">
+                                <rect key="frame" x="20" y="28" width="374" height="23"/>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sdq-eb-pjh">
+                                <rect key="frame" x="20" y="59" width="374" height="657"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="trailing" secondItem="sdq-eb-pjh" secondAttribute="trailing" id="ANf-6c-5rC"/>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="leading" secondItem="sdq-eb-pjh" secondAttribute="leading" id="Fi2-p0-sDg"/>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="leading" secondItem="r5y-on-i2k" secondAttribute="leadingMargin" id="JWh-ij-uiq"/>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="trailing" secondItem="r5y-on-i2k" secondAttribute="trailingMargin" id="Z1I-yP-uLQ"/>
+                            <constraint firstItem="sdq-eb-pjh" firstAttribute="top" secondItem="PtG-IB-wH0" secondAttribute="bottom" constant="8" symbolic="YES" id="nNx-D9-cRj"/>
+                            <constraint firstItem="PtG-IB-wH0" firstAttribute="top" secondItem="VeX-WH-pta" secondAttribute="bottom" constant="8" symbolic="YES" id="pDC-KA-zLF"/>
+                            <constraint firstAttribute="bottom" secondItem="sdq-eb-pjh" secondAttribute="bottom" constant="20" symbolic="YES" id="u3U-OT-gFk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="authorLabel" destination="PtG-IB-wH0" id="aW5-kF-vAY"/>
+                        <outlet property="messageTextView" destination="sdq-eb-pjh" id="cG6-mh-8EZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WbB-LO-8AS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1828" y="2446"/>
+            <point key="canvasLocation" x="-1042.0289855072465" y="2445.6521739130435"/>
         </scene>
         <!--Requirement Table Controller-->
         <scene sceneID="XUn-5x-wQk">
@@ -750,6 +778,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="6Q2-FA-cFQ" kind="show" identifier="showMessage" id="cid-uz-8Qd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
