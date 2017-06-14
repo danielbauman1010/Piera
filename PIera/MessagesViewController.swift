@@ -25,8 +25,8 @@ class MessagesViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-        let messageDis = messagesArray?[indexPath.row] ?? Message(author: "", message: "")
-        cell.textLabel?.text = "\(messageDis.author) \(messageDis.message)"
+        let messageDis = messages?[indexPath.row] ?? Message(author: "", message: "")
+        cell.textLabel?.text = "\(messageDis.author): \(messageDis.message)"
         return cell
     }
 }
