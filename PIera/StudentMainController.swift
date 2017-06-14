@@ -40,6 +40,10 @@ class StudentMainController: UIViewController{
             detailViewController.experiment = sender as! Experiment!
             detailViewController.fromExperimentSearch = true
         }
+        if segue.identifier == "showStudentMessages" {
+            let messagesViewController = segue.destination as! MessagesViewController
+            messagesViewController.messages = navigator.server.getMessages(userId: navigator.currentPerson!.personID)
+        }
         if(segue.identifier == "StudentLogout"){
             navigator.currentPerson = nil
         }        

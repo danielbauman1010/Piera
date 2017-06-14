@@ -33,10 +33,22 @@ class PersonDetailViewController: UIViewController {
             let navigator = self.navigationController as! PieraNavigationController
             if navigator.server.sendMessage(authorId: navigator.currentPerson!.personID, recieverId: destination.personID, message: messageTextField.text) {
                 print("success")
+                successMessage()
                 messageTextField.text = ""
             } else {
                 print("fail")
+                errorMessage()
             }
         }
+    }
+    func errorMessage(){
+        let alert = UIAlertController(title: "Message failed to send", message: "Connection to server may be lost. Try again later.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func successMessage() {
+        let alert = UIAlertController(title: "Message sent", message: "Message sent successfully.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

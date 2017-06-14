@@ -36,6 +36,11 @@ class TeacherMainController: UIViewController{
                 experimentsTable.relevantExperiments.forEach{$0.gradable=false}
             }
         }
+        if(segue.identifier == "showTeacherMessages") {
+            let messagesViewController = segue.destination as! MessagesViewController
+            let messages = navigator.server.getMessages(userId: navigator.currentPerson!.personID)
+            messagesViewController.messages = messages
+        }
         if(segue.identifier == "TeacherLogout"){
             navigator.currentPerson = nil
         }
